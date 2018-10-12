@@ -1,0 +1,183 @@
+* { 
+    /*
+    border: blue 1px dotted;
+    */
+}
+
+body {
+    background: url("https://www.althingi.is/skin/basic9k/i/sitelogo.png") no-repeat fixed right bottom;
+}
+
+.flex_container {
+    display: flex;
+    flex-direction: row;
+}
+
+#content-container {
+    padding: 8px;
+}
+
+#content-container > * {
+    padding-bottom: 16px;
+}
+
+#main_container {
+    width: 95%;
+    min-height: 400px;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    clear: both;
+}
+
+#editor-main {
+    height: auto;
+}
+
+#editor_container {
+/*    width: 75%; */
+    height: auto;
+    border: skyblue 1px dashed; 
+    background: powderblue;
+/*    float: left; */
+}
+
+#validation_status {
+    width: 150px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    background: lightcyan;
+}
+
+#validation_error {
+    display: none;
+    border: crimson 2px dotted;
+    color: crimson;
+    padding-top: 16px;
+}
+
+#validation_error>h3 {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+#validation_message {
+    color: black;
+    font-family: monospace;
+}
+
+#debug_container {
+    background-color: darkslategrey;
+    color: seagreen;
+    font-family: monospace;
+    min-width: 75%;
+    width: auto;
+    height: auto;
+    border: orange 1px dotted;
+    overflow-y: scroll;
+    overflow-x: none;
+    height: 200px;
+}
+
+#tips_container {
+/*    width: 75%; */
+    min-width: 75%;
+    width: auto;
+    height: auto;
+    border: orange 1px dotted;
+    /*
+    float:left;
+    */
+}
+
+#description {
+    border: orange 1px dashed;
+    margin: 20px;
+    padding: 20px;
+}
+
+#editor-mode {
+    font-size: 24pt;
+    padding: 8px;
+    margin: 12px;
+/*    width: 360px;
+ *    */
+    background-color: lightyellow;
+    border: 2px dashed moccasin;
+    border-radius: 10px;
+    box-shadow: 0 0 0 -4px lightyellow, -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
+    text-transform: capitalize;
+    text-align: center;
+}
+
+footer::before{
+    background: red;
+    clear:both;
+    height: 60px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: #6cf;
+    text-align: center;
+}
+
+.text-content {
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.CodeMirror {
+    height: auto;
+}
+
+ul.links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+.links li {
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+.links li:last-child {
+    border-bottom: none;
+}
+
+.links li a {
+    display: block;
+    background-color: #008cba;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.links li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.open_tag {
+    background-color: yellow;
+/*    border: 1px solid goldenrod; */
+    border-radius: 2px;
+}
+
+.close_tag {
+    background-color: yellow;
+/*    border: 1px solid goldenrod; */
+    border-radius: 2px;
+}

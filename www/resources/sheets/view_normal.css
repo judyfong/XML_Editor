@@ -1,0 +1,53 @@
+.cm-meta,
+.cm-tag,
+.cm-attribute,
+.cm-in-tag {
+    display: none;
+}
+
+.cm-atburður {
+    padding: -8px;
+    margin: 12px;
+    background-color: /*lightgoldenrodyellow*/ rgba(250,250,210, 0.5);
+    border: 2px dashed palegoldenrod;
+    border-radius: 10px;
+    box-shadow: 0 0 0 -4px rgba(250,250,210, 0.5), -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
+    display: block;
+}
+
+.cm-truflun {
+    background-color: darkorange;
+    /*
+    border: 2px dashed orangered;
+    padding: -8px;
+    margin: 12px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 -4px rgba(255,140,0, 0.5),250,210, 0.5), -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
+    */
+/*    display: block; */
+}
+
+.cm-málsheiti {
+    font-size: 24pt;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+
+.cm-mgr {
+    text-indent: 2em;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    margin: 8px;
+    padding: 16px;
+    content: "<br />";
+}
+
+.cm-in-tag-bjalla {
+    display: inline;
+    text-decoration: italic;
+}
+
+.cm-in-tag-bjalla:before, .cm-in-tag-bjalla:after {
+    display: inline;
+    content: "\26A0";
+}
+
