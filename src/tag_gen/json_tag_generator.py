@@ -8,20 +8,26 @@ import json
 import xmlschema
 
 def extract_tag(node):
+    """
+    This method is currently unused,
+    and will probably be removed soon.
+    """
     extract_string = node.tag
     stop_ind = extract_string.find('}')
     return extract_string[stop_ind+1:]
 
 ##### BUILDERS
+
+def build_type(node):
+    """
+    This method constructs a tag type based on the following idea:
     # we will build a structure that looks like:
     # tagname -> {
     #       attrs   : { attr: [ values ] },
     #       children: [ values ]
     #   }
     #   so essentially, a pair of tagname, { attrs, children }
-    #####
-
-def build_type(node):
+    """
     assert isinstance(node, xmlschema.validators.complex_types.XsdComplexType), \
         'node should be a complex type (? -- is simple okay?)'
     if hasattr(node, 'root_elements'):
@@ -45,6 +51,15 @@ def build_type(node):
     return (tagname, structure)
 
 def build_tag(node):
+    """
+    This method constructs the tag itself based on the following idea:
+    # we will build a structure that looks like:
+    # tagname -> {
+    #       attrs   : { attr: [ values ] },
+    #       children: [ values ]
+    #   }
+    #   so essentially, a pair of tagname, { attrs, children }
+    """
     assert isinstance(node, xmlschema.validators.elements.XsdElement), \
             'node should be a complex type (? -- is simple okay?)'
 
@@ -124,15 +139,20 @@ def merge_elements(simple_elements, complex_elements):
     #   print("{0}:\n\t{1}\n\t{2}".format(key, value, cval))
 
         # our new dictionary must contain the attrs and children from both...
-        new_value = {
+        node = {
             'attrs':    list(set(value['attrs'] + cval.get('attrs', []))),
             'children': list(set(value['children'] + cval.get('children', []))),
         }
-        merged_tree[key] = new_value
+        merged_tree[key] = node
 
     return merged_tree
 
+# TODO HERE: Convert merged_tree dictionary to ProseMirror SchemaSpec
+def convert_tree_to_pm_spec(tree):
+    raise Exception("Not Implemented!")
+
 def main(args):
+    """
     # iterate over all elements and build:
     # - type map
     #   * type will contain extra attributes for elements for those types
@@ -140,6 +160,7 @@ def main(args):
     # - element map
     #   * elements will contain children and sometimes attributes
     #   * elements should not contain themselves as their own children
+    """
     
     # sfile = "../../skema/althingi_raedur.xsd" # Now replaced by args.schema
 
@@ -153,10 +174,12 @@ def main(args):
     merged_tree = merge_elements(simple_elements, complex_elements)
 
     sss = json.dumps(merged_tree, indent=4)
-    print(sss)
+    with open(args.outfile, 'w') as outfile:
+        outfile.write(sss)
 
 if __name__ == '__main__':
     _parser = argparse.ArgumentParser()
     _parser.add_argument('schema', nargs='?', default='skema/althingi_raedur.xsd', help='The schema file to parse into usable tags')
+    _parser.add_argument('-o', '--outfile', default='tags_ref_for_testing.json', help='Write output to this file')
     _args = _parser.parse_args()
     main(_args)
