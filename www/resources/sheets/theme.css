@@ -1,11 +1,20 @@
 * { 
     /*
-    border: blue 1px dotted;
-    */
+     * border: blue 1px dotted;
+     */
 }
 
 body {
     background: url("https://www.althingi.is/skin/basic9k/i/sitelogo.png") no-repeat fixed right bottom;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .flex_container {
@@ -13,8 +22,29 @@ body {
     flex-direction: row;
 }
 
+.nice-container {
+    padding: 4px;
+    margin: 4px;
+    margin-top: 16px;
+    border: 1px dotted teal;
+    background-color: rgba(255, 248, 220, 0.8);
+    border-radius: 4px;
+}
+
+.nice-container h4 {
+    color: teal;
+    text-align: center;
+    margin: 4px;
+    border-bottom: 1px teal dotted;
+}
+
+.nice-container ul li {
+    font-family: monospace;
+}
+
 #content-container {
     padding: 8px;
+    border: red 1px dashed;
 }
 
 #content-container > * {
@@ -45,7 +75,7 @@ body {
 }
 
 #validation_status {
-    width: 150px;
+    width: 160px;
     font-weight: bold;
     text-align: center;
     padding: 8px;
@@ -139,6 +169,95 @@ footer {
     height: auto;
 }
 
+ul.horizontal-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    border: 1px solid #555;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+
+.horizontal-links li {
+    float: left;
+    border-right: 1px solid #555;
+
+    display: block;
+    padding: 8px 16px;
+    background-color: #008cba;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.horizontal-links li:last-child {
+    border-right: none;
+}
+
+.horizontal-links li a {
+    display: block;
+    padding: 8px 16px;
+    background-color: #008cba;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.dropbtn {
+    display: inline-block;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    background-color: navy;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content .separator {
+    margin: 0px;
+    padding: 0px;
+    border-top: 1px teal dotted;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    border: 1px black dashed;
+}
+
+#insert-element-container {
+    width: 200px;
+}
+
+#tree-explorer-container {
+    width: 160px;
+}
+
+#tree-explorer-links li {
+    text-align: left;
+}
+
 ul.links {
     list-style-type: none;
     margin: 0;
@@ -149,8 +268,16 @@ ul.links {
 }
 
 .links li {
+    color: goldenrod;
+    background-color: khaki;
     text-align: center;
     border-bottom: 1px solid #555;
+
+    display: block;
+    background-color: #008cba;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
 }
 
 .links li:last-child {
@@ -165,9 +292,22 @@ ul.links {
     color: white;
 }
 
-.links li a:hover {
+.links li a:hover,
+.horizontal-links li a:hover,
+.button:hover {
     background-color: #555;
     color: white;
+	cursor: pointer;
+}
+
+.marked-tag {
+    display: inline;
+    background-color: khaki;
+}
+
+.marked-tag-hidden {
+	display: none;
+	opacity: 0.1;
 }
 
 .open_tag {

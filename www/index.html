@@ -1,13 +1,21 @@
 <!doctype html>
 <html>
 <head>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CodeMirror prototype</title>
 
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="codemirror/addon/hint/show-hint.css">
-    <link rel="stylesheet" href="/sheets/theme.css">
-    <link id='view-normal-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="/sheets/view_normal.css">
+
+    <link rel="stylesheet" href="resources/sheets/theme.css">
+
+    <link id='view-normal-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_normal.css">
+    <link id='view-hide-tags-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_hide_tags.css">
 
     <script src="codemirror/lib/jquery.min.js"></script>
     <script src="codemirror/lib/jquery-ui.min.js"></script>
@@ -15,8 +23,11 @@
     <script src="codemirror/mode/xml/xml.js"></script>
     <script src="scripts/xml_mode_tagged.js"></script>
     <script src="codemirror/addon/hint/show-hint.js"></script>
+    <script src="scripts/insert-element-populator.js"></script>
     <script src="codemirror/addon/hint/xml-hint.js"></script>
     <script src="scripts/editor.js"></script>
+    <script src="scripts/editor_views.js"></script>
+    <script src="scripts/editor_additions.js"></script>
 </head>
 <body onload="start()">
 	<div class="wrapper">
@@ -31,7 +42,65 @@
 
     <div id="main_container">
         <div class='flex_container'>
+            <div id='side-container-left'>
+                <div id='editor-mode'>
+                </div>
+                <div id="validation_status" style='border: 1px maroon solid;'>
+                    Validation Status Unknown...
+                </div>
+                <div id="tree-explorer-container" class="nice-container">
+                    <h4>Yfirlitssamantekt</h4>
+                    <ul id="tree-explorer-links" class="links">
+                        <li> Virkja þarf skjal til að sjá yfirlitssamantekt</li>
+                    </ul>
+                </div>
+            </div>
             <div id='content-container'>
+                <div id="top-link-bar">
+                    <ul class="horizontal-links">
+                        <!--li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Sýn</a>
+                            <div class='dropdown-content'>
+                            </div>
+                        </li-->
+                        <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Útlit</a>
+                            <div class='dropdown-content'>
+                                <a href="#" id='view_normal_mode'>Áberandi Sýn</a>
+                                <a href="#" id='view_assisted_mode'>Einföld Sýn</a>
+                                <a href="#" id='view_raw_mode'>&#9888; XML Sýn &#9888;</a>
+                                <div class='separator'/>
+                                <a id='toggle_tags' href='#'>Sýna/Fela tög</a>
+                                <a id='toggle_line_numbers' href='#'>Sýna/Fela línunúmer</a>
+                                <div class='separator'/>
+                                <a id='inc_font' href='#'>Stækka Leturstærð</a>
+                                <a id='dec_font' href='#'>Minnka Leturstærð</a>
+                                <a id='def_font' href='#'>Endurstilla Leturstærð</a>
+                            </div>
+                        </li>
+                        <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Virkni</a>
+                            <div class='dropdown-content'>
+                                <a id='toggle_autovalidate' href='#'>Slökkva/Kveikja á tæknilegri villuleitun</a>
+                            </div>
+                        </li>
+                        <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Fleiri Dæmi</a>
+                            <div class='dropdown-content'>
+                                <a id='load_example_1' href="#">Ræða m/ bjöllu, framíkalli, truflun</a>
+                                <a id='load_example_2' href="#">Ræða m/ atburði</a>
+                                <a id='load_example_3' href="#">Ræða m/ vísu</a>
+                                <a id='load_example_dag014' href="#">Dagskrárskjal</a>
+                                <a id='load_example_fja012' href="#">Fjarvistarskjal</a>
+                                <a id='load_example_fun023' href="#">Fundarskjal</a>
+                                <a id='load_example_inn029' href="#">Aðalmenn taka sæti</a>
+                                <a id='load_example_les025' href="#">Lagt fram á lestrarsal</a>
+                                <a id='load_example_utb20171215T201027' href="#">Útbýtingarskjal</a>
+                                <a id='load_example_lid20171215T103413' href="#">Liðaskjal með atkvæðagreiðslu</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div id="editor-main">
                     <div id="editor_container">
                     </div>
@@ -48,71 +117,27 @@
                     <p> Hérna kemur vonandi einhvern tímann einhver texti, eða við munum hugsanlega fjarlæga þennan kassa.</p>
                 </div>
             </div>
-            <div id='side-container'>
-                <div id='editor-mode'>
-                </div>
-                <div id='links-container'>
-                    <ul class="links">
-                        <li id='cycle_view'>
-                            <a href="#">Skipta um sýn</a>
-                        </li>
-                        <li id='inc_font'>
-                            <a href="#">Stækka Leturstærð</a>
-                        </li>
-                        <li id='def_font'>
-                            <a href="#">Endurstilla Leturstærð</a>
-                        </li>
-                        <li id='dec_font'>
-                            <a href="#">Minnka Leturstærð</a>
-                        </li>
+            <div id='side-container-right'>
+                <div id="insert-element-container" class="nice-container">
+                    <h4>Insert Element</h4>
+                    <ul id="insert-element-links" class="links">
+                        <li> Smellið í ritilinn til að virkja</li>
                     </ul>
                 </div>
-                <div id="validation_status" style='border: 1px maroon solid;'>
-                    Validation Status Unknown...
-                </div>
-                <div>
-                    <h3> Fleiri Dæmi </h3>
+                <div id="attribute-inspector-container" class="nice-container">
+                    <h4>Attribute Inspector</h4>
                     <ul class="links">
-                        <li id='load_example_1'>
-                            <a href="#">Ræða m/ bjöllu, framíkalli, truflun</a>
-                        </li>
-                        <li id='load_example_2'>
-                            <a href="#">Ræða m/ atburði</a>
-                        </li>
-                        <li id='load_example_3'>
-                            <a href="#">Ræða m/ vísu</a>
-                        </li>
-                        <li id='load_example_dag014'>
-                            <a href="#">Dagskrárskjal</a>
-                        </li>
-                        <li id='load_example_fja012'>
-                            <a href="#">Fjarvistarskjal</a>
-                        </li>
-                        <li id='load_example_fun023'>
-                            <a href="#">Fundarskjal</a>
-                        </li>
-                        <li id='load_example_inn029'>
-                            <a href="#">Aðalmenn taka sæti</a>
-                        </li>
-                        <li id='load_example_les025'>
-                            <a href="#">Lagt fram á lestrarsal</a>
-                        </li>
-                        <li id='load_example_utb20171215T201027'>
-                            <a href="#">Útbýtingarskjal</a>
-                        </li>
-                        <li id='load_example_lid20171215T103413'>
-                            <a href="#">Liðaskjal með atkvæðagreiðslu</a>
-                        </li>
+                        <li> Hér er ekkert, enn sem komið er. </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-	<footer>
+	<!--footer>
 		<p>
 			This project is maintained by <a
 				href="https://codemirror.net/">CodeMirror</a>
 		</p>
-	</footer>
+	</footer-->
 </body>
 </html>

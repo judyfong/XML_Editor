@@ -23,7 +23,7 @@
       token.string = token.string.slice(0, cur.ch - token.start);
     }
     var inner = CodeMirror.innerMode(cm.getMode(), token.state);
-    if (inner.mode.name != "xml") return;
+    if (inner.mode.name.substr(0, 3) != "xml") return;
     var result = [], replaceToken = false, prefix;
     var tag = /\btag\b/.test(token.type) && !/>$/.test(token.string);
     var tagName = tag && /^\w/.test(token.string), tagStart;

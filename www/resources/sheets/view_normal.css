@@ -2,7 +2,7 @@
 .cm-tag,
 .cm-attribute,
 .cm-in-tag {
-    display: none;
+    opacity: 0.3;
 }
 
 .cm-atburður {
@@ -12,11 +12,11 @@
     border: 2px dashed palegoldenrod;
     border-radius: 10px;
     box-shadow: 0 0 0 -4px rgba(250,250,210, 0.5), -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
-    display: block;
+/*    display: block;*/
 }
 
 .cm-truflun {
-    background-color: darkorange;
+    background-color: rgba(255, 140, 0, 0.5);
     /*
     border: 2px dashed orangered;
     padding: -8px;
@@ -27,23 +27,78 @@
 /*    display: block; */
 }
 
+.cm-frammíkall {
+    display: inline;
+    background-color: rgba(34, 139, 34, 0.5);
+}
+
 .cm-málsheiti {
     font-size: 24pt;
+    font-weight: bold;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    background-color: rgba(0, 180, 180, 0.2);
 }
 
 .cm-mgr {
     text-indent: 2em;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: 300;
-    margin: 8px;
-    padding: 16px;
-    content: "<br />";
+/*    font-weight: 300;*/
+    display: inline;
+}
+
+.cm-feitletrað {
+    font-weight: bolder;
+}
+
+.cm-skáletrað {
+    font-style: italic;
+}
+
+.cm-uppskrift {
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+}
+
+.cm-niðurskrift {
+    position: relative;
+    top: +0.5em;
+    font-size: 80%;
+}
+
+.cm-endTag-mgr + .cm-mgr {
+/*    display: block;*/
+}
+
+.cm-endTag-mgr:after {
+    content: '';
+    width: 100%;
+/*    display: block;*/
+}
+
+.cm-vísa {
+    border: 1px goldenrod dotted;
+    text-indent: 6em;
+}
+
+.cm-in-tag-vísa {
+    background: skyblue;
+    display: inline;
+}
+
+.cm-in-tag-erindi {
+    border: 2px dashed skyblue;
+    display: inline;
+}
+
+.cm-lína {
+    border: 1px goldenrod dashed;
 }
 
 .cm-in-tag-bjalla {
     display: inline;
     text-decoration: italic;
+    opacity: 1.0;
 }
 
 .cm-in-tag-bjalla:before, .cm-in-tag-bjalla:after {

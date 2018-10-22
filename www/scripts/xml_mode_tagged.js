@@ -94,7 +94,7 @@ CodeMirror.defineMode("xml_tagged", function(editorConf, config_) {
       } else {
         type = stream.eat("/") ? "closeTag" : "openTag";
         state.tokenize = inTag;
-        return "tag bracket";
+        return "tag bracket " + type;
       }
     } else if (ch == "&") {
       var ok;
@@ -110,7 +110,10 @@ CodeMirror.defineMode("xml_tagged", function(editorConf, config_) {
       return ok ? "atom" : "error";
     } else {
       stream.eatWhile(/[^&<]/);
-      return state.context.tagName;
+      if (state.context) {
+          return state.context.tagName;
+      }
+      return null;
     }
   }
   inText.isInText = true;
@@ -120,7 +123,11 @@ CodeMirror.defineMode("xml_tagged", function(editorConf, config_) {
     if (ch == ">" || (ch == "/" && stream.eat(">"))) {
       state.tokenize = inText;
       type = ch == ">" ? "endTag" : "selfcloseTag";
-      return "tag bracket";
+        var endTagLabel = type;
+        if (state.tagName) {
+            endTagLabel += '-' + state.tagName;
+        }
+      return "tag bracket " + endTagLabel;
     } else if (ch == "=") {
       type = "equals";
       return "in-tag";

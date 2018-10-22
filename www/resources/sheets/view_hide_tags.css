@@ -1,0 +1,8 @@
+.cm-meta,
+.cm-tag,
+.cm-attribute,
+.cm-in-tag,
+.marked-tag {
+  opacity: 0.1;
+  background-color: none;
+}
