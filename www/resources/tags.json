@@ -9,21 +9,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "atbur\u00f0ur": {
@@ -31,21 +31,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
+            "tilv\u00edsun",
+            "bjalla",
+            "brot",
             "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
             "atbur\u00f0ur",
             "truflun",
-            "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
-            "brot",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "feitletra\u00f0"
         ]
     },
     "truflun": {
@@ -53,21 +53,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "tilvitnun": {
@@ -76,21 +76,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "framm\u00edkall": {
@@ -99,33 +99,33 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "tilv\u00edsun": {
         "attrs": [
-            "grein",
-            "lg\u00fe",
-            "\u00feskj",
-            "spurning",
-            "nmgr",
-            "m\u00e1l",
             "skst",
-            "emb\u00e6tti"
+            "m\u00e1l",
+            "grein",
+            "emb\u00e6tti",
+            "nmgr",
+            "spurning",
+            "\u00feskj",
+            "lg\u00fe"
         ],
         "children": []
     },
@@ -139,76 +139,82 @@
     "v\u00edsa": {
         "attrs": [],
         "children": [
+            "heiti",
             "l\u00edna",
             "h\u00f6fundur",
-            "erindi",
-            "heiti"
+            "erindi"
         ]
     },
     "feitletra\u00f0": {
         "attrs": [
-            "j\u00f6fnun"
+            "j\u00f6fnun",
+            "nr",
+            "d\u00e1lkar"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
+            "tilv\u00edsun",
+            "bjalla",
+            "brot",
             "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
             "atbur\u00f0ur",
             "truflun",
-            "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
-            "brot",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "feitletra\u00f0"
         ]
     },
     "sk\u00e1letra\u00f0": {
         "attrs": [
-            "j\u00f6fnun"
+            "j\u00f6fnun",
+            "nr",
+            "d\u00e1lkar"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
+            "tilv\u00edsun",
+            "bjalla",
+            "brot",
             "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
             "atbur\u00f0ur",
             "truflun",
-            "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
-            "brot",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "feitletra\u00f0"
         ]
     },
     "undirstrika\u00f0": {
         "attrs": [
-            "j\u00f6fnun"
+            "j\u00f6fnun",
+            "nr",
+            "d\u00e1lkar"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
+            "tilv\u00edsun",
+            "bjalla",
+            "brot",
             "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
             "atbur\u00f0ur",
             "truflun",
-            "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
-            "brot",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "feitletra\u00f0"
         ]
     },
     "ni\u00f0urskrift": {
@@ -216,21 +222,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "uppskrift": {
@@ -238,21 +244,21 @@
             "j\u00f6fnun"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
-            "ni\u00f0urskrift",
-            "atbur\u00f0ur",
-            "truflun",
             "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
             "brot",
+            "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
+            "atbur\u00f0ur",
+            "feitletra\u00f0",
+            "truflun",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "tilv\u00edsun"
         ]
     },
     "l\u00ednubil": {
@@ -288,10 +294,10 @@
             "einkenni"
         ],
         "children": [
-            "\u00fatgefandi",
             "\u00e1rtal",
-            "sta\u00f0ur",
+            "\u00fatgefandi",
             "l\u00fdsing",
+            "sta\u00f0ur",
             "url",
             "titill"
         ]
@@ -302,10 +308,10 @@
     },
     "h\u00f6fundur": {
         "attrs": [
+            "skst",
             "nefnd",
-            "nefndarhluti",
             "emb\u00e6tti",
-            "skst"
+            "nefndarhluti"
         ],
         "children": []
     },
@@ -321,53 +327,54 @@
     },
     "ums\u00fdsla": {
         "attrs": [
-            "lg\u00fe",
             "t\u00edmi",
-            "fundur",
+            "dags",
             "\u00feskj",
-            "dags"
+            "lg\u00fe",
+            "fundur"
         ],
         "children": [
-            "framkv\u00e6md",
-            "lesari",
             "ritari",
+            "m\u00e1l",
+            "lesari",
             "gildistaka",
-            "l\u00f6g",
+            "framkv\u00e6md",
             "breytingar",
-            "m\u00e1l"
+            "l\u00f6g"
         ]
     },
     "r\u00e6\u00f0utexti": {
         "attrs": [
-            null,
-            "part",
-            "id"
+            "id",
+            "part"
         ],
         "children": [
-            "mgr",
-            "l\u00ednubil"
+            "l\u00ednubil",
+            "mgr"
         ]
     },
     "mgr": {
         "attrs": [
-            "j\u00f6fnun"
+            "j\u00f6fnun",
+            "nr",
+            "d\u00e1lkar"
         ],
         "children": [
-            "framm\u00edkall",
-            "l\u00ednubil",
-            "feitletra\u00f0",
-            "forseti",
             "sk\u00e1letra\u00f0",
-            "v\u00edsa",
+            "tilv\u00edsun",
+            "bjalla",
+            "brot",
             "ni\u00f0urskrift",
+            "framm\u00edkall",
+            "uppskrift",
+            "l\u00ednubil",
             "atbur\u00f0ur",
             "truflun",
-            "bjalla",
-            "tilv\u00edsun",
-            "tilvitnun",
-            "brot",
             "undirstrika\u00f0",
-            "uppskrift"
+            "forseti",
+            "v\u00edsa",
+            "tilvitnun",
+            "feitletra\u00f0"
         ]
     },
     "atri\u00f0i": {
@@ -396,13 +403,13 @@
     },
     "mynd": {
         "attrs": [
-            "id",
-            "skiptiTexti",
             "tegund",
-            "h\u00e6\u00f0",
+            "id",
             "j\u00f6fnun",
             "uri",
             "breidd",
+            "skiptiTexti",
+            "h\u00e6\u00f0",
             "nr"
         ],
         "children": [
@@ -418,10 +425,10 @@
     },
     "flm": {
         "attrs": [
+            "skst",
             "nefnd",
-            "nefndarhluti",
             "emb\u00e6tti",
-            "skst"
+            "nefndarhluti"
         ],
         "children": []
     },
@@ -439,8 +446,8 @@
     },
     "m\u00e1lshefjandi": {
         "attrs": [
-            "emb\u00e6tti",
-            "skst"
+            "skst",
+            "emb\u00e6tti"
         ],
         "children": []
     },
@@ -451,64 +458,64 @@
     "\u00feskj": {
         "attrs": [
             "samanber",
+            "nr",
             "\u00feegarsam\u00feykkt",
-            "tegund",
-            "nr"
+            "tegund"
         ],
         "children": []
     },
     "lagatilv\u00edsun": {
         "attrs": [
-            "mgr",
             "grein",
-            "dags",
-            "ml",
+            "nr",
             "\u00e1r",
-            "nr"
+            "mgr",
+            "dags",
+            "ml"
         ],
         "children": []
     },
     "m\u00e1l": {
         "attrs": [
-            "umr",
-            "m\u00e1lstegund",
             "frhatgr",
-            "frumskjal",
+            "m\u00e1lstegund",
             "m\u00e1lsflokkur",
-            "nr"
+            "nr",
+            "umr",
+            "frumskjal"
         ],
         "children": [
-            "m\u00e1lsheiti",
-            "haus",
+            "flm",
             "m\u00e1lshefjandi",
-            "undirtitill",
-            "\u00feskj",
+            "m\u00e1lsheiti",
             "tegflm",
-            "flm"
+            "undirtitill",
+            "haus",
+            "\u00feskj"
         ]
     },
     "l\u00f6g": {
         "attrs": [
-            "dags",
-            "nr"
+            "nr",
+            "dags"
         ],
         "children": []
     },
     "ritari": {
         "attrs": [
+            "skst",
             "nefnd",
-            "nefndarhluti",
             "emb\u00e6tti",
-            "skst"
+            "nefndarhluti"
         ],
         "children": []
     },
     "lesari": {
         "attrs": [
+            "skst",
             "nefnd",
-            "nefndarhluti",
             "emb\u00e6tti",
-            "skst"
+            "nefndarhluti"
         ],
         "children": []
     },
@@ -532,9 +539,9 @@
     },
     "fyrirs\u00f6gn": {
         "attrs": [
-            "d\u00e1lkar",
             "j\u00f6fnun",
-            "nr"
+            "nr",
+            "d\u00e1lkar"
         ],
         "children": []
     },
@@ -552,64 +559,63 @@
             "nr"
         ],
         "children": [
-            "t\u00f6fluheiti",
             "mynd",
+            "sk\u00fdringartexti",
             "r\u00f6\u00f0",
-            "sk\u00fdringartexti"
+            "t\u00f6fluheiti"
         ]
     },
     "xhtml:table": {
         "attrs": [
-            "onkeyup",
-            "dir",
-            "class",
-            "id",
-            "style",
-            "{http://www.w3.org/XML/1998/namespace}lang",
+            "onclick",
             "border",
-            "cellspacing",
-            "onmousemove",
-            "onmouseout",
-            "frame",
-            "ondblclick",
-            "cellpadding",
+            "id",
+            "onmouseup",
+            "{http://www.w3.org/XML/1998/namespace}lang",
             "width",
-            "onkeypress",
-            "lang",
-            "onmouseover",
-            "rules",
             "onmousedown",
+            "onmousemove",
+            "rules",
+            "frame",
             "title",
+            "cellspacing",
+            "lang",
+            "class",
+            "onmouseover",
+            "cellpadding",
+            "onkeypress",
+            "style",
+            "onkeyup",
+            "onmouseout",
             "summary",
             "onkeydown",
-            "onmouseup",
-            "onclick"
+            "ondblclick",
+            "dir"
         ],
         "children": []
     },
     "regluger\u00f0artilv\u00edsun": {
         "attrs": [
-            "mgr",
             "grein",
-            "dags",
-            "ml",
+            "nr",
             "\u00e1r",
-            "nr"
+            "mgr",
+            "dags",
+            "ml"
         ],
         "children": []
     },
     "sp\u00f3luskjal": {
         "attrs": [
-            null,
             "id"
         ],
         "children": [
-            "ums\u00fdsla",
             "r\u00e6\u00f0u\u00d3loki\u00f0",
-            "framhaldR\u00e6\u00f0u",
+            "ums\u00fdsla",
+            "r\u00e6\u00f0a",
             "atbur\u00f0ur",
-            "ritaskr\u00e1",
-            "r\u00e6\u00f0a"
+            "framhaldR\u00e6\u00f0u",
+            "ritaskr\u00e1"
         ]
     },
     "framhaldR\u00e6\u00f0u": {
@@ -618,16 +624,15 @@
     },
     "r\u00e6\u00f0a": {
         "attrs": [
-            "olok",
-            "tegr",
-            "nefnd",
-            "frhr",
-            null,
-            "tegflm",
-            "r\u00e6\u00f0ub\u00fatur",
             "skst",
+            "frhr",
+            "olok",
+            "id",
+            "nefnd",
             "emb\u00e6tti",
-            "id"
+            "r\u00e6\u00f0ub\u00fatur",
+            "tegflm",
+            "tegr"
         ],
         "children": [
             "r\u00e6\u00f0utexti",
@@ -642,6 +647,450 @@
         "attrs": [],
         "children": [
             "rit"
+        ]
+    },
+    "um": {
+        "attrs": [
+            "tegatkvgr",
+            "frhatgr",
+            "t\u00edmi"
+        ],
+        "children": [
+            "\u00feskj",
+            "mgr"
+        ]
+    },
+    "ni\u00f0ursta\u00f0a": {
+        "attrs": [
+            "grei\u00f0aekkiatkv\u00e6\u00f0i",
+            "samhlj\u00f3\u00f0a",
+            "samfel",
+            "nei",
+            "geragrein",
+            "j\u00e1",
+            "fjarverandi"
+        ],
+        "children": []
+    },
+    "atkv": {
+        "attrs": [
+            "skst",
+            "merki",
+            "aths",
+            "gildi"
+        ],
+        "children": [
+            "mgr"
+        ]
+    },
+    "athugasemd": {
+        "attrs": [
+            "skst"
+        ],
+        "children": []
+    },
+    "\u00feingr\u00e6\u00f0a": {
+        "attrs": [
+            "skst",
+            "frhr",
+            "t\u00edmi",
+            "olok",
+            "id",
+            "nefnd",
+            "emb\u00e6tti",
+            "r\u00e6\u00f0ub\u00fatur",
+            "tegflm",
+            "tegr"
+        ],
+        "children": [
+            "ums\u00fdsla"
+        ]
+    },
+    "\u00fem": {
+        "attrs": [
+            "skst",
+            "emb\u00e6tti"
+        ],
+        "children": []
+    },
+    "fundurhefst": {
+        "attrs": [
+            "sleppat\u00edma",
+            "a\u00f0loknum",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "dagskr\u00e1rli\u00f0ur": {
+        "attrs": [
+            "umr",
+            "atkv\u00e6\u00f0agrei\u00f0sla",
+            "fyrirspurn_til"
+        ],
+        "children": [
+            "titill",
+            "m\u00e1l",
+            "undirli\u00f0ur",
+            "\u00feskj"
+        ]
+    },
+    "utanDagskr\u00e1r": {
+        "attrs": [],
+        "children": [
+            "titill",
+            "m\u00e1l"
+        ]
+    },
+    "undirli\u00f0ur": {
+        "attrs": [
+            "umr",
+            "atkv\u00e6\u00f0agrei\u00f0sla",
+            "fyrirspurn_til"
+        ],
+        "children": [
+            "titill",
+            "m\u00e1l",
+            "undirli\u00f0ur",
+            "\u00feskj"
+        ]
+    },
+    "bo\u00f0a\u00f0\u00deingm\u00e1l": {
+        "attrs": [],
+        "children": []
+    },
+    "\u00deingm\u00e1laflokkur": {
+        "attrs": [],
+        "children": [
+            "heitiFlokks",
+            "bo\u00f0a\u00f0\u00deingm\u00e1l",
+            "bo\u00f0a\u00f0\u00deingm\u00e1lN\u00e1nar"
+        ]
+    },
+    "bo\u00f0a\u00f0\u00deingm\u00e1lN\u00e1nar": {
+        "attrs": [],
+        "children": [
+            "t\u00edmiFramlagningar",
+            "samantekt",
+            "endurflutt",
+            "innlei\u00f0ing",
+            "bo\u00f0a\u00f0\u00deingm\u00e1l"
+        ]
+    },
+    "samantekt": {
+        "attrs": [
+            "t\u00edmi",
+            "j\u00f6fnun",
+            "birta\u00edhefti",
+            "nr",
+            "d\u00e1lkar",
+            "birta\u00edger\u00f0ab\u00f3k"
+        ],
+        "children": []
+    },
+    "\u00feingm\u00e1lalisti": {
+        "attrs": [
+            "emb\u00e6tti"
+        ],
+        "children": [
+            "bo\u00f0a\u00f0\u00deingm\u00e1lN\u00e1nar",
+            "\u00deingm\u00e1laflokkur",
+            "bo\u00f0a\u00f0\u00deingm\u00e1l"
+        ]
+    },
+    "heitiFlokks": {
+        "attrs": [
+            "t\u00edmi",
+            "j\u00f6fnun",
+            "birta\u00edhefti",
+            "nr",
+            "d\u00e1lkar",
+            "birta\u00edger\u00f0ab\u00f3k"
+        ],
+        "children": []
+    },
+    "endurflutt": {
+        "attrs": [],
+        "children": []
+    },
+    "innlei\u00f0ing": {
+        "attrs": [],
+        "children": []
+    },
+    "t\u00edmiFramlagningar": {
+        "attrs": [],
+        "children": []
+    },
+    "fundarheiti": {
+        "attrs": [
+            "sleppat\u00edma"
+        ],
+        "children": []
+    },
+    "\u00feingm\u00e1l": {
+        "attrs": [
+            "loki\u00f0",
+            "t\u00edmi",
+            "id",
+            "framhald",
+            "dags",
+            "umr",
+            "atkv\u00e6\u00f0agrei\u00f0sla"
+        ],
+        "children": [
+            "m\u00e1l",
+            "samantekt",
+            "umr\u00e6\u00f0uOgAtkv\u00e6\u00f0agrei\u00f0sluFresta\u00f0",
+            "atkv\u00e6\u00f0agrei\u00f0sluFresta\u00f0",
+            "tillagaAfgreiddSem\u00c1lyktun",
+            "enginnT\u00f3kTilM\u00e1ls",
+            "\u00feingm\u00e1laskr\u00e1V\u00edsun",
+            "frvAfgreittSemL\u00f6g",
+            "umr\u00e6\u00f0uFresta\u00f0",
+            "\u00fatAfDagskr\u00e1",
+            "umr\u00e6\u00f0uLoki\u00f0",
+            "frvAfgreittSemStj\u00f3rnskipunarFrv",
+            "\u00fatb\u00fdting\u00deingskjala",
+            "undirtitill",
+            "titill",
+            "m\u00e1lshefjandi",
+            "\u00feingm\u00e1l"
+        ]
+    },
+    "fundarhl\u00e9": {
+        "attrs": [
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "\u00fatb\u00fdting\u00deingskjala": {
+        "attrs": [
+            "id",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "\u00fatAfDagskr\u00e1": {
+        "attrs": [],
+        "children": []
+    },
+    "fundiSliti\u00f0": {
+        "attrs": [
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "fundiFresta\u00f0": {
+        "attrs": [
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "atkv\u00e6\u00f0agrei\u00f0sla": {
+        "attrs": [
+            "t\u00edmi",
+            "birtaatkv\u00e6\u00f0i",
+            "nefnd",
+            "tegskjals",
+            "a\u00f0fer\u00f0",
+            "birta",
+            "nr",
+            "\u00feskj"
+        ],
+        "children": [
+            "ni\u00f0ursta\u00f0a",
+            "m\u00e1l",
+            "athugasemd",
+            "um",
+            "mgr",
+            "\u00feskj",
+            "atkv",
+            "\u00feingr\u00e6\u00f0a"
+        ]
+    },
+    "fyrirs\u00f6gnSam\u00feykkt\u00c1nAtkvgr": {
+        "attrs": [],
+        "children": []
+    },
+    "skjal": {
+        "attrs": [
+            "nr",
+            "emb\u00e6tti",
+            "tegund"
+        ],
+        "children": [
+            "titill",
+            "flm",
+            "m\u00e1l"
+        ]
+    },
+    "umr\u00e6\u00f0uFresta\u00f0": {
+        "attrs": [
+            "gengurTilNefndar",
+            "gengurTilUmr\u00e6\u00f0u",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "umr\u00e6\u00f0uLoki\u00f0": {
+        "attrs": [
+            "gengurTilNefndar",
+            "gengurTilUmr\u00e6\u00f0u",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "umr\u00e6\u00f0uOgAtkv\u00e6\u00f0agrei\u00f0sluFresta\u00f0": {
+        "attrs": [
+            "gengurTilNefndar",
+            "gengurTilUmr\u00e6\u00f0u",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "atkv\u00e6\u00f0agrei\u00f0sluFresta\u00f0": {
+        "attrs": [
+            "gengurTilNefndar",
+            "gengurTilUmr\u00e6\u00f0u",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "frvAfgreittSemL\u00f6g": {
+        "attrs": [
+            "\u00feskj",
+            "t\u00edmi"
+        ],
+        "children": [
+            "n\u00fdFyrirs\u00f6gn"
+        ]
+    },
+    "frvAfgreittSemStj\u00f3rnskipunarFrv": {
+        "attrs": [
+            "\u00feskj",
+            "t\u00edmi"
+        ],
+        "children": [
+            "n\u00fdFyrirs\u00f6gn"
+        ]
+    },
+    "tillagaAfgreiddSem\u00c1lyktun": {
+        "attrs": [
+            "\u00feskj",
+            "t\u00edmi"
+        ],
+        "children": [
+            "n\u00fdFyrirs\u00f6gn"
+        ]
+    },
+    "enginnT\u00f3kTilM\u00e1ls": {
+        "attrs": [
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "\u00feingm\u00e1laskr\u00e1V\u00edsun": {
+        "attrs": [
+            "id",
+            "t\u00edmi"
+        ],
+        "children": []
+    },
+    "n\u00fdFyrirs\u00f6gn": {
+        "attrs": [],
+        "children": []
+    },
+    "ger\u00f0ab\u00f3k": {
+        "attrs": [
+            "id"
+        ],
+        "children": [
+            "\u00fatb\u00fdting",
+            "ums\u00fdsla",
+            "a\u00f0almennTakaS\u00e6ti\u00c1N\u00fd",
+            "fjarvistarleyfi",
+            "\u00feingm\u00e1laskr\u00e1",
+            "dagskr\u00e1",
+            "fundarskjal",
+            "lagtFram\u00c1Lestrarsal",
+            "lagtFram",
+            "li\u00f0askjal"
+        ]
+    },
+    "a\u00f0almennTakaS\u00e6ti\u00c1N\u00fd": {
+        "attrs": [],
+        "children": [
+            "\u00fem"
+        ]
+    },
+    "dagskr\u00e1": {
+        "attrs": [],
+        "children": [
+            "utanDagskr\u00e1r",
+            "dagskr\u00e1rli\u00f0ur",
+            "fundurhefst"
+        ]
+    },
+    "fjarvistarleyfi": {
+        "attrs": [],
+        "children": [
+            "\u00fem"
+        ]
+    },
+    "\u00feingm\u00e1laskr\u00e1": {
+        "attrs": [
+            "t\u00edmi"
+        ],
+        "children": [
+            "samantekt",
+            "\u00feingm\u00e1lalisti"
+        ]
+    },
+    "fundarskjal": {
+        "attrs": [
+            "a\u00f0loknumfundi",
+            "t\u00edmi"
+        ],
+        "children": [
+            "fundarhl\u00e9",
+            "samantekt",
+            "fundarheiti",
+            "fundiSliti\u00f0",
+            "fundiFresta\u00f0",
+            "fundurhefst",
+            "\u00fatAfDagskr\u00e1",
+            "\u00fatb\u00fdting\u00deingskjala",
+            "\u00feingm\u00e1l"
+        ]
+    },
+    "li\u00f0askjal": {
+        "attrs": [
+            "umr",
+            "t\u00edmi",
+            "atkv\u00e6\u00f0agrei\u00f0sla"
+        ],
+        "children": [
+            "samantekt",
+            "atbur\u00f0ur",
+            "fyrirs\u00f6gnSam\u00feykkt\u00c1nAtkvgr",
+            "\u00fatb\u00fdting\u00deingskjala",
+            "atkv\u00e6\u00f0agrei\u00f0sla",
+            "\u00feingr\u00e6\u00f0a"
+        ]
+    },
+    "lagtFram\u00c1Lestrarsal": {
+        "attrs": [],
+        "children": [
+            "lagtFram"
+        ]
+    },
+    "lagtFram": {
+        "attrs": [],
+        "children": []
+    },
+    "\u00fatb\u00fdting": {
+        "attrs": [],
+        "children": [
+            "skjal"
         ]
     }
 }

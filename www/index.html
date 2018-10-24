@@ -20,14 +20,18 @@
     <script src="codemirror/lib/jquery.min.js"></script>
     <script src="codemirror/lib/jquery-ui.min.js"></script>
     <script src="codemirror/lib/codemirror.js"></script>
-    <script src="codemirror/mode/xml/xml.js"></script>
-    <script src="scripts/xml_mode_tagged.js"></script>
     <script src="codemirror/addon/hint/show-hint.js"></script>
-    <script src="scripts/insert-element-populator.js"></script>
     <script src="codemirror/addon/hint/xml-hint.js"></script>
+    <script src="codemirror/mode/xml/xml.js"></script>
+
+    <script src="scripts/xml_mode_tagged.js"></script>
+    <script src="scripts/insert-element-populator.js"></script>
+
     <script src="scripts/editor.js"></script>
+    <script src="scripts/editor_tools.js"></script>
     <script src="scripts/editor_views.js"></script>
     <script src="scripts/editor_additions.js"></script>
+    <script src="scripts/editor_validation.js"></script>
 </head>
 <body onload="start()">
 	<div class="wrapper">
@@ -119,16 +123,16 @@
             </div>
             <div id='side-container-right'>
                 <div id="insert-element-container" class="nice-container">
-                    <h4>Insert Element</h4>
+                    <h4 class='collapsible'>Insert Element</h4>
                     <ul id="insert-element-links" class="links">
                         <li> Smellið í ritilinn til að virkja</li>
                     </ul>
                 </div>
                 <div id="attribute-inspector-container" class="nice-container">
-                    <h4>Attribute Inspector</h4>
-                    <ul class="links">
-                        <li> Hér er ekkert, enn sem komið er. </li>
-                    </ul>
+                    <h4 class='collapsible'>Attribute Inspector</h4>
+                    <div id='attribute-inspector-div'>
+                        <p> Hér er ekkert, enn sem komið er. </p>
+                    </div>
                 </div>
             </div>
         </div>

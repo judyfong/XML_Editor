@@ -41,6 +41,7 @@ function set_editor_options(editor) {
   );
   var callback = function(obj) {
     editor.setOption('hintOptions', { schemaInfo: obj });
+    schema_tags = obj;
   };
 
   read_tags('resources/tags.json', callback);
@@ -717,8 +718,12 @@ function start() {
   editor.on('focus', autovalidator);
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', function() {
+    // insert element
     editor.populateHints({completeSingle: false})
+    // tree explorer
     populate_tree_explorer();
+    // attribute explorer
+    populate_attribute_inspector();
   });
   $(document).ready(editor_initializers);
 }
@@ -736,106 +741,6 @@ function loadXMLtoEditor(xml_path) {
   xhr.ontimeout = function (e) {
     alert("Could not load XML file:", e);
   };
-}
-
-// Validation code taken from W3schools on XML validation
-var xt="",h3OK=1
-function checkErrorXML(x) {
-  xt=""
-  h3OK=1
-  checkXML(x)
-}
-
-function checkXML(n) {
-  var l,i,nam
-  nam=n.nodeName
-  if (nam=="h3") {
-    if (h3OK==0) {
-      return;
-    }
-    h3OK=0
-  }
-  if (nam=="#text") {
-    xt=xt + n.nodeValue + "\n"
-  }
-  l=n.childNodes.length
-  for (i=0;i<l;i++) {
-    checkXML(n.childNodes[i])
-  }
-}
-
-function validateXML_W3() {
-  // code for IE
-  if (window.ActiveXObject) {
-    var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-    xmlDoc.async=false;
-    xmlDoc.loadXML(editor.getValue());
-    if(xmlDoc.parseError.errorCode!=0) {
-      txt="Error Code: " + xmlDoc.parseError.errorCode + "\n";
-      txt=txt+"Error Reason: " + xmlDoc.parseError.reason;
-      txt=txt+"Error Line: " + xmlDoc.parseError.line;
-      alert(txt);
-    } else {
-      //console.log("for some reason we already validated, and there were no errors!");
-      return "OK";
-    }
-    // code for Mozilla, Firefox, Opera, etc.
-  } else if (document.implementation.createDocument) {
-    try {
-      var text=editor.getValue();
-      var parser=new DOMParser();
-      var xmlDoc=parser.parseFromString(text,"application/xml");
-    } catch(err) {
-      console.log("err:", err.message);
-      alert(err.message);
-      return "Exception: " + err.message;
-    }
-
-    if (xmlDoc.getElementsByTagName("parsererror").length>0) {
-      checkErrorXML(xmlDoc.getElementsByTagName("parsererror")[0]);
-      console.log(xt)
-      return xt;
-    } else {
-      //console.log("for some reason we already validated, and there were no errors!");
-      return "OK";
-    }
-  } else {
-    alert('Your browser cannot handle XML validation');
-  }
-  return false;
-}
-
-var _validation_disabled = false;
-
-function autovalidator() {
-  function validate_success() {
-    $("#validation_status").text("Löglegt XML");
-    $("#validation_status").css('color', 'green');
-    $("#validation_error").css('display', 'none');
-  }
-
-  function validate_failure(result) {
-    $("#validation_status").text("XML Villa!");
-    $("#validation_status").css('color', 'red');
-    $("#validation_error").css('display', 'block');
-    $("#validation_message").text(result);
-  }
-
-  if (_validation_disabled) {
-    status_container = $("#validation_status");
-    status_container.text("Slökkt er á tæknilegri villuleitun");
-    status_container.css('color', 'orangered');
-    $("#validation_error").css('display', 'none');
-    return;
-  }
-  result = validateXML_W3();
-  //console.log("validation returned", result);
-  if (result == "OK") {
-    validate_success();
-  } else {
-    console.log(result, "is not", "OK");
-    validate_failure(result);
-  }
 }
 
 // TODO: change font-size on everything
@@ -920,6 +825,7 @@ function toggle_autovalidate() {
 
 function editor_initializers() {
   applyViewMode();
+  make_nice_containers_collapsible(); // from editor_additions.js
 }
 
 function set_editor_content(content) {
