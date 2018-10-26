@@ -38,7 +38,7 @@ def build_type(node):
             }
         )
     tagname = node.prefixed_name
-    attributes = list([x for x in node.attributes.keys()])
+    attributes = list([x for x in node.attributes.keys() if x is not None])
 
     children = [x.prefixed_name for x in node.iter_components() \
             if isinstance(x, xmlschema.validators.elements.XsdElement)]
@@ -72,7 +72,7 @@ def build_tag(node):
             }
         )
     tagname = node.prefixed_name
-    attributes = list([x for x in node.attributes.keys()])
+    attributes = list([x for x in node.attributes.keys() if x is not None])
 
     children = [x.prefixed_name for x in node.iter_components() if isinstance(x, \
             xmlschema.validators.elements.XsdElement) and x.prefixed_name != tagname]
@@ -129,7 +129,6 @@ def merge_elements(simple_elements, complex_elements):
     # this is the part where we merge the content of the two dictionaries,
     # i.e. we will add children & attributes to elements based on their type
     # using a lookup in complex_elements
-
     merged_tree = {}
 
     for key, value in simple_elements.items():
@@ -146,6 +145,29 @@ def merge_elements(simple_elements, complex_elements):
         merged_tree[key] = node
 
     return merged_tree
+
+def merge_trees(main_tree, extra_tree):
+    # each arg is a "merged_tree" dictionary from merge_elements
+    # merge strategy: append children to identical key nodes
+    returned_tree = main_tree.copy()
+    
+    for key in main_tree:
+        # Update on identical key
+        if key in extra_tree:
+            main_value   = main_tree[key]
+            extra_value  = extra_tree[key]
+            merged_value = main_value
+            for sub_key in set(main_value.keys() | extra_value.keys()):
+                merged_value[sub_key] = list(set(main_value.get(sub_key, []) + extra_value.get(sub_key, [])))
+
+            returned_tree[key] = merged_value
+
+    # now make sure all keys in extra are in main
+    for key in extra_tree:
+        if key not in returned_tree:
+            returned_tree[key] = extra_tree[key]
+
+    return returned_tree
 
 # TODO HERE: Convert merged_tree dictionary to ProseMirror SchemaSpec
 def generate_prosemirror_spec(tree):
@@ -198,24 +220,29 @@ def main(args):
 #   tree = ET.parse(args.schema)
 #   root = tree.getroot()
 
-    schema = xmlschema.XMLSchema(args.schema)
+    full_tree = {}
+    for schema_file in args.schema:
+        schema = xmlschema.XMLSchema(schema_file)
 
-    simple_elements, complex_elements = parse_elements(schema)
+        simple_elements, complex_elements = parse_elements(schema)
 
-    merged_tree = merge_elements(simple_elements, complex_elements)
+        merged_tree = merge_elements(simple_elements, complex_elements)
+        if not full_tree:
+            full_tree = merged_tree
+        else:
+            full_tree = merge_trees(full_tree, merged_tree)
 
-    # TODO: Move
-    schema_spec = generate_prosemirror_spec(merged_tree)
-    print(json.dumps(schema_spec, indent=4))
 
-    sss = json.dumps(merged_tree, indent=4)
+    sss = json.dumps(full_tree, indent=4)
 
     with open(args.outfile, 'w') as outfile:
         outfile.write(sss)
 
 if __name__ == '__main__':
     _parser = argparse.ArgumentParser()
-    _parser.add_argument('schema', nargs='?', default='skema/althingi_raedur.xsd', help='The schema file to parse into usable tags')
+    _parser.add_argument('schema', nargs='*', default=None, help='The schema file to parse into usable tags')
     _parser.add_argument('-o', '--outfile', default='tags_ref_for_testing.json', help='Write output to this file')
     _args = _parser.parse_args()
+    if not _args.schema:
+        _args.schema = ['skema/althingi_raedur.xsd']
     main(_args)
