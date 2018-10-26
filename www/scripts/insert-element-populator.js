@@ -1,7 +1,6 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
 // Modified by Throstur thorarensen, 2018
-// TODO: Clean up unused code
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -13,10 +12,7 @@
 })(function(CodeMirror) {
   "use strict";
 
-  var HINT_ELEMENT_CLASS        = "CodeMirror-hint";
-  var ACTIVE_HINT_ELEMENT_CLASS = "CodeMirror-hint-active";
-
-  CodeMirror.defineExtension("populateHints", function(options) {
+  CodeMirror.defineExtension("populateElementInserter", function(options) {
     options = parseOptions(this, this.getCursor("start"), options);
     var element_finder = new ElementPlacer(this, options);
     element_finder.update(true);
@@ -52,8 +48,6 @@
 
       if (data && data.list.length) {
         CodeMirror.signal(data, "shown");
-        console.log('creating a widget from', this);
-        // TODO HERE: instead of creating widget, populate a container
         populate_insert_element_container(data);
       }
     }

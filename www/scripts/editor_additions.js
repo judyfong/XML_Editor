@@ -22,18 +22,9 @@ function populate_insert_element_container(data) {
     }
     var cursor_loc = editor.getCursor('from');
     var movement = tag_label.length + 2;
-    editor.replaceRange('<' + tag_label + '>' + selection + '</' + tag_label + '>', cursor_loc, to);
-    
-    // move the cursor inside the tag
-    cursor_loc.ch += movement;
-    if (selection) {
-      to.ch += movement;
-      editor.setSelection(cursor_loc, to);
-    } else {
-      editor.setCursor(cursor_loc);
-    }
-    // focus the editor
-    editor.focus();
+    var element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+    insert_element_at_cursor(element, movement);
+    return;
   }
 
   function create_element(tag_label) {
@@ -55,15 +46,22 @@ function populate_insert_element_container(data) {
   var link_node = document.getElementById('insert-element-links');
   remove_all_children(link_node);
 
+  console.log(data);
+  console.log(data.list);
+
   // populate the list
   for (var i=0; i<data.list.length; i++) {
-    var tag_hint_label = data.list[i].substring(1);
-    if (tag_hint_label[0] == '/') {
+    var tag_hint_label = data.list[i];
+    if (tag_hint_label[0] != '<') {
+      // this isn't a tag, so what is it?
+      // Nothing that belongs here, at least.
+      continue;
+    } else if (tag_hint_label[1] == '/') {
       // this is a closing tag, doesn't fit in an
       // 'Insert Element' window
       continue;
     }
-    create_element(tag_hint_label);
+    create_element(tag_hint_label.substring(1));
   }
 }
 
@@ -120,29 +118,71 @@ function populate_tree_explorer() {
 }
 
 function parse_tag_attribute_values(tag) {
+  function extract_value(attribute_value) {
+    if (!attribute_value) {
+      return "";
+    }
+    var si = attribute_value.indexOf("\"") + 1;
+    var ei = attribute_value.lastIndexOf("\"");
+
+    return attribute_value.substring(si, ei);
+  }
   var tag_line = editor.getLine(tag.line);
   var tag_string = tag_line.substring(tag.start_index, tag.end_index);
   var tag_parts = tag_string.split(" ");
-  console.log("Want to parse tag:", tag_string, "for attributes:", tag_parts, tag_parts.length);
   if (tag_parts.length == 1) {
     return {};
   }
    
   var attributes = {};
-  var current_index = tag_string.indexOf(' ');
+  var current_index = tag_string.indexOf(' ') + 1;
 
   for (var i = 1; i < tag_parts.length; ++i) {
     // split tag into key=value
     var pair = tag_parts[i].split('=');
     var attribute_descriptor = {
       attribute_index: i,
-      value: pair[1],
+      value: extract_value(pair[1]),
       start_index: current_index + pair[0].length + 1,
     }
     attributes[pair[0]] = attribute_descriptor;
+    current_index += tag_parts[i].length + 1;
   }
   
   return attributes;
+}
+
+function add_tag_attribute(attribute_tag, key, value) {
+  var added_tag_string = ' ' + key + '="' + value + '"';
+  
+  // calculate the position where the tag closes
+  var tag = attribute_tag.tag_open;
+  var close_index = tag.end_index - 1;
+  var from = {line: tag.line, ch: close_index};
+  // insert the tag string at that position
+  editor.replaceRange(added_tag_string, from)
+}
+
+function modify_tag_attribute(attribute_tag, key, value) {
+  // calculate the start and end of the attribute's value
+  var line = attribute_tag.lineo;
+  var start_index = attribute_tag.attrs[key].start_index + attribute_tag.index + 1;
+  var end_index = attribute_tag.attrs[key].value.length + start_index;
+  var from = {line: line, ch: start_index};
+  var to = {line: line, ch: end_index};
+  // edge case -- value is empty
+  if (!value) {
+    // delete the attribute instead of resetting the value
+    from.ch = from.ch - key.length - 3 // traverse to the start of the attribute key
+    to.ch += 1; // exit from "quote"
+  }
+  // NOTE: If something "suddenly broke", the tag being edited has probably
+  // been set to read-only mode via editor marking, in this case:
+  // remove any read-only marks that might interfere with editing
+  // (also in add_tag_attribute)
+  
+  // replace the value
+  editor.replaceRange(value, from, to);
 }
 
 function populate_attribute_inspector() {
@@ -165,6 +205,7 @@ function populate_attribute_inspector() {
         lineo:  tag_pair.tag_open.line,
         linec:  linec,
         attrs: tag_attrs,
+        tag_open: tag_pair.tag_open,
       }
       return obj
     }
@@ -187,7 +228,7 @@ function populate_attribute_inspector() {
     var current_line_number = pos.line;
 
     // find the first tag on this line
-    var nearby_tags = tags_on_line(doc_tags, current_line_number);
+    var nearby_tags;
 
     do {
       nearby_tags = tags_on_line(doc_tags, current_line_number);
@@ -211,7 +252,17 @@ function populate_attribute_inspector() {
           }
         }
 
-        // It didn't close, we are in this tag!
+        // make sure it has been opened
+        if (this_tag.lineo > pos.line) {
+          // opens on a later line
+          continue; 
+        }
+        else if (this_tag.lineo == pos.line && this_tag.index > pos.ch) {
+          // opens on this line, but after cursor
+          continue;
+        }
+
+        // It is open and didn't close, we are in this tag!
         return this_tag;
       }
     } while (nearby_tags.length == 0 && --current_line_number >= 0);
@@ -250,11 +301,9 @@ function populate_attribute_inspector() {
     mutate_col_textbox.setAttribute("value", current_value);
     mutate_col_element.appendChild(mutate_col_textbox);
     row_element.appendChild(mutate_col_element);
-//  text = document.createTextNode(current_value);
-//  mutate_col_textbox.appendChild(text)
 
     // TODO HERE: listen for changes in the textbox, and reflect in CodeMirror
-    mutate_col_textbox.addEventListener('oninput', callback);
+    mutate_col_textbox.addEventListener('change', function() { callback(attribute, this.value)} );
 
     document.getElementById("attribute-inspector-table").appendChild(row_element);
   }
@@ -263,7 +312,6 @@ function populate_attribute_inspector() {
   if (!nearest_tag) {
     return;
   }
-  console.log('found nearest tag:', nearest_tag.label, 'on line', nearest_tag.lineo,':', nearest_tag);
 
   // now find the nearest tag's entry in schema_tags
   // and figure out what attributes it can have
@@ -275,19 +323,32 @@ function populate_attribute_inspector() {
   }
   
   // clear the list
-  var list_node = document.getElementById('attribute-inspector-div');
-  remove_all_children(list_node);
+  var div_node = document.getElementById('attribute-inspector-div');
+  remove_all_children(div_node);
 
   // add the title
   var title_element = document.createElement("h4");
   var text = document.createTextNode(nearest_tag.label);
   title_element.appendChild(text);
-  list_node.appendChild(title_element);
+  div_node.appendChild(title_element);
+
+  if (tag_attributes.length == 0) {
+    var node = document.createElement("p");
+    var text = document.createTextNode(" hefur engin eigindi.");
+    var span = document.createElement("span");
+    span.setAttribute("style", "font-family: monospace;");
+    var label = document.createTextNode(nearest_tag.label);
+    span.appendChild(label);
+    node.appendChild(span);
+    node.appendChild(text);
+    div_node.appendChild(node);
+    return;
+  }
 
   // create the table
   var table_element = document.createElement("table");
   table_element.setAttribute('id', 'attribute-inspector-table');
-  list_node.appendChild(table_element);
+  div_node.appendChild(table_element);
 
   // populate the table
   for (var i = 0; i < tag_attributes.length; ++i) {
@@ -298,23 +359,28 @@ function populate_attribute_inspector() {
     // TODO: nearest_tag.attributes 'map'
     var attrs = nearest_tag.attrs[attribute];
     var callback;
+    var value = '';
 
     if (!attrs) {
-      callback = function() {
-        console.log('We need to add a new attribute... TODO');
+      callback = function(attribute, value) {
+        add_tag_attribute(nearest_tag, attribute, value);
+        // Since we are adding an attribute, we need to change
+        // the callback for this field if we commit,
+        // easiest way to do that is to just compute the inspector again
+        populate_attribute_inspector();
       }
     } else {
-      var value = nearest_tag.attrs[attribute].value;
-      if (!value) {
-        value = '';
+      var got_value = nearest_tag.attrs[attribute].value;
+      if (got_value) {
+        value = got_value;
       }
 
-      var callback = function() {
-        // replace the attribute located inside nearest_tag
-
-        // calculate the attribute location
-        var line_index = nearest_tag.index + attrs.start_index;
-        console.log('want to modify word starting at', line_index, 'on line', nearest_tag.lineo);
+      var callback = function(attribute, value) {
+        modify_tag_attribute(nearest_tag, attribute, value);
+        // Since we are modifying an attribute, we need to change
+        // the callback for this field if we commit an empty value,
+        // easiest way to do that is to just compute the inspector again
+        populate_attribute_inspector();
       }
     }
 
@@ -322,17 +388,21 @@ function populate_attribute_inspector() {
   }
 }
 
-function make_nice_containers_collapsible() {
-	var containers = document.getElementsByClassName("nice-container");
+function insert_comment_prompt() {
+  var comment_content;
+  if (editor.somethingSelected()) {
+    comment_content = editor.getSelection();
+  } else {
+    comment_content = prompt("Setjið inn athugasemd.");
+    if (comment_content == null || comment_content == "") {
+      // prompt canceled
+      return;
+    }
+  }
 
-	for (var i = 0; i < containers.length; i++) {
-    var heading = containers[i].firstElementChild;
-    heading.classList.toggle("collapsible-inactive");
-		heading.addEventListener("click", function() {
-			this.classList.toggle("collapsible-active");
-      this.classList.toggle("collapsible-inactive");
-			var content = this.nextElementSibling;
-      toggle_display(content.id);
-		});
-	}
+  // comments may not have double hyphens, so replace any instances of double hyphens with a hyphen, space, hyphen
+  var comment_element = '<!-- ' + comment_content.replace(new RegExp('--', 'g'), '- -') + ' -->';
+
+  insert_element_at_cursor(comment_element);
+  
 }

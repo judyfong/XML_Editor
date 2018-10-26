@@ -719,7 +719,7 @@ function start() {
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', function() {
     // insert element
-    editor.populateHints({completeSingle: false})
+    editor.populateElementInserter({completeSingle: false})
     // tree explorer
     populate_tree_explorer();
     // attribute explorer
@@ -824,8 +824,8 @@ function toggle_autovalidate() {
 }
 
 function editor_initializers() {
+  _last_view = 'changed';
   applyViewMode();
-  make_nice_containers_collapsible(); // from editor_additions.js
 }
 
 function set_editor_content(content) {
@@ -838,6 +838,12 @@ $(document).ready(function() {
   document.getElementById('view_assisted_mode').addEventListener('click', function() { set_view('assisted'); });
   document.getElementById('view_raw_mode').addEventListener('click', function() { set_view('raw'); });
 
+
+  document.getElementById('hide_side_left').addEventListener('click', function() { toggle_display('side-container-left'); });
+  document.getElementById('hide_side_right').addEventListener('click', function() { toggle_display('side-container-right'); });
+
+
+  document.getElementById('toggle_symbol_inserter').addEventListener('click', toggle_symbol_inserter);
   document.getElementById('toggle_tags').addEventListener('click', toggle_tags);
   document.getElementById('toggle_line_numbers').addEventListener('click', toggle_line_numbers);
 
@@ -847,6 +853,8 @@ $(document).ready(function() {
   document.getElementById('inc_font').addEventListener('click', inc_font_size);
   document.getElementById('dec_font').addEventListener('click', dec_font_size);
   document.getElementById('def_font').addEventListener('click', function() {change_font_size('inherit');});
+
+  document.getElementById('insert_comment').addEventListener('click', insert_comment_prompt);
 
   document.getElementById('load_example_1').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180612T234422.xml');});
   document.getElementById('load_example_2').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180613T003335.xml');});
@@ -861,5 +869,6 @@ $(document).ready(function() {
 
 
   setTimeout(function () { set_view('debug'); }, 1000); // TODO: Demolish
+  make_nice_containers_collapsible(); // from editor_additions.js
 });
 

@@ -122,6 +122,10 @@ function toggle_line_numbers() {
   editor.setOption('lineNumbers', !option);
 }
 
+function toggle_symbol_inserter() {
+  alert("Táknastika er ekki tilbúin. Við biðjumst velvirðingar!");
+}
+
 function format_default() {
   // fix lines
   format_tags_on_own_lines();
@@ -226,7 +230,6 @@ function assign_tag_label(line_number, start, finish, className, options = { ass
     className: className,
     collapsed: false, //true,
     atomic: true,
-    readOnly: true,
   }
 
   if (options.assisted) {
@@ -335,4 +338,19 @@ function remove_tag_labels() {
     last_mark = mark;
     mark.clear();
   });
+}
+
+function make_nice_containers_collapsible() {
+	var containers = document.getElementsByClassName("nice-container");
+
+	for (var i = 0; i < containers.length; i++) {
+    var heading = containers[i].firstElementChild;
+    heading.classList.toggle("collapsible-inactive");
+		heading.addEventListener("click", function() {
+			this.classList.toggle("collapsible-active");
+      this.classList.toggle("collapsible-inactive");
+			var content = this.nextElementSibling;
+      toggle_display(content.id);
+		});
+	}
 }

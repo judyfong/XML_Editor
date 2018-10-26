@@ -34,15 +34,15 @@
     <script src="scripts/editor_validation.js"></script>
 </head>
 <body onload="start()">
-	<div class="wrapper">
-		<header>
-			<h1>XML Vefritill</h1>
-			Þróað af
+    <header>
+        <h1>XML Vefritill</h1>
+        <div>
+            Þróað af
             <a href="http://www.iiim.is/">
                 Vitvélastofnun Íslands ses
             </a>
-		</header>
-	</div>
+        </div>
+    </header>
 
     <div id="main_container">
         <div class='flex_container'>
@@ -74,6 +74,10 @@
                                 <a href="#" id='view_assisted_mode'>Einföld Sýn</a>
                                 <a href="#" id='view_raw_mode'>&#9888; XML Sýn &#9888;</a>
                                 <div class='separator'/>
+                                <a href="#" id='hide_side_left'>Sýna/Fela vinstri hlið</a>
+                                <a href="#" id='hide_side_right'>Sýna/Fela hægri hlið</a>
+                                <div class='separator'/>
+                                <a id='toggle_symbol_inserter' href='#'>Sýna/Fela táknastiku</a>
                                 <a id='toggle_tags' href='#'>Sýna/Fela tög</a>
                                 <a id='toggle_line_numbers' href='#'>Sýna/Fela línunúmer</a>
                                 <div class='separator'/>
@@ -86,6 +90,12 @@
                             <a href='javascript:void(0)' class='dropbtn'>Virkni</a>
                             <div class='dropdown-content'>
                                 <a id='toggle_autovalidate' href='#'>Slökkva/Kveikja á tæknilegri villuleitun</a>
+                            </div>
+                        </li>
+                        <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Bæta við</a>
+                            <div class='dropdown-content'>
+                                <a href='#' id='insert_comment'>Athugasemd</a>
                             </div>
                         </li>
                         <li class='dropdown'>
@@ -131,7 +141,7 @@
                 <div id="attribute-inspector-container" class="nice-container">
                     <h4 class='collapsible'>Attribute Inspector</h4>
                     <div id='attribute-inspector-div'>
-                        <p> Hér er ekkert, enn sem komið er. </p>
+                        <p> Smellið inn í tag til að sjá eigindi. </p>
                     </div>
                 </div>
             </div>

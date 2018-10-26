@@ -99,4 +99,27 @@ function parse_tags() {
   return tag_pairs
 }
 
+function insert_element_at_cursor(element, movement=undefined) {
+    var to;
+    var selection = ''
+    if (editor.somethingSelected()) {
+      to = editor.getCursor('to');
+    }
+    var cursor_loc = editor.getCursor('from');
+    if (!movement) {
+      movement = element.length + 2;
+    }
+    editor.replaceRange(element, cursor_loc, to);
+    
+    // move the cursor appropriately
+    cursor_loc.ch += movement;
+    if (selection) {
+      to.ch += movement;
+      editor.setSelection(cursor_loc, to);
+    } else {
+      editor.setCursor(cursor_loc);
+    }
+    // focus the editor
+    editor.focus();
+}
 
