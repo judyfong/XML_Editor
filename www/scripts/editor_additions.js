@@ -421,8 +421,13 @@ function createSpellChecker(editor) {
   var link_text = 'Virkja stafsetningarleit';
 
   var callback = function() {
+    /*
     const aff = 'resources/spell/index.aff';
     const dic = 'resources/spell/index.dic';
+    */
+    // TODO remove below and uncomment above, because of awardspace demo restrictions
+    const aff = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.aff';
+    const dic = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.dic';
     let typoLoaded=loadTypo(aff, dic);
     typoLoaded.then(typo => {
       startSpellCheck(editor, typo);
