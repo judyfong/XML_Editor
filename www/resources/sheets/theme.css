@@ -428,6 +428,15 @@ ul.links {
   cursor: pointer;
 }
 
+.insert-symbol {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  padding: 4px;
+  margin: 4px;
+  text-align: center;
+  min-width: 20px;
+}
+
 .marked-tag {
   display: inline;
   background-color: khaki;

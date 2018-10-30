@@ -10,6 +10,7 @@ function startSpellCheck(cm, typo) {
 	var rx_word = '!\'\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ';
 
 	cm.spellcheckOverlay = {
+    name: 'spell-check-overlay',
 		token: function(stream) {
 			var ch = stream.peek();
 			var word = "";
@@ -151,4 +152,8 @@ function getSuggestionBox(typo) {
 	}
 
 	return sbox;
+}
+
+function stopSpellCheck(cm, typo) {
+  cm.removeOverlay("spell-check-overlay");
 }

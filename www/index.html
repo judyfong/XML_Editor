@@ -22,16 +22,30 @@
     <script src="codemirror/lib/codemirror.js"></script>
     <script src="codemirror/addon/hint/show-hint.js"></script>
     <script src="codemirror/addon/hint/xml-hint.js"></script>
-    <script src="codemirror/mode/xml/xml.js"></script>
+    <!--script src="codemirror/mode/xml/xml.js">Not used, in favor of xml_mode_tagged (xml_tagged)</script-->
 
-    <script src="scripts/xml_mode_tagged.js"></script>
-    <script src="scripts/insert-element-populator.js"></script>
-
+		<!-- Althingi editor stuff -->
     <script src="scripts/editor.js"></script>
     <script src="scripts/editor_tools.js"></script>
     <script src="scripts/editor_views.js"></script>
     <script src="scripts/editor_additions.js"></script>
     <script src="scripts/editor_validation.js"></script>
+    <script src="scripts/editor_local_storage.js"></script>
+    <script src="scripts/insert-element-populator.js"></script>
+    <script src="scripts/xml_mode_tagged.js"></script>
+
+    <!-- Sound Playing -->
+    <script src="scripts/howler.js"></script>
+    <script src="scripts/editor_soundplayer.js"></script>
+
+		<!-- Spell checking -->
+    <script src="codemirror/addon/mode/overlay.js"></script>
+		<script src="scripts/typo.js"></script>
+		<script src="scripts/load-typo.js"></script>
+		<script src="scripts/spell-check.js"></script>
+    <link rel="stylesheet" href="resources/sheets/spell-check.css">
+
+
 </head>
 <body onload="start()">
     <header>
@@ -52,6 +66,11 @@
                 <div id="validation_status" style='border: 1px maroon solid;'>
                     Validation Status Unknown...
                 </div>
+                <div id="sound-player-container" class='nice-container'>
+                    <h4>Spilari</h4>
+                  <ul id="sound-player-links" class="links">
+                  </ul>
+                </div>
                 <div id="tree-explorer-container" class="nice-container">
                     <h4>Yfirlitssamantekt</h4>
                     <ul id="tree-explorer-links" class="links">
@@ -68,34 +87,32 @@
                             </div>
                         </li-->
                         <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Virkni</a>
+                            <div class='dropdown-content' id='function_menu'>
+                                <a href='#' id='insert_comment'>Bæta við Athugasemd</a>
+                                <div class='separator'></div>
+                                <a id='toggle_autovalidate' href='#'>Slökkva/Kveikja á tæknilegri villuleitun</a>
+                            </div>
+                        </li>
+                        <li class='dropdown'>
                             <a href='javascript:void(0)' class='dropbtn'>Útlit</a>
                             <div class='dropdown-content'>
                                 <a href="#" id='view_normal_mode'>Áberandi Sýn</a>
                                 <a href="#" id='view_assisted_mode'>Einföld Sýn</a>
                                 <a href="#" id='view_raw_mode'>&#9888; XML Sýn &#9888;</a>
-                                <div class='separator'/>
+                                <div class='separator'></div>
                                 <a href="#" id='hide_side_left'>Sýna/Fela vinstri hlið</a>
                                 <a href="#" id='hide_side_right'>Sýna/Fela hægri hlið</a>
-                                <div class='separator'/>
+                                <div class='separator'></div>
                                 <a id='toggle_symbol_inserter' href='#'>Sýna/Fela táknastiku</a>
+                                <a id='toggle_specialchars_inserter' href='#'>Sýna/Fela stiku með sérstöfum</a>
+                                <div class='separator'></div>
                                 <a id='toggle_tags' href='#'>Sýna/Fela tög</a>
                                 <a id='toggle_line_numbers' href='#'>Sýna/Fela línunúmer</a>
-                                <div class='separator'/>
+                                <div class='separator'></div>
                                 <a id='inc_font' href='#'>Stækka Leturstærð</a>
                                 <a id='dec_font' href='#'>Minnka Leturstærð</a>
                                 <a id='def_font' href='#'>Endurstilla Leturstærð</a>
-                            </div>
-                        </li>
-                        <li class='dropdown'>
-                            <a href='javascript:void(0)' class='dropbtn'>Virkni</a>
-                            <div class='dropdown-content'>
-                                <a id='toggle_autovalidate' href='#'>Slökkva/Kveikja á tæknilegri villuleitun</a>
-                            </div>
-                        </li>
-                        <li class='dropdown'>
-                            <a href='javascript:void(0)' class='dropbtn'>Bæta við</a>
-                            <div class='dropdown-content'>
-                                <a href='#' id='insert_comment'>Athugasemd</a>
                             </div>
                         </li>
                         <li class='dropdown'>
@@ -113,7 +130,16 @@
                                 <a id='load_example_lid20171215T103413' href="#">Liðaskjal með atkvæðagreiðslu</a>
                             </div>
                         </li>
+                        <li class='dropdown'>
+                            <a href='javascript:void(0)' class='dropbtn'>Vafrageymlsa</a>
+                            <div class='dropdown-content' id='local_storage_menu'>
+                            </div>
+                        </li>
                     </ul>
+                </div>
+                <div id='symbol-inserter-container'>
+                    <div id='special-symbol-inserter'></div>
+                    <div id='special-characters-inserter'></div>
                 </div>
                 <div id="editor-main">
                     <div id="editor_container">

@@ -2,9 +2,35 @@ var _current_view = 'assisted';
 var _last_view = 'none';
 var _visible_tags = true;
 
+function restoreLocalSettings() {
+  if (!storageAvailable('localStorage')) {
+    console.log("Could not restore local settings: No storage available.");
+    return;
+  }
+  var cw = localStorage.getItem('viewmode');
+  var vt = localStorage.getItem('tag_visibility');
+  if (cw) {
+    set_view(cw);
+  }
+  if (vt) {
+    _visible_tags = (vt == 'true');
+  }
+}
+
+function save_view_option(optname, optval) {
+  if (!storageAvailable('localStorage')) {
+    console.log("Could not store local setting for: " + optname + "=" + optval + ": No storage available.");
+    return;
+  }
+
+  localStorage.setItem(optname, optval);
+}
+
 function set_view(view_name) {
   _current_view = view_name;
   applyViewMode();
+
+  save_view_option('viewmode', view_name);
 }
 
 function cycle_current_view() {
@@ -89,11 +115,7 @@ function render_tag_visibility() {
   // validate the view-hide-tags stylesheet visibility
   var tag_visibility_theme = document.getElementById('view-hide-tags-stylesheet');
   if (tag_visibility_theme) {
-    if (show_tags) {
-      tag_visibility_theme.rel = 'alternate stylesheet';
-    } else {
-      tag_visibility_theme.rel = 'stylesheet';
-    }
+
   }
   
   // if marks exist on tags, collapse the tags
@@ -123,7 +145,71 @@ function toggle_line_numbers() {
 }
 
 function toggle_symbol_inserter() {
-  alert("Táknastika er ekki tilbúin. Við biðjumst velvirðingar!");
+  var cont_id = 'special-symbol-inserter'
+  var container = document.getElementById(cont_id);
+
+  console.log(container);
+  console.log(cont_id);
+  console.log(container.childElementCount);
+  
+  if (container.childElementCount > 0) {
+    remove_all_children(container);
+    return;
+  }
+
+  var symbols = [
+    '¡', '¿', '¢', '£', '¤', '¥', '¶', '§', '©', '®', '™', 'ª', '«', '»', '<', '>', '„', '“', '…', '–', '—', 'µ', 'ƒ', '×', '÷', '±', '¹', '²', '³', '¼', '½', '¾', '¦',
+  ];
+  
+  container = create_symbol_inserter(cont_id, symbols);
+  document.getElementById('special-symbol-inserter').appendChild(container);
+}
+
+function toggle_specialchars_inserter() {
+  var cont_id = 'special-characters-inserter'
+  var container = document.getElementById(cont_id);
+
+  console.log(container);
+  console.log(cont_id);
+  console.log(container.childElementCount);
+  
+  if (container.childElementCount > 0) {
+    remove_all_children(container);
+    return;
+  }
+
+  var cont_upper = 'special-characters-inserter-uppercase';
+  var cont_lower = 'special-characters-inserter-lowercase';
+
+  var symbols_upper = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÚÛÜÙÝß".split("");
+  var symbols_lower = "àáâãäåæçèéêëìíîïðñòóôõöøúûüùýÿ".split("");
+
+  var parent_container = document.getElementById('special-characters-inserter');
+  var lower = create_symbol_inserter(cont_upper, symbols_upper);
+  var upper = create_symbol_inserter(cont_lower, symbols_lower);
+  parent_container.appendChild(upper);
+  parent_container.appendChild(lower);
+}
+
+function create_symbol_inserter(container_id, symbols) {
+
+  var container = document.createElement('div');
+  container.setAttribute('id', container_id);
+  container.setAttribute('style', 'border: 1px teal dotted;');
+  var main_symbol_container = document.getElementById('symbol-inserter-container');
+  main_symbol_container.appendChild(container);
+  // create buttons for each symbol
+  for (var i = 0; i < symbols.length; ++i) {
+    var btn = document.createElement('button');
+    btn.appendChild(document.createTextNode(symbols[i]));
+    btn.setAttribute('class', 'insert-symbol button');
+    btn.addEventListener('click', function() {
+      insert_element_at_cursor(this.textContent, 1);
+    });
+    container.appendChild(btn);
+  }
+
+  return container;
 }
 
 function format_default() {

@@ -2,14 +2,6 @@
 // (1) use the global 'editor' variable liberally, and
 // (2) modify the DOM
 
-function remove_all_children(node) {
-  var child = node.firstChild;
-  while (child) {
-    node.removeChild(child);
-    child = node.firstChild;
-  }
-}
-
 function populate_insert_element_container(data) {
   // inserts a tag element of type tag_label at the cursor location and moves the cursor inside the tag
   function insert_tag_element(tag_label) {
@@ -45,9 +37,6 @@ function populate_insert_element_container(data) {
   // clear the list
   var link_node = document.getElementById('insert-element-links');
   remove_all_children(link_node);
-
-  console.log(data);
-  console.log(data.list);
 
   // populate the list
   for (var i=0; i<data.list.length; i++) {
@@ -86,7 +75,7 @@ function populate_tree_explorer() {
     if (phrase) {
       phrase += '...';
     }
-    
+
     return phrase;
   }
 
@@ -133,7 +122,7 @@ function parse_tag_attribute_values(tag) {
   if (tag_parts.length == 1) {
     return {};
   }
-   
+
   var attributes = {};
   var current_index = tag_string.indexOf(' ') + 1;
 
@@ -148,13 +137,13 @@ function parse_tag_attribute_values(tag) {
     attributes[pair[0]] = attribute_descriptor;
     current_index += tag_parts[i].length + 1;
   }
-  
+
   return attributes;
 }
 
 function add_tag_attribute(attribute_tag, key, value) {
   var added_tag_string = ' ' + key + '="' + value + '"';
-  
+
   // calculate the position where the tag closes
   var tag = attribute_tag.tag_open;
   var close_index = tag.end_index - 1;
@@ -180,7 +169,7 @@ function modify_tag_attribute(attribute_tag, key, value) {
   // been set to read-only mode via editor marking, in this case:
   // remove any read-only marks that might interfere with editing
   // (also in add_tag_attribute)
-  
+
   // replace the value
   editor.replaceRange(value, from, to);
 }
@@ -266,7 +255,7 @@ function populate_attribute_inspector() {
         return this_tag;
       }
     } while (nearby_tags.length == 0 && --current_line_number >= 0);
-    
+
     if (nearby_tags.length == 0) {
       // TODO: Look right
       console.log('nothing found');
@@ -321,7 +310,7 @@ function populate_attribute_inspector() {
     // anyway, we don't know how to deal with this type of tag
     return;
   }
-  
+
   // clear the list
   var div_node = document.getElementById('attribute-inspector-div');
   remove_all_children(div_node);
@@ -404,5 +393,52 @@ function insert_comment_prompt() {
   var comment_element = '<!-- ' + comment_content.replace(new RegExp('--', 'g'), '- -') + ' -->';
 
   insert_element_at_cursor(comment_element);
-  
+}
+
+function createSpellCheckMenuItem(editor, link_text, callback) {
+  // create a spell checking option in the menus
+  // find the parent menu
+  var parent_menu = document.getElementById('function_menu');
+  // delete any existing node
+  var existing = document.getElementById('spell-check-menu-item');
+  if (existing) {
+    existing.remove();
+  }
+
+  // node was already created, input param link_node
+  var link_node = document.createElement("a");
+  link_node.appendChild(document.createTextNode(link_text));
+  link_node.setAttribute('href', '#');
+  link_node.setAttribute('id', 'spell-check-menu-item');
+  link_node.addEventListener('click', callback);
+  // add it to the menu
+  var before_target = document.getElementById('toggle_autovalidate');
+  parent_menu.insertBefore(link_node, before_target);
+}
+
+function createSpellChecker(editor) {
+  // create a spell checking option in the menus
+  var link_text = 'Virkja stafsetningarleit';
+
+  var callback = function() {
+    const aff = 'resources/spell/index.aff';
+    const dic = 'resources/spell/index.dic';
+    let typoLoaded=loadTypo(aff, dic);
+    typoLoaded.then(typo => {
+      startSpellCheck(editor, typo);
+      createSpellCheckDisabler(editor);
+    });
+  }
+  createSpellCheckMenuItem(editor, 'Virkja stafsetningarleit', callback);
+}
+
+function createSpellCheckDisabler(editor) {
+  // create a spell check disabling option in the menus
+  var link_text = 'Slökkva á stafsetningarleit';
+  var callback = function() {
+    editor.removeOverlay("spell-check-overlay");
+    createSpellChecker(editor);
+  };
+
+  createSpellCheckMenuItem(editor, link_text, callback);
 }

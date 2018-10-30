@@ -1,3 +1,12 @@
+// Helpful helper function
+function remove_all_children(node) {
+  var child = node.firstChild;
+  while (child) {
+    node.removeChild(child);
+    child = node.firstChild;
+  }
+}
+
 // Simple tag parser for finding tags for marking
 function parse_tags() {
   // tags array for opening tags and closing tags

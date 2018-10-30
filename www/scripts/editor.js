@@ -707,6 +707,7 @@ function start() {
       ]
     }
   }
+
   editor = CodeMirror(document.getElementById("editor_container"));
 
   editor.setValue(example_xml);
@@ -726,6 +727,12 @@ function start() {
     populate_attribute_inspector();
   });
   $(document).ready(editor_initializers);
+
+/*	typoLoaded.then(typo => startSpellCheck(editor, typo));*/
+  $(document).ready( function() {
+/*    typoLoaded.then(typo => createSpellChecker(editor, typo));*/
+    createSpellChecker(editor);
+  });
 }
 
 function loadXMLtoEditor(xml_path) {
@@ -803,7 +810,7 @@ function distribute_tags_to_lines() {
   };
   var content = editor.getValue();
 
-  var tag_regexp = /([^\n\s])(<[^>]*[^\/]>)/g
+  var tag_regexp = /([^\n\s])(<[^>]*[^\/]>)/g; // NOTE: This semicolon used to be missing, but it worked.
   var match = tag_regexp.exec(content);
 
   while (match != null) {
@@ -825,6 +832,7 @@ function toggle_autovalidate() {
 
 function editor_initializers() {
   _last_view = 'changed';
+  restoreLocalSettings(); // from editor_views.js
   applyViewMode();
 }
 
@@ -844,6 +852,8 @@ $(document).ready(function() {
 
 
   document.getElementById('toggle_symbol_inserter').addEventListener('click', toggle_symbol_inserter);
+  document.getElementById('toggle_specialchars_inserter').addEventListener('click', toggle_specialchars_inserter);
+
   document.getElementById('toggle_tags').addEventListener('click', toggle_tags);
   document.getElementById('toggle_line_numbers').addEventListener('click', toggle_line_numbers);
 
@@ -867,8 +877,6 @@ $(document).ready(function() {
   document.getElementById('load_example_lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20171215T103413.xml');});
   document.getElementById('load_example_utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('/example_xml/utb20171215T201027.xml');});
 
-
-  setTimeout(function () { set_view('debug'); }, 1000); // TODO: Demolish
   make_nice_containers_collapsible(); // from editor_additions.js
 });
 
