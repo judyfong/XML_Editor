@@ -834,6 +834,7 @@ function editor_initializers() {
   _last_view = 'changed';
   restoreLocalSettings(); // from editor_views.js
   applyViewMode();
+  initialize_sound_player();
 }
 
 function set_editor_content(content) {

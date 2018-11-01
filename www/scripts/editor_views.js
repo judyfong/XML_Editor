@@ -87,6 +87,17 @@ function applyViewMode() {
 
   // update the editor
   editor.refresh();
+
+  // update any extra elements
+  update_helper_elements()
+}
+
+function update_helper_elements() {
+  var content = editor.getValue();
+  var initials = get_member_initials_from_content(content);
+  display_member_name_from_initials(initials);
+  initials = get_address_type_initials_from_content(content)
+  display_address_type_by_initials(initials);
 }
 
 function set_view_theme(chosen_theme) {

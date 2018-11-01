@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<tegundirræðu><tegundræðu tegund="U" prenta="true" prent="1">um fundarstjórn</tegundræðu>
+<tegundræðu tegund="M" prenta="true" prent="1">málsh. um fundarstjórn</tegundræðu>
+<tegundræðu tegund="J" prenta="false" prent="0">jómfrúrræða</tegundræðu>
+<tegundræðu tegund="V" prenta="false" prent="0">útvarpsræða</tegundræðu>
+<tegundræðu tegund="B" prenta="true" prent="1">ber af sér sakir</tegundræðu>
+<tegundræðu tegund="K" prenta="true" prent="1">um atkvæðagreiðslu</tegundræðu>
+<tegundræðu tegund="A" prenta="true" prent="1">andsvar</tegundræðu>
+<tegundræðu tegund="F" prenta="false" prent="0">flutningsræða</tegundræðu>
+<tegundræðu tegund="G" prenta="false" prent="0">grein fyrir atkvæði</tegundræðu>
+<tegundræðu tegund="S" prenta="false" prent="0">svar</tegundræðu>
+<tegundræðu tegund="R" prenta="false" prent="0">ræða</tegundræðu>
+<tegundræðu tegund="P" prenta="false" prent="0">prent</tegundræðu>
+<tegundræðu tegund="T" prenta="false" prent="-">útbýting þingskjala</tegundræðu>
+<tegundræðu tegund="C" prenta="true" prent="1">um kosninguna</tegundræðu>
+</tegundirræðu>

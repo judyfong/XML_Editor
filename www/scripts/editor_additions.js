@@ -447,3 +447,89 @@ function createSpellCheckDisabler(editor) {
 
   createSpellCheckMenuItem(editor, link_text, callback);
 }
+
+function get_member_initials_from_content(content) {
+  var parser = new DOMParser();
+  var xmlDoc = parser.parseFromString(content, "text/xml");
+  var elems = xmlDoc.getElementsByTagName("ræða");
+  if (elems.length == 0) { return false; }
+  var initials = elems[0].getAttribute("skst");
+  if (!initials) { return false; }
+  return initials;
+}
+
+function get_address_type_initials_from_content(content) {
+  var parser = new DOMParser();
+  var xmlDoc = parser.parseFromString(content, "text/xml");
+  var elems = xmlDoc.getElementsByTagName("ræða");
+  if (elems.length == 0) { return false; }
+  var initials = elems[0].getAttribute("tegr");
+  if (!initials) { return false; }
+  return initials;
+}
+
+function display_address_type_by_initials(initials) {
+  var xml_path = 'resources/xml/tegra.php4.xml';
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', xml_path, true);
+  xhr.send();
+  xhr.timeout = 2000;
+
+  xhr.onload = function() {
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(this.responseText, "text/xml");
+    var elements = xmlDoc.getElementsByTagName("tegundræðu");
+    var address_type = 'Óþekkt ræðutegund';
+    if (initials) {
+      for (var i = 0; i < elements.length; ++i) {
+        if (elements[i].getAttribute("tegund") == initials) {
+          address_type = elements[i].innerHTML;
+          break;
+        }
+      }
+      initials = '(' + initials + ')';
+    } else {
+      initials = '';
+    }
+    // TODO: make sure autovalidation is not failing
+    document.getElementById("address-type-placeholder").innerHTML = address_type + " " + initials;
+  };
+  xhr.ontimeout = function (e) {
+    alert("Could not load XML file:", e);
+  };
+}
+
+// Possible TODO: also use lgth as param for fetching
+// becomes relevant if we don't read static sheets
+function display_member_name_from_initials(initials) {
+  var xml_path = 'resources/xml/thingmenn.php4.xml';
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', xml_path, true);
+  xhr.send();
+  xhr.timeout = 2000;
+
+  xhr.onload = function() {
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(this.responseText, "text/xml");
+    var elements = xmlDoc.getElementsByTagName("þm");
+    var member_name = 'Óþekktur þingmaður';
+    if (initials) {
+      for (var i = 0; i < elements.length; ++i) {
+        if (elements[i].getAttribute("skst") == initials) {
+          member_name = elements[i].innerHTML;
+          break;
+        }
+      }
+      initials = '(' + initials + ')';
+    } else {
+      initials = '';
+    }
+    // TODO: make sure autovalidation is not failing
+    document.getElementById("member-name-placeholder").innerHTML = member_name + " " + initials;
+  };
+  xhr.ontimeout = function (e) {
+    alert("Could not load XML file:", e);
+  };
+}

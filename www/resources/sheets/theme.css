@@ -136,6 +136,30 @@ header div {
   /*    float: left; */
 }
 
+#extra-info-container {
+  padding: 6px 24px;
+}
+
+#extra-info-container h2 {
+  font-weight: bolder;
+}
+
+#extra-info-container h2:before {
+  /* t.d. "Ræðumaður: " */
+  content: "";
+}
+
+#extra-info-container h3:before {
+  /* t.d. "tegund ræðu: " */
+  content: "";
+}
+
+#symbol-inserter-container {
+  margin: 0px;
+  padding: 0px;
+/*  padding-bottom: 0px;*/
+}
+
 #validation_status {
   width: 160px;
   font-weight: bold;

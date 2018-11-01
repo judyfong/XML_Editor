@@ -1,3 +1,6 @@
+var _sound_playing;
+var _sound_seek_seconds = 1; // TODO: Load from localStorage?
+
 function initialize_sound_player() {
   var speech_identifier = get_speech_id_from_content(editor.getValue());
   var altext_url = generate_url_from_speech_id(speech_identifier);
@@ -5,13 +8,17 @@ function initialize_sound_player() {
   // Now that we know where to scrape, use jQuery to grab the desired sound file URL
   console.log("initializing sound player...");
 
+  // remove current sound player
+  var parent_container = document.getElementById('sound-player-links');
+  remove_all_children(parent_container); 
+
   var url = "http://allorigins.me/get?method=raw&url=" + encodeURIComponent(altext_url) + "&callback=?";
 
   $.get(url, function(data){
     var anchor = $(data).find('#embeddcode').next().next();
     var sound_file_location = anchor.attr('href');
     if (sound_file_location) {
-      bypass_cors_url(sound_file_location);
+      activate_sound_player(sound_file_location);
     } else {
       console.log("Couldn't start sound player:", anchor);
       console.log(anchor.attr('href'), sound_file_location);
@@ -51,6 +58,16 @@ function seek_sound_relative(sound, seconds) {
   sound.seek(cur_time + seconds);
 }
 
+function sound_play_pause(sound) {
+    if (sound.playing()) {
+      ret = sound.pause();
+      _last_sound_stop = new Date();
+    } else {
+      _last_sound_start = new Date();
+      sound.play();
+    }
+}
+
 function start_sound_player(content) {
   var parent_container = document.getElementById('sound-player-links');
   remove_all_children(parent_container); 
@@ -65,37 +82,32 @@ function start_sound_player(content) {
     src: [ content ],
   });
 
+  // pollute the global namespace...
+  _sound_playing = sound;
+
   // create the dom elements now
 
   var play = document.createElement("a");
   play.appendChild(document.createTextNode("Play/Pause"));
-  play.addEventListener('click', function() {
-    if (sound.playing()) {
-      ret = sound.pause();
-      _last_sound_stop = new Date();
-    } else {
-      _last_sound_start = new Date();
-      sound.play();
-    }
-  });
+  play.addEventListener('click', function() { sound_play_pause(sound); });
   add_button_to_player(sound, play);
 
   var seek = document.createElement("a");
   seek.appendChild(document.createTextNode("Spóla áfram"));
   seek.addEventListener('click', function() {
-    seek_sound_relative(sound, 1);
+    seek_sound_relative(sound, _sound_seek_seconds);
   });
   add_button_to_player(sound, seek);
 
   var rseek = document.createElement("a");
   rseek.appendChild(document.createTextNode("Spóla aftur á bak"));
   rseek.addEventListener('click', function() {
-    seek_sound_relative(sound, -1);
+    seek_sound_relative(sound, - _sound_seek_seconds);
   });
   add_button_to_player(sound, rseek);
 }
 
-function bypass_cors_url(url) {
+function activate_sound_player(url) {
   // start by at least downloading the file
   var cors_url = cors_bypass(url);
 
@@ -149,6 +161,4 @@ function get_speech_id_from_content(content) {
 
   return speech_identifier;
 }
-
-$(document).ready(setTimeout(initialize_sound_player, 3000));
 
