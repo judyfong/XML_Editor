@@ -24,6 +24,7 @@ function initialize_sound_player() {
       console.log(anchor.attr('href'), sound_file_location);
     }
   });
+  document.getElementById('sound-player-container').style.display = 'block';
 }
 
 function cors_bypass(base_url) {
@@ -166,3 +167,6 @@ function get_speech_id_from_content(content) {
   return speech_identifier;
 }
 
+$(document).ready( function () {
+  document.getElementById('sound-player-icon').addEventListener('click', initialize_sound_player);
+});

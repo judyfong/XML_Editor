@@ -137,7 +137,7 @@ header div {
 }
 
 #extra-info-container {
-  padding: 6px 24px;
+  padding: 6px 24px 20px;
 }
 
 #extra-info-container h2 {
@@ -152,6 +152,17 @@ header div {
 #extra-info-container h3:before {
   /* t.d. "tegund ræðu: " */
   content: "";
+}
+
+#sound-player-container {
+  display: none;
+}
+
+#sound-player-icon {
+  font-size: 2em;
+  float: left;
+  margin: 0px 8px;
+  cursor: pointer;
 }
 
 #symbol-inserter-container {

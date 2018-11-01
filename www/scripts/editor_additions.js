@@ -27,7 +27,11 @@ function populate_insert_element_container(data) {
     link_element.appendChild(text);
 
     link_element.setAttribute('href', '#');
-    link_element.addEventListener('click', function() { insert_tag_element(tag_label); });
+    link_element.addEventListener('click', function() { 
+      insert_tag_element(tag_label);
+      _last_view = 'changed';
+      applyViewMode();
+    });
 
     document.getElementById("insert-element-links").appendChild(list_element);
   }
@@ -292,7 +296,11 @@ function populate_attribute_inspector() {
     row_element.appendChild(mutate_col_element);
 
     // TODO HERE: listen for changes in the textbox, and reflect in CodeMirror
-    mutate_col_textbox.addEventListener('change', function() { callback(attribute, this.value)} );
+    mutate_col_textbox.addEventListener('change', function() { 
+      callback(attribute, this.value); 
+      _last_view = 'changed';
+      applyViewMode;
+    });
 
     document.getElementById("attribute-inspector-table").appendChild(row_element);
   }

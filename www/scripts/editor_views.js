@@ -7,6 +7,7 @@ function restoreLocalSettings() {
     console.log("Could not restore local settings: No storage available.");
     return;
   }
+ 
   var cw = localStorage.getItem('viewmode');
   var vt = localStorage.getItem('tag_visibility');
   if (cw) {
@@ -88,7 +89,7 @@ function applyViewMode() {
   // update the editor
   editor.refresh();
 
-  // update any extra elements
+  // update any extra, non-editor elements
   update_helper_elements()
 }
 
@@ -126,7 +127,11 @@ function render_tag_visibility() {
   // validate the view-hide-tags stylesheet visibility
   var tag_visibility_theme = document.getElementById('view-hide-tags-stylesheet');
   if (tag_visibility_theme) {
-
+    var rel = 'stylesheet';
+    if (show_tags) {
+      rel = 'stylesheet alternate';
+    }
+    tag_visibility_theme.rel = rel;
   }
   
   // if marks exist on tags, collapse the tags
@@ -144,9 +149,10 @@ function toggle_tags() {
     alert("Ekki er hægt að slökkva á tögum í hráum XML ham!");
     return;
   }
-  // togle the variable
+  // toggle the variable
   _visible_tags = !_visible_tags;
-  render_tag_visibility()
+  save_view_option('tag_visibility', _visible_tags);
+  render_tag_visibility();
   editor.refresh();
 }
 

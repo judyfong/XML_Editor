@@ -831,10 +831,9 @@ function toggle_autovalidate() {
 }
 
 function editor_initializers() {
-  _last_view = 'changed';
   restoreLocalSettings(); // from editor_views.js
+  _last_view = 'changed';
   applyViewMode();
-  initialize_sound_player();
 }
 
 function set_editor_content(content) {
