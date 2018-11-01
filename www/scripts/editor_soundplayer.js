@@ -1,5 +1,5 @@
 var _sound_playing;
-var _sound_seek_seconds = 1; // TODO: Load from localStorage?
+var _sound_seek_seconds = 5; // TODO: Load from localStorage?
 
 function initialize_sound_player() {
   var speech_identifier = get_speech_id_from_content(editor.getValue());
@@ -76,6 +76,10 @@ function start_sound_player(content) {
     var link_node = document.createElement("li")
     link_node.appendChild(anchor);
     parent_container.appendChild(link_node);
+  }
+
+  if (_sound_playing && _sound_playing.playing()) {
+      _sound_playing.pause();
   }
 
   var sound = new Howl({
