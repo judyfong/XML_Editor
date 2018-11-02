@@ -16,6 +16,20 @@ function restoreLocalSettings() {
   if (vt) {
     _visible_tags = (vt == 'true');
   }
+
+  var inserter_symbols = localStorage.getItem('symbols_inserter');
+  var inserter_special = localStorage.getItem('special_inserter');
+  if (inserter_symbols && inserter_symbols == 'true') {
+    toggle_symbol_inserter();
+  }
+  if (inserter_special && inserter_special == 'true') {
+    toggle_specialchars_inserter();
+  }
+  var line_numbers = localStorage.getItem('line_numbers');
+  if (line_numbers && line_numbers == 'false') {
+    // by default, line numbers are enabled
+    toggle_line_numbers();
+  }
 }
 
 function save_view_option(optname, optval) {
@@ -157,22 +171,22 @@ function toggle_tags() {
 }
 
 function toggle_line_numbers() {
-  var option = editor.getOption('lineNumbers');
-  editor.setOption('lineNumbers', !option);
+  var option = !editor.getOption('lineNumbers');
+  editor.setOption('lineNumbers', option);
+  save_view_option('line_numbers', option);
 }
 
 function toggle_symbol_inserter() {
   var cont_id = 'special-symbol-inserter'
   var container = document.getElementById(cont_id);
-
-  console.log(container);
-  console.log(cont_id);
-  console.log(container.childElementCount);
   
+  // if the inserter exists, remove it
   if (container.childElementCount > 0) {
     remove_all_children(container);
+    save_view_option('symbols_inserter', 'false');
     return;
   }
+  save_view_option('symbols_inserter', 'true');
 
   var symbols = [
     '¡', '¿', '¢', '£', '¤', '¥', '¶', '§', '©', '®', '™', 'ª', '«', '»', '<', '>', '„', '“', '…', '–', '—', 'µ', 'ƒ', '×', '÷', '±', '¹', '²', '³', '¼', '½', '¾', '¦',
@@ -185,15 +199,14 @@ function toggle_symbol_inserter() {
 function toggle_specialchars_inserter() {
   var cont_id = 'special-characters-inserter'
   var container = document.getElementById(cont_id);
-
-  console.log(container);
-  console.log(cont_id);
-  console.log(container.childElementCount);
   
+  // if the inserter exists, remove it
   if (container.childElementCount > 0) {
     remove_all_children(container);
+    save_view_option('special_inserter', 'false');
     return;
   }
+  save_view_option('special_inserter', 'true');
 
   var cont_upper = 'special-characters-inserter-uppercase';
   var cont_lower = 'special-characters-inserter-lowercase';

@@ -25,6 +25,9 @@ function initialize_sound_player() {
     }
   });
   document.getElementById('sound-player-container').style.display = 'block';
+  var message = document.createElement("li");
+  message.appendChild(document.createTextNode("Verið er að sækja hljóðbút..."));
+  document.getElementById('sound-player-links').appendChild(message);
 }
 
 function cors_bypass(base_url) {
@@ -69,6 +72,10 @@ function sound_play_pause(sound) {
     }
 }
 
+function sound_set_rate(sound, rate) {
+  sound.rate(rate);
+}
+
 function start_sound_player(content) {
   var parent_container = document.getElementById('sound-player-links');
   remove_all_children(parent_container); 
@@ -110,6 +117,24 @@ function start_sound_player(content) {
     seek_sound_relative(sound, - _sound_seek_seconds);
   });
   add_button_to_player(sound, rseek);
+
+  /*
+   * Hér er hægt að hafa takka til að breyta spilunarhraða.
+   * Athugið að hröðun spilunar eykur tíðni hlóðsins, sem breytir rödd ræðumanns.
+  var speed_normal = document.createElement("a");
+  speed_normal.appendChild(document.createTextNode("Spila á venjulegum hraða"));
+  speed_normal.addEventListener('click', function() {
+    sound_set_rate(sound, 1);
+  });
+  add_button_to_player(sound, speed_normal);
+
+  var speedup = document.createElement("a");
+  speedup.appendChild(document.createTextNode("Spila hraðar"));
+  speedup.addEventListener('click', function() {
+    sound_set_rate(sound, 1.2);
+  });
+  add_button_to_player(sound, speedup);
+  */
 }
 
 function activate_sound_player(url) {
@@ -168,5 +193,7 @@ function get_speech_id_from_content(content) {
 }
 
 $(document).ready( function () {
-  document.getElementById('sound-player-icon').addEventListener('click', initialize_sound_player);
+  var sound_player = document.getElementById('sound-player-icon');
+  sound_player.addEventListener('click', initialize_sound_player);
+  sound_player.innerHTML = '🔊';
 });
