@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="is">
   <head>
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -68,11 +68,6 @@
           <div id="validation_status" style='border: 1px maroon solid;'>
             Validation Status Unknown...
           </div>
-          <div id="sound-player-container" class='nice-container'>
-            <h4>Spilari</h4>
-            <ul id="sound-player-links" class="links">
-            </ul>
-          </div>
           <div id="tree-explorer-container" class="nice-container">
             <h4>Yfirlitssamantekt</h4>
             <ul id="tree-explorer-links" class="links">
@@ -133,6 +128,14 @@
                   </div>
                 </li>
                 <li class='dropdown'>
+                  <a href='javascript:void(0)' class='dropbtn'>Hljóðspilun</a>
+                  <div class='dropdown-content' id='audio_player_menu'>
+                    <a id='initialize_sound_player' href='#'>Virkja spilara</a>
+                    <a id='set_audio_seek_size' href='#'>Stilla skrefastærð</a>
+                    <a id='set_audio_rate' href='#'>Stilla spilunarhraða</a>
+                  </div>
+                </li>
+                <li class='dropdown'>
                   <a href='javascript:void(0)' class='dropbtn'>Vafrageymlsa</a>
                   <div class='dropdown-content' id='local_storage_menu'>
                   </div>
@@ -144,20 +147,24 @@
             <div id='special-characters-inserter'></div>
           </div>
           <div id="editor-main">
-            <div id="extra-info-container">
+            <div id="extra-info-container" class="flex_container">
               <div id="sound-player-icon">
               </div>
-              <h2 id="member-name-placeholder">
-                Óþekktur Þingmaður
-              </h2>
-              <h3 id="address-type-placeholder">
-                Óþekkt ræðutegund
-              </h3>
+              <div id="extra-info-text">
+                <h2 id="member-name-placeholder">
+                  Óþekktur Þingmaður
+                </h2>
+                <h3 id="address-type-placeholder">
+                  Óþekkt skjalategund
+                </h3>
+              </div>
+              <div id="sound-player-container">
+              </div>
             </div>
             <div id="editor_container">
             </div>
           </div>
-          <div id="validation_error" class="text-content" style="border 3px blue dashed;">
+          <div id="validation_error" class="text-content" style="border: 3px blue dashed;">
             <h3>Upp kom villa!</h3>
             <div id="validation_message" style="white-space: pre-wrap">
             </div>

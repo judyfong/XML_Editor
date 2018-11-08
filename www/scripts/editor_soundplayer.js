@@ -1,166 +1,56 @@
-var _sound_playing;
 var _sound_seek_seconds = 5; // TODO: Load from localStorage?
 
+function sound_play_pause() {
+  var player = document.getElementById("audio_player");
+  if (player.paused) {
+    player.play();
+  } else { 
+    player.pause();
+  }
+}
+
+function sound_seek_relative(seconds) {
+  var player = document.getElementById("audio_player");
+  player.currentTime += seconds;
+}
+
 function initialize_sound_player() {
-  var speech_identifier = get_speech_id_from_content(editor.getValue());
-  var altext_url = generate_url_from_speech_id(speech_identifier);
+  var start_timestamp = get_timestamp_from_content(editor.getValue());
 
-  // Now that we know where to scrape, use jQuery to grab the desired sound file URL
-  console.log("initializing sound player...");
+  var src_url = "https://butar.althingi.is/raedur/?start=" + start_timestamp;
 
-  // remove current sound player
-  var parent_container = document.getElementById('sound-player-links');
-  remove_all_children(parent_container); 
+  var parent_container = document.getElementById("sound-player-container");
+  remove_all_children(parent_container);
 
-  var url = "http://allorigins.me/get?method=raw&url=" + encodeURIComponent(altext_url) + "&callback=?";
+  var audio_player = document.createElement("audio");
+  var audio_src = document.createElement("source");
+  audio_src.setAttribute("src", src_url);
+  var attr = document.createAttribute("controls");
+  audio_player.setAttributeNode(attr);
+  attr = document.createAttribute("autoplay");
+  audio_player.setAttributeNode(attr);
+  audio_player.setAttribute("type", "audio/mpeg");
+  audio_player.setAttribute("id", "audio_player");
 
-  $.get(url, function(data){
-    var anchor = $(data).find('#embeddcode').next().next();
-    var sound_file_location = anchor.attr('href');
-    if (sound_file_location) {
-      activate_sound_player(sound_file_location);
-    } else {
-      console.log("Couldn't start sound player:", anchor);
-      console.log(anchor.attr('href'), sound_file_location);
-    }
-  });
-  document.getElementById('sound-player-container').style.display = 'block';
-  var message = document.createElement("li");
-  message.appendChild(document.createTextNode("Verið er að sækja hljóðbút..."));
-  document.getElementById('sound-player-links').appendChild(message);
+  audio_player.appendChild(audio_src);
+  parent_container.appendChild(audio_player);
+
+  document.getElementById("sound-player-container").style.display = "block";
+  // make the icon act as a play/pause button now
+  var sound_player = document.getElementById('sound-player-icon');
+  sound_player.removeEventListener('click', initialize_sound_player);
+  sound_player.addEventListener('click', sound_play_pause);
 }
 
-function cors_bypass(base_url) {
-  var url = "http://allorigins.me/get?method=raw&url=" + encodeURIComponent(base_url) + "&callback=?";
-  return url
+function get_timestamp_from_content(content) {
+  var start_search_index = content.indexOf("<umsýsla") + 7;
+
+  var start_index = content.indexOf("tími", start_search_index) + 6;
+  var end_index = content.indexOf('"', start_index);
+  return content.substring(start_index, end_index);
 }
 
-function arrayBufferToBase64(buffer) {
-  var binary = '';
-  var bytes = [].slice.call(new Uint8Array(buffer));
-
-  bytes.forEach((b) => binary += String.fromCharCode(b));
-
-  return window.btoa(binary);
-};
-
-var _last_sound_start, _last_sound_stop;
-
-function get_sound_elapsed_time_from_now() {
-  _last_sound_stop = new Date();
-  return get_sound_elapsed_time();
-}
-
-function get_sound_elapsed_time() {
-  var timeDiff =  _last_sound_stop - _last_sound_start;
-  return timeDiff / 1000;
-}
-
-function seek_sound_relative(sound, seconds) {
-  var cur_time = get_sound_elapsed_time_from_now();
-  _last_sound_start -= (seconds * 1000);
-  sound.seek(cur_time + seconds);
-}
-
-function sound_play_pause(sound) {
-    if (sound.playing()) {
-      ret = sound.pause();
-      _last_sound_stop = new Date();
-    } else {
-      _last_sound_start = new Date();
-      sound.play();
-    }
-}
-
-function sound_set_rate(sound, rate) {
-  sound.rate(rate);
-}
-
-function start_sound_player(content) {
-  var parent_container = document.getElementById('sound-player-links');
-  remove_all_children(parent_container); 
-
-  function add_button_to_player(sound, anchor) {
-    var link_node = document.createElement("li")
-    link_node.appendChild(anchor);
-    parent_container.appendChild(link_node);
-  }
-
-  if (_sound_playing && _sound_playing.playing()) {
-      _sound_playing.pause();
-  }
-
-  var sound = new Howl({
-    src: [ content ],
-  });
-
-  // pollute the global namespace...
-  _sound_playing = sound;
-
-  // create the dom elements now
-
-  var play = document.createElement("a");
-  play.appendChild(document.createTextNode("Play/Pause"));
-  play.addEventListener('click', function() { sound_play_pause(sound); });
-  add_button_to_player(sound, play);
-
-  var seek = document.createElement("a");
-  seek.appendChild(document.createTextNode("Spóla áfram"));
-  seek.addEventListener('click', function() {
-    seek_sound_relative(sound, _sound_seek_seconds);
-  });
-  add_button_to_player(sound, seek);
-
-  var rseek = document.createElement("a");
-  rseek.appendChild(document.createTextNode("Spóla aftur á bak"));
-  rseek.addEventListener('click', function() {
-    seek_sound_relative(sound, - _sound_seek_seconds);
-  });
-  add_button_to_player(sound, rseek);
-
-  /*
-   * Hér er hægt að hafa takka til að breyta spilunarhraða.
-   * Athugið að hröðun spilunar eykur tíðni hlóðsins, sem breytir rödd ræðumanns.
-  var speed_normal = document.createElement("a");
-  speed_normal.appendChild(document.createTextNode("Spila á venjulegum hraða"));
-  speed_normal.addEventListener('click', function() {
-    sound_set_rate(sound, 1);
-  });
-  add_button_to_player(sound, speed_normal);
-
-  var speedup = document.createElement("a");
-  speedup.appendChild(document.createTextNode("Spila hraðar"));
-  speedup.addEventListener('click', function() {
-    sound_set_rate(sound, 1.2);
-  });
-  add_button_to_player(sound, speedup);
-  */
-}
-
-function activate_sound_player(url) {
-  // start by at least downloading the file
-  var cors_url = cors_bypass(url);
-
-  var request = new Request(cors_url);
-
-  fetch(request, {}).then( (response) =>
-    {
-      response.arrayBuffer().then((buffer) =>
-        {
-          var sndStr = "data:audio/mp3;base64," + arrayBufferToBase64(buffer);
-
-          start_sound_player(sndStr)
-
-        }
-      );
-    }
-  );
-}
-
-function generate_url_from_speech_id(spid) {
-  return 'https://www.althingi.is/altext/upptokur/raeda/?raeda=rad' + spid;
-}
-
+/* fallback method in case the above method doesn't work... not currently used */
 function get_speech_id_from_content(content) {
   // Since we know the legal XML layout, we can use this silly hack:
   // We want to find the first instance of "id=r" and start parsing from there to the closing quote
@@ -192,8 +82,51 @@ function get_speech_id_from_content(content) {
   return speech_identifier;
 }
 
+function set_audio_seek_size() {
+  var new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:"));
+  if (isNaN(new_seek_size)) {
+    alert("Inntak þarf að vera tala!");
+    return;
+  }
+
+  _sound_seek_seconds = new_seek_size;
+}
+
+function set_audio_rate() {
+  var audio_player = document.getElementById("audio_player");
+  if (!audio_player) {
+    alert("Spilari hefur ekki verið virkjaður!");
+    return;
+  }
+
+  var new_playback_rate = Number(prompt("Hraði spilunar:"));
+  if (isNaN(new_playback_rate)) {
+    alert("Inntak þarf að vera tala!");
+    return;
+  }
+  if (new_playback_rate > 4 || new_playback_rate < 0.5) {
+    alert("Spilunarhraði skal vera á milli 0.5 og 4!");
+    return;
+  }
+
+  audio_player.playbackRate = new_playback_rate;
+}
+
 $(document).ready( function () {
+  // Main player icon
   var sound_player = document.getElementById('sound-player-icon');
   sound_player.addEventListener('click', initialize_sound_player);
   sound_player.innerHTML = '🔊';
+
+  // Menu item, same function as main player icon
+  var initializer_menu_item = document.getElementById("initialize_sound_player");
+  initializer_menu_item.addEventListener('click', initialize_sound_player);
+
+  // set seek size
+  var seek_size_setter = document.getElementById("set_audio_seek_size");
+  seek_size_setter.addEventListener('click', set_audio_seek_size);
+
+  // set playback rate
+  var playback_rate_setter = document.getElementById("set_audio_rate");
+  playback_rate_setter.addEventListener('click', set_audio_rate);
 });

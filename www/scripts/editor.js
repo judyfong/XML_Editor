@@ -830,6 +830,14 @@ function toggle_autovalidate() {
   _validation_disabled = !_validation_disabled;
 }
 
+function editor_focus_toggle() { 
+  if (editor.hasFocus()) {
+    document.activeElement.blur();
+  } else {
+    editor.focus();
+  }
+}
+
 function editor_initializers() {
   restoreLocalSettings(); // from editor_views.js
   _last_view = 'changed';

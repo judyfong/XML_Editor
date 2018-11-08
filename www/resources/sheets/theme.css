@@ -156,11 +156,17 @@ header div {
 
 #sound-player-container {
   display: none;
+  margin: 0px 8px;
+  flex: auto;
+}
+
+#sound-player-container audio {
+  width: 100%;
+  border-radius: 4px;
 }
 
 #sound-player-icon {
   font-size: 2em;
-  float: left;
   margin: 0px 8px;
   cursor: pointer;
 }
@@ -328,7 +334,8 @@ li.dropdown {
   text-align: left;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:hover,
+.dropdown-content a:focus {
   background-color: #f1f1f1;
 }
 
@@ -338,9 +345,19 @@ li.dropdown {
   border-top: 1px teal dotted;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.dropdown:focus .dropdown-content {
   display: block;
   border: 1px black dashed;
+}
+
+.dropbtn:focus + .dropdown-content {
+  display: block;
+  border: 1px black dashed;
+}
+
+.dropdown-content a:focus {
+  display: block;
 }
 
 #insert-element-container {
@@ -456,8 +473,11 @@ ul.links {
 }
 
 .links li a:hover,
+.links li a:focus,
 .horizontal-links li a:hover,
-.button:hover {
+.horizontal-links li a:focus,
+.button:hover,
+.button:focus {
   background-color: #555;
   color: white;
   cursor: pointer;
