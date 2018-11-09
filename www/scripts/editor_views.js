@@ -285,7 +285,7 @@ function format_tags_on_own_lines() {
     }
 
     // check if there is content *before* the tag
-    var trimmed_line = tag_line.trimStart();
+    var trimmed_line = tag_line.trimLeft();
     var delta = tag_line.length - trimmed_line.length;
     if (tag.start_index - delta > 0) {
       // only replace if this is an opening tag
@@ -454,6 +454,19 @@ function remove_tag_labels() {
     last_mark = mark;
     mark.clear();
   });
+}
+
+function place_navbar_anchor(element, parent_id) {
+  // insert the element in the right <ul> identified by parent_id
+  var parent_menu = document.getElementById(parent_id);
+  parent_menu.appendChild(element);
+}
+
+function insert_navbar_anchor_at(element, parent_id, before_id) {
+  var parent_menu = document.getElementById(parent_id);
+  var before_target = document.getElementById(before_id);
+
+  parent_menu.insertBefore(element, before_target.parent);
 }
 
 function make_nice_containers_collapsible() {

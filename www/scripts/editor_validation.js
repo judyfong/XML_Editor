@@ -40,17 +40,18 @@ function checkXML(n) {
   }
 }
 
-function validateXML_W3() {
+function validateXML_W3(content) {
   // code for IE
   if (window.ActiveXObject) {
     var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
     xmlDoc.async=false;
-    xmlDoc.loadXML(editor.getValue());
+    xmlDoc.loadXML();
     if(xmlDoc.parseError.errorCode!=0) {
       txt="Error Code: " + xmlDoc.parseError.errorCode + "\n";
       txt=txt+"Error Reason: " + xmlDoc.parseError.reason;
       txt=txt+"Error Line: " + xmlDoc.parseError.line;
-      alert(txt);
+/*      alert(txt);*/
+      return txt;
     } else {
       //console.log("for some reason we already validated, and there were no errors!");
       return "OK";
@@ -58,25 +59,25 @@ function validateXML_W3() {
     // code for Mozilla, Firefox, Opera, etc.
   } else if (document.implementation.createDocument) {
     try {
-      var text=editor.getValue();
+      var text=content;
       var parser=new DOMParser();
       var xmlDoc=parser.parseFromString(text,"application/xml");
     } catch(err) {
-      console.log("err:", err.message);
-      alert(err.message);
+/*      console.log("err:", err.message);*/
+/*      alert(err.message);*/
       return "Exception: " + err.message;
     }
 
     if (xmlDoc.getElementsByTagName("parsererror").length>0) {
       checkErrorXML(xmlDoc.getElementsByTagName("parsererror")[0]);
-      console.log(xt)
+/*      console.log(xt)*/
       return xt;
     } else {
       //console.log("for some reason we already validated, and there were no errors!");
       return "OK";
     }
   } else {
-    alert('Your browser cannot handle XML validation');
+    console.log('Your browser cannot handle XML validation');
   }
   return false;
 }
@@ -95,7 +96,7 @@ function autovalidator() {
     /* schema validation failed, don't do any other validation */
     return;
   }
-  result = validateXML_W3();
+  result = validateXML_W3(editor.getValue());
   //console.log("validation returned", result);
   if (result == "OK") {
     validate_success();
@@ -126,7 +127,8 @@ function validate_schema(tags) {
 
   function handle_tag_not_found(tag) {
     console.log("a tag:", tag);
-    validate_failure("Óþekkt tag: " + tag.tag_label + " í línu " + tag.line + 1);
+    var problem_line = Number(tag.line) + 1;
+    validate_failure("Óþekkt tag: " + tag.tag_label + " í línu " + problem_line);
   }
 
   // assumes a schema_tags variable
@@ -148,3 +150,28 @@ function validate_schema(tags) {
     }
   }
 }
+
+function validate_insertion_at_cursor(tag_label) {
+  if (_validation_disabled) {
+    // validation is not enabled, do not validate here either
+    return true;
+  }
+  var selection = ''
+  if (editor.somethingSelected()) {
+    selection = editor.getSelection();
+  }
+  var element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+  var cursor_loc = editor.getCursor('from');
+
+  // validate the replacement
+  var content_before = editor.getValue();
+
+  var cursor_index = editor.getDoc().indexFromPos(cursor_loc);
+
+  var content_after = [content_before.slice(0, cursor_index), element, content_before.slice(cursor_index)].join('');
+
+  var result = validateXML_W3(content_after) == "OK";
+
+  return result;
+}
+

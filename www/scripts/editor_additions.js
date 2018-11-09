@@ -42,6 +42,7 @@ function populate_insert_element_container(data) {
   var link_node = document.getElementById('insert-element-links');
   remove_all_children(link_node);
 
+  var list_empty = true;
   // populate the list
   for (var i=0; i<data.list.length; i++) {
     var tag_hint_label = data.list[i];
@@ -54,7 +55,17 @@ function populate_insert_element_container(data) {
       // 'Insert Element' window
       continue;
     }
-    create_element(tag_hint_label.substring(1));
+    var label = tag_hint_label.substring(1)
+    if (validate_insertion_at_cursor(label)) {
+      create_element(label);
+      list_empty = false;
+    } // else: we thought we could create an element here, but it doesn't validate.
+  }
+  if (list_empty) {
+    var list_element = document.createElement("li");
+    var text = document.createTextNode("Engin leyfileg tög á tilteknum stað.");
+    list_element.appendChild(text);
+    document.getElementById("insert-element-links").appendChild(list_element);
   }
 }
 
@@ -85,16 +96,19 @@ function populate_tree_explorer() {
 
   function add_tag_to_tree(tag) {
     var list_element = document.createElement("li");
+    var link_element = document.createElement("a");
     var text_content = tag.line + ' <' + tag.tag_label + '> ' + get_text_at_tag_location(tag);
     var text_node = document.createTextNode(text_content);
-    list_element.appendChild(text_node);
+    link_element.appendChild(text_node);
 
     list_element.setAttribute('class', 'button');
-    list_element.addEventListener('click', function() { 
+    link_element.setAttribute('href', '#');
+    link_element.addEventListener('click', function() { 
       var pos = { line: tag.line, ch: tag.end_index };
       editor.setCursor(pos);
       editor.focus();
     });
+    list_element.appendChild(link_element);
 
     document.getElementById("tree-explorer-links").appendChild(list_element);
   }
@@ -405,23 +419,21 @@ function insert_comment_prompt() {
 
 function createSpellCheckMenuItem(editor, link_text, callback) {
   // create a spell checking option in the menus
-  // find the parent menu
-  var parent_menu = document.getElementById('function_menu');
   // delete any existing node
   var existing = document.getElementById('spell-check-menu-item');
   if (existing) {
     existing.remove();
   }
 
-  // node was already created, input param link_node
+  // construct the anchor node
   var link_node = document.createElement("a");
   link_node.appendChild(document.createTextNode(link_text));
   link_node.setAttribute('href', '#');
   link_node.setAttribute('id', 'spell-check-menu-item');
   link_node.addEventListener('click', callback);
-  // add it to the menu
-  var before_target = document.getElementById('toggle_autovalidate');
-  parent_menu.insertBefore(link_node, before_target);
+
+  // insert the anchor node into the navigation bar
+  insert_navbar_anchor_at(link_node, 'function_menu', 'toggle_autovalidate');
 }
 
 function createSpellChecker(editor) {

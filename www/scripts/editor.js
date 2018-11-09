@@ -27,6 +27,7 @@ function set_editor_options(editor) {
   }
 
   editor.setOption('mode', 'xml_tagged');
+  editor.setOption('tabindex', -1);
   editor.setOption('lineWrapping', true);
   editor.setOption('lineNumbers', true);
   editor.setOption('viewportMargin', Infinity);
