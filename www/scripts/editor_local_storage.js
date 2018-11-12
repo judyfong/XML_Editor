@@ -233,7 +233,6 @@ function initialize_local_storage() {
 
   parent_menu.appendChild(link_node);
 
-  console.log("checking document autosaver...", _autosave_documents);
   if (_autosave_documents) {
     editor.on('changes', saveEditorContentAuto);
   } else {

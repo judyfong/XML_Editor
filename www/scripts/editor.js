@@ -716,6 +716,7 @@ function start() {
 
   //    editor.on('cursorActivity', applyViewMode);
   editor.on('cursorActivity', addDebugInfo);
+  editor.on('beforeChange', fix_insert_quotes);
   editor.on('changes', autovalidator);
   editor.on('focus', autovalidator);
   editor.on('focus', applyViewMode);

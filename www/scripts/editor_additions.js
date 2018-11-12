@@ -553,3 +553,38 @@ function display_member_name_from_initials(initials) {
     alert("Could not load XML file:", e);
   };
 }
+
+// If something is highlighted and the user presses '"', enclose in „quotes“
+function fix_insert_quotes(instance, changeObj) {
+  // Check if a double quote was inserted
+  var quote_inserted = false;
+  // Something inserted
+  if (!changeObj.text) {
+    return;
+  }
+  // Something has to actually be selected
+  // Also: Were there multiple selections?
+  if (!editor.somethingSelected()) {
+    return;
+  } else if (editor.getSelections().length > 1) {
+    return;
+  }
+  // Search for a double quote
+  for (var i = 0; i < changeObj.text.length ; ++i) {
+    if (changeObj.text[i] == '"') {
+      quote_inserted = true;
+      break;
+    }
+  }
+  // No action unless quote inserted
+  if (!quote_inserted) {
+    return;
+  }
+  var replacement =  '„' + editor.getSelection() + '“';
+  // cancel the change
+  changeObj.cancel();
+  // conduct the replacement (NOTE: probably fires 'change' and 'beforeChange' events)
+  // NOTE: See comment on https://codemirror.net/doc/manual.html#events under 'beforeChange'
+  //       It is possible that this implementation causes some bugs, look here first!
+  editor.replaceRange(replacement, changeObj.from);
+}

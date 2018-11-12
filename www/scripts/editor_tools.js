@@ -170,4 +170,3 @@ function get_speech_id_from_content(content) {
 
   return speech_identifier;
 }
-
