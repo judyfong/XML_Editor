@@ -71,11 +71,17 @@ header div {
   overflow: hidden;
 }
 
+.nice-container :focus {
+  border: skyblue 1px solid;
+  font-style: italic;
+}
+
 /* all h4 under nice containers */
 .nice-container h4 {
   color: teal;
   text-align: center;
-  margin: 4px;
+  margin: 4px 0px 4px;
+  padding-bottom: 4px;
   border-bottom: 1px teal dotted;
 }
 
@@ -83,13 +89,19 @@ header div {
 .nice-container > h4 {
   cursor: pointer;
   width: 100%;
-  border: none;
   text-align: left;
   outline: none;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+.nice-container > h4 > a {
+  color: teal;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
 }
 
 .nice-container ul li {
@@ -426,7 +438,7 @@ li.dropdown {
   color: white;
   float: right;
   margin-left: 5px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 .collapsible-inactive:after {
@@ -435,7 +447,7 @@ li.dropdown {
   color: white;
   float: right;
   margin-left: 5px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 ul.links {

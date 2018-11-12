@@ -1,6 +1,6 @@
-
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
+// Modified by Throstur Thorarensen, 2018
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

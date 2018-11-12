@@ -50,38 +50,6 @@ function get_timestamp_from_content(content) {
   return content.substring(start_index, end_index);
 }
 
-/* fallback method in case the above method doesn't work... not currently used */
-function get_speech_id_from_content(content) {
-  // Since we know the legal XML layout, we can use this silly hack:
-  // We want to find the first instance of "id=r" and start parsing from there to the closing quote
-  var start_index = content.indexOf("id=\"r") + 5;
-  if (start_index == 5) {
-    // Houston, we have a problem!
-    console.log("PROBLEM I HOUSTON");
-    return;
-  }
-  var end_index = content.indexOf('"', start_index);
-  if (end_index == -1) {
-    // Houston, we have a problem!
-    console.log("PROBLEM II HOUSTON");
-    return;
-  }
-
-  var speech_identifier = content.substring(start_index, end_index);
-
-  var regexp = /[-:]/g;
-  var match = regexp.exec(speech_identifier);
-
-  while (match != null) {
-    // delete the token
-    speech_identifier = speech_identifier.replace(match, '');
-    // get a new match
-    match = regexp.exec(speech_identifier);
-  }
-
-  return speech_identifier;
-}
-
 function set_audio_seek_size() {
   var new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:"));
   if (isNaN(new_seek_size)) {

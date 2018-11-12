@@ -843,6 +843,7 @@ function editor_initializers() {
   restoreLocalSettings(); // from editor_views.js
   _last_view = 'changed';
   applyViewMode();
+  initialize_local_storage(); // from editor_local_storage.js
 }
 
 function set_editor_content(content) {

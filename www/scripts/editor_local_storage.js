@@ -1,4 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+var _autosave_documents = false;
+
 function storageAvailable(type) {
   try {
     var storage = window[type],
@@ -33,16 +35,44 @@ function getAvailableFiles() {
   return saved_files;
 }
 
-function saveEditorContentAs(identifier) {
+function saveEditorContentAuto() {
+  var speech_id = get_speech_id_from_content(editor.getValue())
+  if (!speech_id) {
+    speech_id = 'unknown_' + new Date().toISOString();
+  }
+  var identifier = 'auto_' + speech_id;
+  saveEditorContentAs(identifier, overwrite=true);
+}
+
+function saveEditorContentAs(identifier, overwrite=false) {
   // strip semicolons since we use these for serialization
   identifier = identifier.replace(new RegExp(';', 'g'), '');
   // get saved files list
   var saved_files = localStorage.getItem("saved_files");
 
+  var exists = false;
   if (!saved_files) {
     saved_files = identifier;
   } else {
-    saved_files = saved_files + ';' + identifier;
+    // make sure the saved file doesn't exist first.
+    // if it does, we will overwrite it -- prompt the user
+    var availables = getAvailableFiles();
+    for (var i = 0; i < availables.length; ++i) {
+      if (identifier == availables[i]) {
+        exists = true;
+        break;
+      }
+    }
+    if (exists && !overwrite) {
+      var ok = confirm("Skjal með þessu nafni er til, vista samt?");
+      if (!ok) {
+        return;
+      }
+    }
+
+    if (!exists) {
+      saved_files = saved_files + ';' + identifier;
+    }
   }
 
   var content = editor.getValue();
@@ -51,10 +81,33 @@ function saveEditorContentAs(identifier) {
 
   localStorage.setItem("saved_files", saved_files);
 
-  initialize_local_storage()
+  if (!exists) {
+    initialize_local_storage()
+  }
 }
 
 function removeSavedContent(identifier) {
+  // First verify an exact match exists
+  var availables = getAvailableFiles();
+  var found = "no";
+  var saved_files_string = "";
+  for (var i = 0; i < availables.length; ++i) {
+    if (identifier == availables[i]) {
+      found = i;
+      break;
+    }
+  }
+
+  if (found == "no") {
+    alert("Fann ekki tiltekna vistun.");
+    return;
+  }
+
+  availables.splice(found, 1);
+
+  var saved_files_string = availables.join(';');
+
+  /*
   var saved_files_string = localStorage.getItem("saved_files");
   var left = saved_files_string.substring(0, saved_files_string.indexOf(identifier));
   var right = saved_files_string.substring(saved_files_string.indexOf(identifier) + identifier.length);
@@ -68,6 +121,7 @@ function removeSavedContent(identifier) {
   if (saved_files_string[saved_files_string.length-1] == ';') {
     saved_files_string = saved_files_string.substring(0, saved_files_string.length-1);
   }
+  */
 
   localStorage.setItem("saved_files", saved_files_string);
   localStorage.removeItem(identifier);
@@ -92,6 +146,13 @@ function initialize_local_storage() {
     <a id='save_file_locally'>vista skjal...</a>
     <div class='separator'/>
     */
+  var ad = localStorage.getItem("autosave");
+  if (ad == 'true') {
+    _autosave_documents = true;
+  } else {
+    _autosave_documents = false;
+  }
+
   var parent_menu = document.getElementById('local_storage_menu');
   remove_all_children(parent_menu);
 
@@ -105,8 +166,23 @@ function initialize_local_storage() {
       saveEditorContentAs(identifier);
     }
   });
-
   parent_menu.appendChild(link_node);
+
+  var autosave_pre = 'Virkja';
+  if (_autosave_documents) {
+    autosave_pre = 'Óvirkja';
+  }
+  var autosave_text = autosave_pre + ' sjálfvirka vistun';
+  link_node = document.createElement("a");
+  link_node.appendChild(document.createTextNode(autosave_text));
+  link_node.setAttribute('href', '#');
+  link_node.addEventListener('click', function() {
+    _autosave_documents = !_autosave_documents;
+    localStorage.setItem("autosave", _autosave_documents);
+    initialize_local_storage();
+  });
+  parent_menu.appendChild(link_node);
+
   var hr = document.createElement('div');
   hr.setAttribute('class', 'separator');
   parent_menu.appendChild(hr)
@@ -140,13 +216,27 @@ function initialize_local_storage() {
   link_node.appendChild(document.createTextNode('Eyða vistun...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    var identifier = prompt("Skrá til að eyða");
+    var speech_id = get_speech_id_from_content(editor.getValue())
+    var auto_identifier = ''
+    var avails = getAvailableFiles();
+    for (var i = 0; i < avails.length; ++i) {
+      if (avails[i].indexOf(speech_id) != -1) {
+        auto_identifier = avails[i];
+        break;
+      }
+    }
+    var identifier = prompt("Skrá til að eyða", auto_identifier);
     if (identifier) {
       removeSavedContent(identifier);
     }
   });
 
   parent_menu.appendChild(link_node);
-}
 
-$(document).ready(initialize_local_storage);
+  console.log("checking document autosaver...", _autosave_documents);
+  if (_autosave_documents) {
+    editor.on('changes', saveEditorContentAuto);
+  } else {
+    editor.off('changes', saveEditorContentAuto);
+  }
+}

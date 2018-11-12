@@ -142,3 +142,32 @@ function insert_element_at_cursor(element, movement=undefined) {
   editor.focus();
 }
 
+function get_speech_id_from_content(content) {
+  // Since we know the legal XML layout, we can use this silly hack:
+  // We want to find the first instance of "id=r" and start parsing from there to the closing quote
+  var start_index = content.indexOf("id=\"r") + 5;
+  if (start_index == 5) {
+    // Houston, we have a problem!
+    return;
+  }
+  var end_index = content.indexOf('"', start_index);
+  if (end_index == -1) {
+    // Houston, we have a problem!
+    return;
+  }
+
+  var speech_identifier = content.substring(start_index, end_index);
+
+  var regexp = /[-:]/g;
+  var match = regexp.exec(speech_identifier);
+
+  while (match != null) {
+    // delete the token
+    speech_identifier = speech_identifier.replace(match, '');
+    // get a new match
+    match = regexp.exec(speech_identifier);
+  }
+
+  return speech_identifier;
+}
+
