@@ -351,7 +351,7 @@ li.dropdown {
   background-color: #f1f1f1;
 }
 
-.dropdown-content .separator {
+.separator {
   margin: 0px;
   padding: 0px;
   border-top: 1px teal dotted;
