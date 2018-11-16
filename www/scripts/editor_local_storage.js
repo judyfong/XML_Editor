@@ -38,7 +38,9 @@ function getAvailableFiles() {
 function saveEditorContentAuto() {
   var speech_id = get_speech_id_from_content(editor.getValue())
   if (!speech_id) {
-    speech_id = 'unknown_' + new Date().toISOString();
+    /* don't autosave documents that don't have a name yet */
+    /* speech_id = 'unknown_' + new Date().toISOString();  */
+    return;
   }
   var identifier = 'auto_' + speech_id;
   saveEditorContentAs(identifier, overwrite=true);
@@ -228,6 +230,20 @@ function initialize_local_storage() {
     var identifier = prompt("Skrá til að eyða", auto_identifier);
     if (identifier) {
       removeSavedContent(identifier);
+    }
+  });
+
+  parent_menu.appendChild(link_node);
+
+  /* Add the "clear all saved items" option */
+
+  link_node = document.createElement("a");
+  link_node.appendChild(document.createTextNode('Hreinsa vafrageymslu'));
+  link_node.setAttribute('href', '#');
+  link_node.addEventListener('click', function() {
+    var success = confirm("Hreinsa allar stillingar og eyða öllum skjölum úr vafrageymslu?");
+    if (success) {
+      localStorage.clear();
     }
   });
 

@@ -109,6 +109,7 @@ header div {
 }
 
 #content-container {
+  width: 100%;
   padding: 8px;
   border: gainsboro 1px dashed;
 }
