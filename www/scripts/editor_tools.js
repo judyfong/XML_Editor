@@ -108,7 +108,7 @@ function parse_tags() {
   return tag_pairs
 }
 
-function insert_element_at_cursor(element, movement=undefined) {
+function insert_element_at_cursor(element, movement=undefined, newline=false) {
   var to;
   var selection = ''
   if (editor.somethingSelected()) {
@@ -117,6 +117,10 @@ function insert_element_at_cursor(element, movement=undefined) {
   var cursor_loc = editor.getCursor('from');
   if (!movement) {
     movement = element.length + 2;
+  }
+  // append newline if requested
+  if (newline) {
+    element += '\n';
   }
 
   // validate the replacement

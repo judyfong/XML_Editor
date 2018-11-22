@@ -33,6 +33,7 @@ function set_editor_options(editor) {
   editor.setOption('viewportMargin', Infinity);
   editor.setOption('extraKeys', 
     {
+      "Enter": handleEnterPressed,
       "'<'": completeAfter,
       "'/'": completeIfAfterLt,
       "' '": completeIfInTag,
@@ -755,6 +756,9 @@ function loadXMLtoEditor(xml_path) {
 // TODO: change font-size on everything
 function change_font_size(value) {
   $('.CodeMirror').css('font-size', value);
+  if (storageAvailable('localStorage')) {
+    localStorage.setItem('font_size', value);
+  }
 }
 
 function get_font_size() {
@@ -886,6 +890,7 @@ $(document).ready(function() {
   document.getElementById('load_example_inn029').addEventListener('click', function() { loadXMLtoEditor('/example_xml/inn029.xml');});
   document.getElementById('load_example_les025').addEventListener('click', function() { loadXMLtoEditor('/example_xml/les025.xml');});
   document.getElementById('load_example_lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20171215T103413.xml');});
+  document.getElementById('load_example_lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20181009T230112.xml');});
   document.getElementById('load_example_utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('/example_xml/utb20171215T201027.xml');});
 
   make_nice_containers_collapsible(); // from editor_additions.js

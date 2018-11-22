@@ -6,3 +6,11 @@
   opacity: 0.1;
   background-color: none;
 }
+
+.cm-in-tag-bjalla,
+.cm-in-tag-frammíkall,
+.marked-tag-no-hide {
+  opacity: 1;
+  background-color: lightgray;
+}
+

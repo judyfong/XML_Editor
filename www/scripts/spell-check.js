@@ -53,7 +53,7 @@ function getSuggestionBox(typo) {
 		items.forEach(s => options += '<option value="' + s + '">' + s + '</option>');
 		if (hourglass) options += '<option disabled="disabled">&nbsp;&nbsp;&nbsp;&#8987;</option>';
 		if (separator) options += '<option style="min-height:1px; max-height:1px; padding:0; background-color: #000000;" disabled>&nbsp;</option>';
-		options += '<option value="##ignoreall##">Ignore&nbsp;All</option>';
+		options += '<option value="##ignoreall##">Hunsa&nbsp;öll</option>';
 
 		let indexInParent=[].slice.call(selwidget.parentElement.children).indexOf(selwidget);
 		selwidget.innerHTML=options;

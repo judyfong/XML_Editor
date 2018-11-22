@@ -30,6 +30,14 @@ function restoreLocalSettings() {
     // by default, line numbers are enabled
     toggle_line_numbers();
   }
+
+  var font_size = localStorage.getItem('font_size');
+  if (font_size) {
+    fsz_number = parseInt(font_size);
+    if (!isNaN(fsz_number)) {
+      change_font_size(fsz_number);
+    }
+  }
 }
 
 function save_view_option(optname, optval) {
@@ -152,6 +160,9 @@ function render_tag_visibility() {
   var markers = editor.getAllMarks();
 
   for (var i = 0; i < markers.length; ++i) {
+    if (markers[i].className == 'marked-tag-no-hide') {
+      continue;
+    }
     markers[i].collapsed = !_visible_tags;
   }
   // potential TODO: fold lines that only contain hidden (collapsed) content
@@ -402,6 +413,15 @@ function mark_tag(tag, options) {
     className = 'marked-tag';
   }
 
+  // If it's a special, un-hideable tag, give it a special className
+  var special_tags = ["bjalla", "frammíkall"]
+  for (var i = 0; i < special_tags.length; ++i) {
+    var found = tag.tag_label.indexOf(special_tags[i]);
+    if (found != -1) {
+      className = 'marked-tag-no-hide';
+    }
+  }
+
   assign_tag_label(tag.line, tag.start_index, tag.end_index, className, options);
 }
 
@@ -466,7 +486,7 @@ function insert_navbar_anchor_at(element, parent_id, before_id) {
   var parent_menu = document.getElementById(parent_id);
   var before_target = document.getElementById(before_id);
 
-  parent_menu.insertBefore(element, before_target.parent);
+  parent_menu.insertBefore(element, before_target);
 }
 
 function make_nice_containers_collapsible() {

@@ -2,23 +2,23 @@
 // (1) use the global 'editor' variable liberally, and
 // (2) modify the DOM
 
-function populate_insert_element_container(data) {
-  // inserts a tag element of type tag_label at the cursor location and moves the cursor inside the tag
-  function insert_tag_element(tag_label) {
-    // Possible TODO: create self-closing elements properly (e.g. <bjalla/> instead of <bjalla></bjalla>)
-    var to;
-    var selection = ''
-    if (editor.somethingSelected()) {
-      to = editor.getCursor('to');
-      selection = editor.getSelection();
-    }
-    var cursor_loc = editor.getCursor('from');
-    var movement = tag_label.length + 2;
-    var element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
-    insert_element_at_cursor(element, movement);
-    return;
+// inserts a tag element of type tag_label at the cursor location and moves the cursor inside the tag
+function insert_tag_element(tag_label, newline=false) {
+  // Possible TODO: create self-closing elements properly (e.g. <bjalla/> instead of <bjalla></bjalla>)
+  var to;
+  var selection = ''
+  if (editor.somethingSelected()) {
+    to = editor.getCursor('to');
+    selection = editor.getSelection();
   }
+  var cursor_loc = editor.getCursor('from');
+  var movement = tag_label.length + 2;
+  var element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+  insert_element_at_cursor(element, movement, newline);
+  return;
+}
 
+function populate_insert_element_container(data) {
   function create_element(tag_label) {
     var list_element = document.createElement("li");
     var link_element = document.createElement("a");
@@ -587,4 +587,90 @@ function fix_insert_quotes(instance, changeObj) {
   // NOTE: See comment on https://codemirror.net/doc/manual.html#events under 'beforeChange'
   //       It is possible that this implementation causes some bugs, look here first!
   editor.replaceRange(replacement, changeObj.from);
+}
+
+
+function handleEnterPressed(instance) {
+  // Let's insert some <mgr> </mgr> tags
+  // If inside a <vísa>, insert a <lína> </lína> pair instead
+  // Step 1: figure out our context
+  var pos = instance.getCursor();
+  var tokens = instance.getLineTokens(pos.line);
+  var next_candidate = false;
+  var label = undefined;
+  var token = undefined;
+  var fix_line = 0;
+  console.log(tokens);
+  for (var i = 0; i < tokens.length; ++i) {
+    var tok = tokens[i].string;
+    if (next_candidate) {
+      switch(tok) {
+        case 'mgr':
+        case 'lína':
+        case 'erindi':
+          label = tok;
+          break;
+        case 'vísa':
+          label = 'erindi';
+          fix_line = 1;
+          break;
+      }
+    }
+    if (label && !token) {
+      token = tokens[i];
+      break;
+    }
+    if (tok == '</') {
+      next_candidate = true;
+      continue;
+    }
+  }
+
+  if (!label || !token) {
+      // We didn't find any closers, so find what's open instead
+      for (var i = tokens.length - 1; i >= 0; --i) {
+        var tok = tokens[i].string;
+        if (next_candidate) {
+          switch(tok) {
+            case 'vísa':
+              label = 'erindi';
+              break;
+            case 'erindi':
+              label = 'lína';
+              break;
+            case 'ræðutexti':
+              label = 'mgr';
+              break;
+          }
+        }
+        if (label && !token) {
+          token = tokens[i];
+          break;
+        }
+        if (tok == '>') {
+          next_candidate = true;
+          continue;
+        }
+      }
+  } else {
+/*      console.log("got label", label, "and token", token, "fix line:", fix_line);*/
+  }
+  
+  if (!label || !token) {
+    console.log("Enter pressed in unknown context");
+    return;
+  }
+  // Step 2: Move out of the <mgr> or <lína> if we are in one
+/*  console.log('target token:', token);*/
+
+  var new_pos = { line: pos.line + 1 - fix_line, ch: 0 }
+  instance.setCursor(new_pos);
+ 
+  // Step 3: insert a new <mgr> or <lína>
+  insert_tag_element(label, newline=true);
+
+  // Step 4: Render the view again to mark the new tags if they should be marked
+  instance.indentLine(pos.line + 1);
+  _last_view = 'raw';
+  applyViewMode();
 }

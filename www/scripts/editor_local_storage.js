@@ -174,7 +174,7 @@ function initialize_local_storage() {
   if (_autosave_documents) {
     autosave_pre = 'Óvirkja';
   }
-  var autosave_text = autosave_pre + ' sjálfvirka vistun';
+  var autosave_text = autosave_pre + ' sjálfvirka skjalavistun';
   link_node = document.createElement("a");
   link_node.appendChild(document.createTextNode(autosave_text));
   link_node.setAttribute('href', '#');

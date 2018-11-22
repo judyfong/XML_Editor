@@ -7,18 +7,18 @@ small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
 body {
-  background: url("https://www.althingi.is/skin/basic9k/i/sitelogo.png") no-repeat fixed right bottom;
+  /*  background: url("https://www.althingi.is/skin/basic9k/i/sitelogo.png") no-repeat fixed right bottom;*/
 }
 
 button {
@@ -37,22 +37,111 @@ header {
   padding: 0px;
   margin: 0px;
   border: 0px;
-  float:left;
-  padding:15px 0;
-  min-width:100%;
+  float: left;
+  padding: 4px 0;
+  min-width: 100%;
 }
 
 header h1 {
-  font-size: 24pt;
+  font-size: 16pt;
   font-weight: bold;
+  margin: 0px;
+  padding: 0px;
 }
 
 header div {
+  font-size: 10pt;
   text-align: right;
+  margin: 0px;
+  padding: 0px;
   float: right;
   border: 1px blue;
   margin-right: 32px;
   font-style: italic;
+
+}
+
+.modal-overlay {
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 51;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.closed {
+  display: none;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 25% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: auto;
+  max-width: 700px;
+  position: relative;
+/*  overflow: auto;*/
+}
+
+.modal-content div {
+  padding: 20px;
+  margin-top: 16px;
+}
+
+#keybind_content {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#keybind_content div {
+  background-color: #c0c0c0;
+}
+
+.key_section input,
+.key_section label {
+  width: 100px;
+  max-width: 100%;
+  display: block;
+  height: 2.5em;
+}
+
+.key_section label {
+  text-align: center;
+  vertical-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: #ddd;
+  border-radius: 4px;
+  z-index: 56;
+  position: absolute;
+  right: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .flex_container {
@@ -112,6 +201,7 @@ header div {
   width: 100%;
   padding: 8px;
   border: gainsboro 1px dashed;
+  overflow: hidden;
 }
 
 #content-container > * {
@@ -187,7 +277,7 @@ header div {
 #symbol-inserter-container {
   margin: 0px;
   padding: 0px;
-/*  padding-bottom: 0px;*/
+  /*  padding-bottom: 0px;*/
 }
 
 #validation_status {
@@ -252,12 +342,12 @@ header div {
   margin: 12px;
   /*    width: 360px;
    *    */
-  background-color: lightyellow;
-  border: 2px dashed moccasin;
-  border-radius: 10px;
-  box-shadow: 0 0 0 -4px lightyellow, -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
-  text-transform: capitalize;
-  text-align: center;
+background-color: lightyellow;
+border: 2px dashed moccasin;
+border-radius: 10px;
+box-shadow: 0 0 0 -4px lightyellow, -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
+text-transform: capitalize;
+text-align: center;
 }
 
 footer::before{
@@ -483,6 +573,26 @@ ul.links {
   padding: 8px 16px;
   text-decoration: none;
   color: white;
+}
+
+#boorkmark-container {
+  vertical-align: center;
+}
+
+#bookmark-container select {
+  width: 100px;
+  padding: 4px;
+}
+
+.button {
+  background-color: #008cba;
+  border-radius: 4px;
+  padding: 6px;
+  margin: 4px;
+  color: white;
+  font-family: monospace;
+  border: 1px solid #555;
+  vertical-align: center;
 }
 
 .links li a:hover,
