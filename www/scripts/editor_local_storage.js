@@ -163,7 +163,8 @@ function initialize_local_storage() {
   link_node.appendChild(document.createTextNode('Vista skjal...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    var identifier = prompt("Vista sem...");
+    var speech_id = get_speech_id_from_content(editor.getValue())
+    var identifier = prompt("Vista sem...", speech_id);
     if (identifier) {
       saveEditorContentAs(identifier);
     }

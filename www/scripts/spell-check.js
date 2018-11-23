@@ -54,6 +54,7 @@ function getSuggestionBox(typo) {
 		if (hourglass) options += '<option disabled="disabled">&nbsp;&nbsp;&nbsp;&#8987;</option>';
 		if (separator) options += '<option style="min-height:1px; max-height:1px; padding:0; background-color: #000000;" disabled>&nbsp;</option>';
 		options += '<option value="##ignoreall##">Hunsa&nbsp;öll</option>';
+		options += '<option value="##addword##">Bæta&nbsp;við</option>';
 
 		let indexInParent=[].slice.call(selwidget.parentElement.children).indexOf(selwidget);
 		selwidget.innerHTML=options;
@@ -141,6 +142,10 @@ function getSuggestionBox(typo) {
 			if (correction == '##ignoreall##') {
 				startSpellCheck.ignoreDict[sbox.token] = true;
 				cm.setOption('maxHighlightLength', (--cm.options.maxHighlightLength) + 1); // ugly hack to rerun overlays
+      } else if (correction == '##addword##') {
+        // TODO HERE: Do something to add to the dictionary on Althingi's web
+        let msg = "Ekki var hægt að bæta við orðinu ,," + sbox.token + "'' við orðabókina."
+        alert(msg);
 			} else {
 				cm.replaceRange(correction, { line: sbox.cmpos.line, ch: sbox.cmpos.start}, { line: sbox.cmpos.line, ch: sbox.cmpos.end});
 				cm.focus();

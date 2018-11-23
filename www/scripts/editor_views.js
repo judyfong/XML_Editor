@@ -52,6 +52,7 @@ function save_view_option(optname, optval) {
 function set_view(view_name) {
   _current_view = view_name;
   applyViewMode();
+  hide_empty_lines();
 
   save_view_option('viewmode', view_name);
 }
@@ -106,7 +107,8 @@ function applyViewMode() {
   _last_view = _current_view;
 
   // Last minute updates
-  render_tag_visibility()
+  render_tag_visibility();
+  hide_empty_lines();
 
   // update the editor
   editor.refresh();
@@ -168,6 +170,34 @@ function render_tag_visibility() {
   // potential TODO: fold lines that only contain hidden (collapsed) content
 }
 
+function hide_if_empty(lineHandle) {
+  // don't hide the line if the cursor is on this line
+  let lineNumber = editor.getLineNumber(lineHandle);
+  if (editor.getCursor().line == lineNumber) {
+    return;
+  }
+  let text = lineHandle.text;
+  indexOpen = 0;
+  while (indexOpen != -1) {
+    indexOpen = text.indexOf('<');
+    indexClose = text.indexOf('>', indexOpen) + 1;
+    text = text.substr(0, indexOpen) + text.substr(indexClose);
+  }
+  text = text.trim();
+  if (!text) {
+    editor.markText({line: lineNumber, ch: 0}, {line: lineNumber}, {inclusiveRight: true, inclusiveLeft: true, collapsed: true});
+  }
+}
+
+function hide_empty_lines() {
+  if (_visible_tags || _current_view == 'raw') {
+    return;
+  }
+  let linecount = editor.lineCount(); 
+
+  editor.eachLine(hide_if_empty);
+}
+
 function toggle_tags() {
   // NEVER turn off tags in raw mode!! Leads to PEBCAK problems!
   if (_current_view == 'raw') {
@@ -178,6 +208,7 @@ function toggle_tags() {
   _visible_tags = !_visible_tags;
   save_view_option('tag_visibility', _visible_tags);
   render_tag_visibility();
+  hide_empty_lines();
   editor.refresh();
 }
 

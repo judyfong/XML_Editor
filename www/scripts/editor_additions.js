@@ -97,16 +97,17 @@ function populate_tree_explorer() {
   function add_tag_to_tree(tag) {
     var list_element = document.createElement("li");
     var link_element = document.createElement("a");
-    var text_content = tag.line + ' <' + tag.tag_label + '> ' + get_text_at_tag_location(tag);
+    var text_content = 1 + tag.line + ' <' + tag.tag_label + '> ' + get_text_at_tag_location(tag);
     var text_node = document.createTextNode(text_content);
     link_element.appendChild(text_node);
 
-    list_element.setAttribute('class', 'button');
+/*    list_element.setAttribute('class', 'button');*/
     link_element.setAttribute('href', '#');
     link_element.addEventListener('click', function() { 
       var pos = { line: tag.line, ch: tag.end_index };
-      editor.setCursor(pos);
       editor.focus();
+      editor.setCursor(pos);
+      setTimeout(function() {editor.scrollIntoView(pos)}, 50);
     });
     list_element.appendChild(link_element);
 
@@ -116,11 +117,13 @@ function populate_tree_explorer() {
   var link_node = document.getElementById('tree-explorer-links');
   remove_all_children(link_node);
 
-  // populate the tree explorer with every tag
+  // populate the tree explorer with every <mgr> and <vísa> tag
   var tag_pairs = parse_tags();  
   for (var i = 0; i < tag_pairs.length; ++i) {
     var detected_tag = tag_pairs[i].tag_open;
-    add_tag_to_tree(detected_tag);
+    if (detected_tag.tag_label == 'mgr') {
+      add_tag_to_tree(detected_tag);
+    }
   }
 }
 
@@ -438,7 +441,7 @@ function createSpellCheckMenuItem(editor, link_text, callback) {
 
 function createSpellChecker(editor) {
   // create a spell checking option in the menus
-  var link_text = 'Virkja stafsetningarleit';
+  var link_text = 'Virkja stafsetningarpúka';
 
   var callback = function() {
     /*
@@ -454,12 +457,12 @@ function createSpellChecker(editor) {
       createSpellCheckDisabler(editor);
     });
   }
-  createSpellCheckMenuItem(editor, 'Virkja stafsetningarleit', callback);
+  createSpellCheckMenuItem(editor, link_text, callback);
 }
 
 function createSpellCheckDisabler(editor) {
   // create a spell check disabling option in the menus
-  var link_text = 'Slökkva á stafsetningarleit';
+  var link_text = 'Slökkva á stafsetningarpúka';
   var callback = function() {
     editor.removeOverlay("spell-check-overlay");
     createSpellChecker(editor);
@@ -658,7 +661,7 @@ function handleEnterPressed(instance) {
   
   if (!label || !token) {
     console.log("Enter pressed in unknown context");
-    return;
+    return CodeMirror.Pass;
   }
   // Step 2: Move out of the <mgr> or <lína> if we are in one
 /*  console.log('target token:', token);*/
