@@ -607,12 +607,14 @@ ul.links {
 }
 
 .insert-symbol {
-  border: 1px solid lightgray;
+  border: 1px solid darkgray;
   border-radius: 2px;
   padding: 4px;
   margin: 4px;
   text-align: center;
   min-width: 20px;
+  background: lightgrey;
+  color: black;
 }
 
 .marked-tag,

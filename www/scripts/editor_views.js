@@ -1,4 +1,4 @@
-var _current_view = 'assisted';
+var _current_view = 'einföld';
 var _last_view = 'none';
 var _visible_tags = true;
 
@@ -58,7 +58,7 @@ function set_view(view_name) {
 }
 
 function cycle_current_view() {
-  var views = ['raw', 'assisted', 'normal', 'debug'];
+  var views = ['XML', 'einföld', 'áberandi', 'debug'];
   var new_index = (views.indexOf(_current_view) + 1) % views.length;
 
   _current_view = views[new_index];
@@ -82,22 +82,22 @@ function applyViewMode() {
   debug_container.style.display = 'none';
   editor.setOption("firstLineNumber", 1);
 
-  document.getElementById('editor-mode').innerHTML = _current_view + " mode";
+  document.getElementById('editor-mode').innerHTML = _current_view + " sýn";
   // format XML, moving tags to their own lines etc
   format_default();
   // remove all marks
   remove_tag_labels();
   switch (_current_view) {
-    case 'raw':
+    case 'XML':
       break // TODO: Demolish when debug mode is removed
     case 'debug':
       apply_debug_mode();
       break;
-    case 'normal':
+    case 'áberandi':
       //distribute_tags_to_lines();
       apply_normal_mode();
       break;
-    case 'assisted':
+    case 'einföld':
       apply_assisted_mode();
       break;
   }
@@ -145,7 +145,7 @@ function set_view_theme(chosen_theme) {
 function render_tag_visibility() {
   // NEVER turn off tags in raw mode!! Leads to PEBCAK problems!
   var show_tags = _visible_tags;
-  if (_current_view == 'raw') {
+  if (_current_view == 'XML') {
     show_tags = true;
   }
   // validate the view-hide-tags stylesheet visibility
@@ -190,7 +190,7 @@ function hide_if_empty(lineHandle) {
 }
 
 function hide_empty_lines() {
-  if (_visible_tags || _current_view == 'raw') {
+  if (_visible_tags || _current_view == 'XML') {
     return;
   }
   let linecount = editor.lineCount(); 
@@ -200,7 +200,7 @@ function hide_empty_lines() {
 
 function toggle_tags() {
   // NEVER turn off tags in raw mode!! Leads to PEBCAK problems!
-  if (_current_view == 'raw') {
+  if (_current_view == 'XML') {
     alert("Ekki er hægt að slökkva á tögum í hráum XML ham!");
     return;
   }
@@ -534,3 +534,10 @@ function make_nice_containers_collapsible() {
 		});
 	}
 }
+
+$(document).ready(function() {
+  document.getElementById('view_normal_mode').addEventListener('click', function() { set_view('áberandi'); });
+  document.getElementById('view_assisted_mode').addEventListener('click', function() { set_view('einföld'); });
+  document.getElementById('view_raw_mode').addEventListener('click', function() { set_view('XML'); });
+});
+
