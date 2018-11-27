@@ -83,11 +83,13 @@ function initialize_sound_player(evt, bufsz='TRUE') {
     }
     let text = document.createTextNode("Bókamerki: " + minutes + ":" + seconds);
     link_node.appendChild(text);
-    parent_menu = document.getElementById("audio_player_menu");
+    link_node.setAttribute('href', '#');
     link_node.addEventListener("click", function(evt) {
       let player = document.getElementById("audio_player");
       player.currentTime = time;
     });
+
+    parent_menu = document.getElementById("audio_player_menu");
     parent_menu.appendChild(link_node);
   });
 }
@@ -122,6 +124,9 @@ function set_audio_rate() {
   }
 
   let new_playback_rate = Number(prompt("Hraði spilunar (á milli 0.5 og 2.0):"));
+  if (new_playback_rate == "") { 
+    return;
+  }
   if (isNaN(new_playback_rate)) {
     alert("Inntak þarf að vera tala!");
     return;

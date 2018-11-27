@@ -41,7 +41,7 @@ function checkXML(n) {
 }
 
 function validateXML_W3(content) {
-  // code for IE
+  // code for IE // TODO: Can we remove this? Since IE doesn't seem to work anyway
   if (window.ActiveXObject) {
     var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
     xmlDoc.async=false;
@@ -50,10 +50,8 @@ function validateXML_W3(content) {
       txt="Error Code: " + xmlDoc.parseError.errorCode + "\n";
       txt=txt+"Error Reason: " + xmlDoc.parseError.reason;
       txt=txt+"Error Line: " + xmlDoc.parseError.line;
-/*      alert(txt);*/
       return txt;
     } else {
-      //console.log("for some reason we already validated, and there were no errors!");
       return "OK";
     }
     // code for Mozilla, Firefox, Opera, etc.
@@ -63,17 +61,13 @@ function validateXML_W3(content) {
       var parser=new DOMParser();
       var xmlDoc=parser.parseFromString(text,"application/xml");
     } catch(err) {
-/*      console.log("err:", err.message);*/
-/*      alert(err.message);*/
       return "Exception: " + err.message;
     }
 
     if (xmlDoc.getElementsByTagName("parsererror").length>0) {
       checkErrorXML(xmlDoc.getElementsByTagName("parsererror")[0]);
-/*      console.log(xt)*/
       return xt;
     } else {
-      //console.log("for some reason we already validated, and there were no errors!");
       return "OK";
     }
   } else {
@@ -97,7 +91,6 @@ function autovalidator() {
     return;
   }
   result = validateXML_W3(editor.getValue());
-  //console.log("validation returned", result);
   if (result == "OK") {
     validate_success();
   } else {

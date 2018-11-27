@@ -169,6 +169,9 @@ function createKeyEditHandler(key_id, key_input) {
     }
     key_input.setAttribute("value", key);
     window["_" + key_id] = key;
+    if (storageAvailable('localStorage')) {
+      localStorage.setItem(key_id, key);
+    }
   };
 }
 

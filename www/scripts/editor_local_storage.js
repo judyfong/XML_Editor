@@ -3,7 +3,7 @@ var _autosave_documents = false;
 
 function storageAvailable(type) {
   try {
-    var storage = window[type],
+    let storage = window[type],
       x = '__storage_test__';
     storage.setItem(x, x);
     storage.removeItem(x);
@@ -26,23 +26,23 @@ function storageAvailable(type) {
 }
 
 function getAvailableFiles() {
-  var saved_files_string = localStorage.getItem("saved_files");
+  let saved_files_string = localStorage.getItem("saved_files");
   if (!saved_files_string) {
     return [];
   }
-  var saved_files = saved_files_string.split(';');
+  let saved_files = saved_files_string.split(';');
 
   return saved_files;
 }
 
 function saveEditorContentAuto() {
-  var speech_id = get_speech_id_from_content(editor.getValue())
+  let speech_id = get_speech_id_from_content(editor.getValue())
   if (!speech_id) {
     /* don't autosave documents that don't have a name yet */
     /* speech_id = 'unknown_' + new Date().toISOString();  */
     return;
   }
-  var identifier = 'auto_' + speech_id;
+  let identifier = 'auto_' + speech_id;
   saveEditorContentAs(identifier, overwrite=true);
 }
 
@@ -50,23 +50,23 @@ function saveEditorContentAs(identifier, overwrite=false) {
   // strip semicolons since we use these for serialization
   identifier = identifier.replace(new RegExp(';', 'g'), '');
   // get saved files list
-  var saved_files = localStorage.getItem("saved_files");
+  let saved_files = localStorage.getItem("saved_files");
 
-  var exists = false;
+  let exists = false;
   if (!saved_files) {
     saved_files = identifier;
   } else {
     // make sure the saved file doesn't exist first.
     // if it does, we will overwrite it -- prompt the user
-    var availables = getAvailableFiles();
-    for (var i = 0; i < availables.length; ++i) {
+    let availables = getAvailableFiles();
+    for (let i = 0; i < availables.length; ++i) {
       if (identifier == availables[i]) {
         exists = true;
         break;
       }
     }
     if (exists && !overwrite) {
-      var ok = confirm("Skjal með þessu nafni er til, vista samt?");
+      let ok = confirm("Skjal með þessu nafni er til, vista samt?");
       if (!ok) {
         return;
       }
@@ -77,7 +77,7 @@ function saveEditorContentAs(identifier, overwrite=false) {
     }
   }
 
-  var content = editor.getValue();
+  let content = editor.getValue();
 
   localStorage.setItem(identifier, content);
 
@@ -90,10 +90,10 @@ function saveEditorContentAs(identifier, overwrite=false) {
 
 function removeSavedContent(identifier) {
   // First verify an exact match exists
-  var availables = getAvailableFiles();
-  var found = "no";
-  var saved_files_string = "";
-  for (var i = 0; i < availables.length; ++i) {
+  let availables = getAvailableFiles();
+  let found = "no";
+  let saved_files_string = "";
+  for (let i = 0; i < availables.length; ++i) {
     if (identifier == availables[i]) {
       found = i;
       break;
@@ -107,23 +107,7 @@ function removeSavedContent(identifier) {
 
   availables.splice(found, 1);
 
-  var saved_files_string = availables.join(';');
-
-  /*
-  var saved_files_string = localStorage.getItem("saved_files");
-  var left = saved_files_string.substring(0, saved_files_string.indexOf(identifier));
-  var right = saved_files_string.substring(saved_files_string.indexOf(identifier) + identifier.length);
-  saved_files_string = left + right;
-  
-  // strip extra semicolons
-  saved_files_string = saved_files_string.replace(';;', ';');
-  if (saved_files_string[0] == ';') {
-    saved_files_string = saved_files_string.substring(1);
-  }
-  if (saved_files_string[saved_files_string.length-1] == ';') {
-    saved_files_string = saved_files_string.substring(0, saved_files_string.length-1);
-  }
-  */
+  saved_files_string = availables.join(';');
 
   localStorage.setItem("saved_files", saved_files_string);
   localStorage.removeItem(identifier);
@@ -131,7 +115,7 @@ function removeSavedContent(identifier) {
 }
 
 function loadSavedContent(identifier) {
-  var content = localStorage.getItem(identifier);
+  let content = localStorage.getItem(identifier);
   if (!content) {
     // TODO: error;
   }
@@ -148,34 +132,34 @@ function initialize_local_storage() {
     <a id='save_file_locally'>vista skjal...</a>
     <div class='separator'/>
     */
-  var ad = localStorage.getItem("autosave");
+  let ad = localStorage.getItem("autosave");
   if (ad == 'true') {
     _autosave_documents = true;
   } else {
     _autosave_documents = false;
   }
 
-  var parent_menu = document.getElementById('local_storage_menu');
+  let parent_menu = document.getElementById('local_storage_menu');
   remove_all_children(parent_menu);
 
   // add the file saver
-  var link_node = document.createElement("a");
+  let link_node = document.createElement("a");
   link_node.appendChild(document.createTextNode('Vista skjal...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    var speech_id = get_speech_id_from_content(editor.getValue())
-    var identifier = prompt("Vista sem...", speech_id);
+    let speech_id = get_speech_id_from_content(editor.getValue())
+    let identifier = prompt("Vista sem...", speech_id);
     if (identifier) {
       saveEditorContentAs(identifier);
     }
   });
   parent_menu.appendChild(link_node);
 
-  var autosave_pre = 'Virkja';
+  let autosave_pre = 'Virkja';
   if (_autosave_documents) {
     autosave_pre = 'Óvirkja';
   }
-  var autosave_text = autosave_pre + ' sjálfvirka skjalavistun';
+  let autosave_text = autosave_pre + ' sjálfvirka skjalavistun';
   link_node = document.createElement("a");
   link_node.appendChild(document.createTextNode(autosave_text));
   link_node.setAttribute('href', '#');
@@ -186,15 +170,15 @@ function initialize_local_storage() {
   });
   parent_menu.appendChild(link_node);
 
-  var hr = document.createElement('div');
+  let hr = document.createElement('div');
   hr.setAttribute('class', 'separator');
   parent_menu.appendChild(hr)
 
-  var available_files = getAvailableFiles();
+  let available_files = getAvailableFiles();
 
-  for (var i = 0; i < available_files.length; ++i) {
+  for (let i = 0; i < available_files.length; ++i) {
     // create the entry here
-    var link_node = document.createElement("a");
+    let link_node = document.createElement("a");
     link_node.appendChild(document.createTextNode(available_files[i]));
     link_node.setAttribute('href', '#');
     link_node.addEventListener('click', function() {
@@ -205,12 +189,12 @@ function initialize_local_storage() {
 
   // if there was no saved content
   if (available_files.length == 0) {
-    var link_node = document.createElement("a");
+    let link_node = document.createElement("a");
     link_node.appendChild(document.createTextNode("Engin vistuð skjöl."));
     parent_menu.appendChild(link_node);
   }
 
-  var hr = document.createElement('div');
+  hr = document.createElement('div');
   hr.setAttribute('class', 'separator');
   parent_menu.appendChild(hr)
 
@@ -219,16 +203,16 @@ function initialize_local_storage() {
   link_node.appendChild(document.createTextNode('Eyða vistun...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    var speech_id = get_speech_id_from_content(editor.getValue())
-    var auto_identifier = ''
-    var avails = getAvailableFiles();
-    for (var i = 0; i < avails.length; ++i) {
+    let speech_id = get_speech_id_from_content(editor.getValue())
+    let auto_identifier = ''
+    let avails = getAvailableFiles();
+    for (let i = 0; i < avails.length; ++i) {
       if (avails[i].indexOf(speech_id) != -1) {
         auto_identifier = avails[i];
         break;
       }
     }
-    var identifier = prompt("Skrá til að eyða", auto_identifier);
+    let identifier = prompt("Skrá til að eyða", auto_identifier);
     if (identifier) {
       removeSavedContent(identifier);
     }
@@ -242,7 +226,7 @@ function initialize_local_storage() {
   link_node.appendChild(document.createTextNode('Hreinsa vafrageymslu'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    var success = confirm("Hreinsa allar stillingar og eyða öllum skjölum úr vafrageymslu?");
+    let success = confirm("Hreinsa allar stillingar og eyða öllum skjölum úr vafrageymslu?");
     if (success) {
       localStorage.clear();
     }

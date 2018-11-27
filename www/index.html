@@ -59,6 +59,9 @@
     <!-- Input handling -->
     <script src="scripts/editor_input.js"></script>
 
+    <!-- Documentum integration -->
+    <script src="scripts/editor_dctm.js"></script>
+
   </head>
   <body onload="start()">
     <header>
@@ -137,6 +140,13 @@
             <li class='nav-item'>
               <a href='javascript:void(0)'>Vafrageymsla</a>
               <div class='dropdown-content' id='local_storage_menu'>
+              </div>
+            </li>
+            <li class='nav-item'>
+              <a href='javascript:void(0)'>Documentum</a>
+              <div class='dropdown-content' id='documentum_menu'>
+                <a href='#' id='dctm_check_out'>Check out...</a>
+                <a href='#' id='dctm_check_in'>Check in</a>
               </div>
             </li>
           </ul>

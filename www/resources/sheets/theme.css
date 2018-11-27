@@ -89,7 +89,7 @@ header div {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 25% auto;
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: auto;
@@ -615,7 +615,8 @@ ul.links {
   min-width: 20px;
 }
 
-.marked-tag {
+.marked-tag,
+.marked-tag-no-hide {
   display: inline;
   background-color: khaki;
 }

@@ -655,8 +655,6 @@ function handleEnterPressed(instance) {
           continue;
         }
       }
-  } else {
-/*      console.log("got label", label, "and token", token, "fix line:", fix_line);*/
   }
   
   if (!label || !token) {
@@ -664,13 +662,16 @@ function handleEnterPressed(instance) {
     return CodeMirror.Pass;
   }
   // Step 2: Move out of the <mgr> or <lína> if we are in one
-/*  console.log('target token:', token);*/
 
   var new_pos = { line: pos.line + 1 - fix_line, ch: 0 }
   instance.setCursor(new_pos);
  
   // Step 3: insert a new <mgr> or <lína>
   insert_tag_element(label, newline=true);
+
+  if (label == 'erindi') {
+    insert_tag_element('lína', newline=true);
+  }
 
   // Step 4: Render the view again to mark the new tags if they should be marked
   instance.indentLine(pos.line + 1);
