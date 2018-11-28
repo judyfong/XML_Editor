@@ -201,7 +201,8 @@ header div {
   width: 100%;
   padding: 8px;
   border: gainsboro 1px dashed;
-  overflow: hidden;
+/*  overflow: hidden;*/
+  display: flow-root;
   order: 2;
   height: 100%;
 }
@@ -226,7 +227,7 @@ header div {
   height: auto;
   margin: auto;
   padding: 10px;
-  overflow: hidden;
+/*  overflow: hidden;*/
   margin-bottom: 60px;
   clear: both;
 }
@@ -234,9 +235,9 @@ header div {
 .sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 0;
-  background: skyblue;
+  top: 0px;
   height: 100%;
+  align-self: flex-start;
 }
 
 
