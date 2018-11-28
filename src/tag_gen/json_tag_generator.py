@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# pylint: disable=C0326
 # NOTE: This also exists: http://q42jaap.github.io/xsd2codemirror/
 
 import argparse
@@ -168,41 +169,6 @@ def merge_trees(main_tree, extra_tree):
             returned_tree[key] = extra_tree[key]
 
     return returned_tree
-
-# TODO HERE: Convert merged_tree dictionary to ProseMirror SchemaSpec
-def generate_prosemirror_spec(tree):
-    # TODO:
-    # Iterate over all elements in tree:
-    # create a structure like:
-    # http://prosemirror.net/docs/ref/#model.NodeSpec
-    # nodeSpec: {
-    #   content:    "( " +  " | ".join(children) + " )"
-    #   group:      maybe the type?
-    #   attr:       probably at least the tag name for css styling ("tagType"=theTagType)
-    #
-    #
-    #
-
-    schema_spec = {}
-    nodes = {}
-
-    for identifier, value in tree.items():
-        node_spec = {}
-        # does this node allow children?
-        if 'children' in value.keys():
-            children = value['children']
-            if children:
-                if len(children) == 1:
-                    node_spec['content'] = children[0] + '*' 
-                else:
-                    node_spec['content'] = '(' + ' | '.join(value['children']) + ')*'
-
-        nodes[identifier] = node_spec
-
-
-    schema_spec['nodes'] = nodes
-
-    return schema_spec
 
 def main(args):
     """

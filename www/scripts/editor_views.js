@@ -1,4 +1,4 @@
-var _current_view = 'einföld';
+var _current_view = 'assisted';
 var _last_view = 'none';
 var _visible_tags = true;
 
@@ -58,7 +58,7 @@ function set_view(view_name) {
 }
 
 function cycle_current_view() {
-  var views = ['XML', 'einföld', 'áberandi', 'debug'];
+  var views = ['XML', 'assisted', 'normal', 'debug'];
   var new_index = (views.indexOf(_current_view) + 1) % views.length;
 
   _current_view = views[new_index];
@@ -82,22 +82,34 @@ function applyViewMode() {
   debug_container.style.display = 'none';
   editor.setOption("firstLineNumber", 1);
 
-  document.getElementById('editor-mode').innerHTML = _current_view + " sýn";
+  let view_name = 'XML';
+
+  switch (_current_view) {
+    case 'normal':
+      view_name = 'áberandi';
+      break;
+    case 'assisted':
+      view_name = 'einföld';
+  }
+
+  document.getElementById('editor-mode').innerHTML = view_name + " sýn";
   // format XML, moving tags to their own lines etc
   format_default();
   // remove all marks
   remove_tag_labels();
   switch (_current_view) {
     case 'XML':
-      break // TODO: Demolish when debug mode is removed
+    case 'raw':
+      break
+      /*
     case 'debug':
       apply_debug_mode();
       break;
-    case 'áberandi':
-      //distribute_tags_to_lines();
+      */
+    case 'normal':
       apply_normal_mode();
       break;
-    case 'einföld':
+    case 'assisted':
       apply_assisted_mode();
       break;
   }
@@ -167,7 +179,6 @@ function render_tag_visibility() {
     }
     markers[i].collapsed = !_visible_tags;
   }
-  // potential TODO: fold lines that only contain hidden (collapsed) content
 }
 
 function hide_if_empty(lineHandle) {
@@ -456,6 +467,7 @@ function mark_tag(tag, options) {
   assign_tag_label(tag.line, tag.start_index, tag.end_index, className, options);
 }
 
+/*
 function apply_debug_mode() {
   editor.setOption("lineNumbers", true);
   editor.setOption("firstLineNumber", 0);
@@ -464,6 +476,7 @@ function apply_debug_mode() {
   console.log("applied debug mode.");
   _visible_tags = true;
 }
+*/
 
 function apply_normal_mode() {
   var tag_pairs = parse_tags(); // from editor_tools.js
@@ -536,8 +549,23 @@ function make_nice_containers_collapsible() {
 }
 
 $(document).ready(function() {
-  document.getElementById('view_normal_mode').addEventListener('click', function() { set_view('áberandi'); });
-  document.getElementById('view_assisted_mode').addEventListener('click', function() { set_view('einföld'); });
+  document.getElementById('view_normal_mode').addEventListener('click', function() { set_view('normal'); });
+  document.getElementById('view_assisted_mode').addEventListener('click', function() { set_view('assisted'); });
   document.getElementById('view_raw_mode').addEventListener('click', function() { set_view('XML'); });
+
+  document.getElementById('hide_side_left').addEventListener('click', function() { toggle_display('side-container-left'); });
+  document.getElementById('hide_side_right').addEventListener('click', function() { toggle_display('side-container-right'); });
+
+  document.getElementById('toggle_symbol_inserter').addEventListener('click', toggle_symbol_inserter);
+  document.getElementById('toggle_specialchars_inserter').addEventListener('click', toggle_specialchars_inserter);
+
+  document.getElementById('toggle_tags').addEventListener('click', toggle_tags);
+  document.getElementById('toggle_line_numbers').addEventListener('click', toggle_line_numbers);
+
+  document.getElementById('inc_font').addEventListener('click', inc_font_size);
+  document.getElementById('dec_font').addEventListener('click', dec_font_size);
+  document.getElementById('def_font').addEventListener('click', function() {change_font_size('inherit');});
+
+  make_nice_containers_collapsible();
 });
 

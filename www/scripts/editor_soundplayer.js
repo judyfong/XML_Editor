@@ -1,4 +1,4 @@
-var _sound_seek_seconds = 0.5; // TODO: Load from localStorage?
+var _sound_seek_seconds = 0.5;
 
 function windBackward() {
   let player = document.getElementById("audio_player");

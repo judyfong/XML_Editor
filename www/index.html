@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>CodeMirror prototype</title>
+    <title>XML Vefritill</title>
 
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="codemirror/addon/hint/show-hint.css">
@@ -17,21 +17,23 @@
     <link id='view-normal-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_normal.css">
     <link id='view-hide-tags-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_hide_tags.css">
 
-    <!-- jquery - I don't think we need this one, let's use google's  -->
-    <!--script src="codemirror/lib/jquery.min.js"></script>
-    <script src="codemirror/lib/jquery-ui.min.js"></script-->
-
     <!-- Codemirror & addons -->
     <script src="codemirror/lib/codemirror.js"></script>
     <script src="codemirror/addon/hint/show-hint.js"></script>
     <script src="codemirror/addon/hint/xml-hint.js"></script>
-    <!--script src="codemirror/mode/xml/xml.js">Not used, in favor of xml_mode_tagged (xml_tagged)</script-->
+
+    <!-- Search -->
+    <link rel="stylesheet" href="codemirror/addon/dialog/dialog.css">
+    <script src="codemirror/addon/dialog/dialog.js"></script>
+    <script src="codemirror/addon/search/searchcursor.js"></script>
+    <script src="codemirror/addon/search/search.js"></script>
 
     <!-- Accessibility -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+
     <link rel="stylesheet" href="resources/sheets/accessible-nav-menu.css">
-    <link rel="stylesheet" href="resources/sheets/uw.css"> <!--TODO: CHANGE-->
+    <link rel="stylesheet" href="resources/sheets/uw.css"> <!--NOTE: Can be changed to style the navbar-->
 
     <script src="scripts/accessible-nav-menu.js"></script>
     <script src="scripts/jquery-accessibleMegaMenu.js"></script>

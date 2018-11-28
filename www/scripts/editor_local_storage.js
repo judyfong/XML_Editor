@@ -117,9 +117,15 @@ function removeSavedContent(identifier) {
 function loadSavedContent(identifier) {
   let content = localStorage.getItem(identifier);
   if (!content) {
-    // TODO: error;
+    alert("Ekkert skjal fannst!");
+    return;
   }
-  // TODO: Confirm prompt!!
+  if (editor.getValue()) {
+    let ok = confirm("Yfirskrifa núverandi innihald ritils?");
+    if (!ok) {
+      return;
+    }
+  }
 
   set_editor_content(content);
 }

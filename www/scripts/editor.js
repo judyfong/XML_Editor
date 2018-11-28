@@ -731,9 +731,7 @@ function start() {
   });
   $(document).ready(editor_initializers);
 
-/*	typoLoaded.then(typo => startSpellCheck(editor, typo));*/
   $(document).ready( function() {
-/*    typoLoaded.then(typo => createSpellChecker(editor, typo));*/
     createSpellChecker(editor);
   });
 }
@@ -753,7 +751,6 @@ function loadXMLtoEditor(xml_path) {
   };
 }
 
-// TODO: change font-size on everything
 function change_font_size(value) {
   $('.CodeMirror').css('font-size', value);
   if (storageAvailable('localStorage')) {
@@ -808,30 +805,6 @@ function addDebugContent(content) {
   div.scrollTop = div.scrollHeight;
 }
 
-// TODO: Dead code, maybe delete it.
-function distribute_tags_to_lines() {
-  String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-  };
-  var content = editor.getValue();
-
-  var tag_regexp = /([^\n\s])(<[^>]*[^\/]>)/g; // NOTE: This semicolon used to be missing, but it worked.
-  var match = tag_regexp.exec(content);
-
-  while (match != null) {
-    replacement = match[1] + '\n' + match[2];
-    content = content.replace(match[0], replacement);
-    match = tag_regexp.exec(content);
-  }
-
-  editor.setValue(content);
-  // fix indentation
-  for (var i = 0; i < editor.lineCount(); ++i) {
-    editor.indentLine(i);
-  }
-}
-
 function toggle_autovalidate() {
   _validation_disabled = !_validation_disabled;
 }
@@ -857,27 +830,7 @@ function set_editor_content(content) {
 }
 
 $(document).ready(function() {
-  document.getElementById('view_normal_mode').addEventListener('click', function() { set_view('normal'); });
-  document.getElementById('view_assisted_mode').addEventListener('click', function() { set_view('assisted'); });
-  document.getElementById('view_raw_mode').addEventListener('click', function() { set_view('raw'); });
-
-
-  document.getElementById('hide_side_left').addEventListener('click', function() { toggle_display('side-container-left'); });
-  document.getElementById('hide_side_right').addEventListener('click', function() { toggle_display('side-container-right'); });
-
-
-  document.getElementById('toggle_symbol_inserter').addEventListener('click', toggle_symbol_inserter);
-  document.getElementById('toggle_specialchars_inserter').addEventListener('click', toggle_specialchars_inserter);
-
-  document.getElementById('toggle_tags').addEventListener('click', toggle_tags);
-  document.getElementById('toggle_line_numbers').addEventListener('click', toggle_line_numbers);
-
   document.getElementById('toggle_autovalidate').addEventListener('click', toggle_autovalidate);
-
-
-  document.getElementById('inc_font').addEventListener('click', inc_font_size);
-  document.getElementById('dec_font').addEventListener('click', dec_font_size);
-  document.getElementById('def_font').addEventListener('click', function() {change_font_size('inherit');});
 
   document.getElementById('insert_comment').addEventListener('click', insert_comment_prompt);
 
@@ -892,7 +845,5 @@ $(document).ready(function() {
   document.getElementById('load_example_lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20171215T103413.xml');});
   document.getElementById('load_example_lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20181009T230112.xml');});
   document.getElementById('load_example_utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('/example_xml/utb20171215T201027.xml');});
-
-  make_nice_containers_collapsible(); // from editor_additions.js
 });
 
