@@ -37,6 +37,17 @@ function sound_seek_relative(seconds) {
   player.currentTime += seconds;
 }
 
+var speech_start_date;
+var speech_bufsz;
+function updateRealTimer(evt) {
+  audio_player = document.getElementById('audio_player');
+  let play_time = audio_player.currentTime - speech_bufsz;
+  let seconds = speech_start_date.getSeconds() + play_time;
+  current_time = new Date(speech_start_date);
+  current_time.setSeconds(seconds);
+  document.getElementById('sound-player-real-timer').innerHTML = current_time.toLocaleString('is');
+}
+
 function initialize_sound_player(evt, bufsz='TRUE') {
   let start_timestamp = get_timestamp_from_content(editor.getValue());
 
@@ -58,6 +69,7 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   if (isNaN(startTime)) {
     startTime = 60;
   }
+  speech_bufsz = startTime;
   audio_player.currentTime = startTime;
 
   audio_player.appendChild(audio_src);
@@ -69,8 +81,13 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   sound_player.removeEventListener('click', initialize_sound_player);
   sound_player.addEventListener('click', sound_play_pause);
 
+  // display a little realtime clock
+  let real_timer = document.createElement("div");
+  real_timer.setAttribute('id', 'sound-player-real-timer');
+  audio_player.addEventListener('timeupdate', updateRealTimer)
+  parent_container.appendChild(real_timer);
+
   // bookmarks bar
-  let bookmark_container = document.getElementById("bookmark-container");
   let add_bookmark = document.getElementById("add_bookmark");
 
   add_bookmark.addEventListener("click", function() {
@@ -92,6 +109,9 @@ function initialize_sound_player(evt, bufsz='TRUE') {
     parent_menu = document.getElementById("audio_player_menu");
     parent_menu.appendChild(link_node);
   });
+  
+  // save the speech start time too
+  speech_start_date = new Date(start_timestamp);
 }
 
 function get_timestamp_from_content(content) {

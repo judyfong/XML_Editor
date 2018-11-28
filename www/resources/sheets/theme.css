@@ -279,6 +279,8 @@ header div {
   display: none;
   margin: 0px 8px;
   flex: auto;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 #sound-player-container audio {
@@ -290,6 +292,13 @@ header div {
   font-size: 2em;
   margin: 0px 8px;
   cursor: pointer;
+}
+
+#sound-player-real-timer {
+  font-family: monospace;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 #symbol-inserter-container {
@@ -591,15 +600,6 @@ ul.links {
   padding: 8px 16px;
   text-decoration: none;
   color: white;
-}
-
-#boorkmark-container {
-  vertical-align: center;
-}
-
-#bookmark-container select {
-  width: 100px;
-  padding: 4px;
 }
 
 .button {
