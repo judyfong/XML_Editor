@@ -481,6 +481,16 @@ function get_member_initials_from_content(content) {
   return initials;
 }
 
+function get_congress_number(content) {
+  var parser = new DOMParser();
+  var xmlDoc = parser.parseFromString(content, "text/xml");
+  var elems = xmlDoc.getElementsByTagName("umsýsla");
+  if (elems.length == 0) { return false; }
+  var congress = elems[0].getAttribute("lgþ");
+  if (!congress) { return false; }
+  return congress;
+}
+
 function get_address_type_initials_from_content(content) {
   var parser = new DOMParser();
   var xmlDoc = parser.parseFromString(content, "text/xml");
@@ -491,7 +501,8 @@ function get_address_type_initials_from_content(content) {
   return initials;
 }
 
-function display_address_type_by_initials(initials) {
+function display_address_type_by_initials(congress, initials) {
+  // TODO HERE: Use variable congress (lgþ) to fetch the right file
   var xml_path = 'resources/xml/tegra.php4.xml';
 
   var xhr = new XMLHttpRequest();
@@ -523,9 +534,8 @@ function display_address_type_by_initials(initials) {
   };
 }
 
-// Possible TODO: also use lgth as param for fetching
-// becomes relevant if we don't read static sheets
-function display_member_name_from_initials(initials) {
+function display_member_name_from_initials(congress, initials) {
+  // TODO HERE: Use variable congress (lgþ) to fetch the right file
   var xml_path = 'resources/xml/thingmenn.php4.xml';
 
   var xhr = new XMLHttpRequest();

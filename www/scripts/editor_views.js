@@ -131,10 +131,11 @@ function applyViewMode() {
 
 function update_helper_elements() {
   var content = editor.getValue();
+  var congress = get_congress_number(content);
   var initials = get_member_initials_from_content(content);
-  display_member_name_from_initials(initials);
+  display_member_name_from_initials(congress, initials);
   initials = get_address_type_initials_from_content(content)
-  display_address_type_by_initials(initials);
+  display_address_type_by_initials(congress, initials);
 }
 
 function set_view_theme(chosen_theme) {

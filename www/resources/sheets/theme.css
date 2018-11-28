@@ -17,8 +17,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   vertical-align: baseline;
 }
 
-body {
-  /*  background: url("https://www.althingi.is/skin/basic9k/i/sitelogo.png") no-repeat fixed right bottom;*/
+html, body {
+  height: 100%;
 }
 
 button {
@@ -202,6 +202,8 @@ header div {
   padding: 8px;
   border: gainsboro 1px dashed;
   overflow: hidden;
+  order: 2;
+  height: 100%;
 }
 
 #content-container > * {
@@ -210,14 +212,16 @@ header div {
 
 #side-container-left {
   border: gainsboro 1px dashed;
+  order: 1;
 }
 
 #side-container-right {
   border: gainsboro 1px dashed;
+  order: 3;
 }
 
 #main_container {
-  width: 95%;
+  max-width: 95%;
   min-height: 400px;
   height: auto;
   margin: auto;
@@ -226,6 +230,15 @@ header div {
   margin-bottom: 60px;
   clear: both;
 }
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: skyblue;
+  height: 100%;
+}
+
 
 #editor-main {
   height: auto;

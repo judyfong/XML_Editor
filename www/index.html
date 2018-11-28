@@ -155,19 +155,6 @@
         </nav>
       </div>
       <div class='flex_container'>
-        <div id='side-container-left'>
-          <div id='editor-mode'>
-          </div>
-          <div id="validation_status" style='border: 1px maroon solid;'>
-            Validation Status Unknown...
-          </div>
-          <div id="tree-explorer-container" class="nice-container">
-            <h4><a href='javascript:void(0)'>Yfirlitssamantekt</a></h4>
-            <ul id="tree-explorer-links" class="links">
-              <li> Virkja þarf skjal til að sjá yfirlitssamantekt</li>
-            </ul>
-          </div>
-        </div>
         <div id='content-container'>
           <div id='symbol-inserter-container'>
             <div id='special-symbol-inserter'></div>
@@ -205,7 +192,20 @@
             <p> Hér er pláss fyrir eitthvað sem gæti vantað. </p>
           </div-->
         </div>
-        <div id='side-container-right'>
+        <div id='side-container-left' class="sticky">
+          <div id='editor-mode'>
+          </div>
+          <div id="validation_status" style='border: 1px maroon solid;'>
+            Validation Status Unknown...
+          </div>
+          <div id="tree-explorer-container" class="nice-container">
+            <h4><a href='javascript:void(0)'>Yfirlitssamantekt</a></h4>
+            <ul id="tree-explorer-links" class="links">
+              <li> Virkja þarf skjal til að sjá yfirlitssamantekt</li>
+            </ul>
+          </div>
+        </div>
+        <div id='side-container-right' class="sticky">
           <div id="insert-element-container" class="nice-container">
             <h4 class='collapsible'><a href='javascript:void(0)'>Tög</a></h4>
             <ul id="insert-element-links" class="links">

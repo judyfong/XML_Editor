@@ -152,7 +152,9 @@ $(document).ready( function () {
   let custom_initializer_menu_item = document.getElementById("sound_player_custom_buffer");
   custom_initializer_menu_item.addEventListener('click', function(evt) {
     let bufsz = prompt("Aukastærð hljóðbúts:", 60);
-    initialize_sound_player(evt, bufsz);
+    if (bufsz) {
+      initialize_sound_player(evt, bufsz);
+    }
   });
 
   // set seek size
