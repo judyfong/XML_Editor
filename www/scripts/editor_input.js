@@ -105,7 +105,21 @@ function handleKeyUpEvent(e) {
   return true;
 }
 
-function closeKeyEditModal() {
+function closeKeyEditModal(evt) {
+  // this ugly hack ensures that the modal can be closed ONLY by:
+  // - clicking outside of the content
+  // - clicking the close button
+  // - (deleting the elements in the DOM, but that's OK)
+  let target = evt.target;
+  if (!target) { return; }
+  let id = target.id;
+  switch (id) {
+    case 'keybind_modal':
+    case 'keybind_close':
+      break
+    default:
+      return;
+  }
   let modal = document.getElementById('keybind_modal');
   modal.classList.add("closed");
   remove_all_children(document.getElementById('keybind_content'));
@@ -190,6 +204,7 @@ function showKeyEditModalOverlay() {
 
   let close = document.getElementById("keybind_close");
   close.onclick = closeKeyEditModal;
+  modal.onclick = closeKeyEditModal;
 }
 
 $(document).ready(initialize_keybindings);
