@@ -82,6 +82,7 @@ header div {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
 }
 
 .modal.closed,
@@ -98,6 +99,7 @@ header div {
   width: auto;
   max-width: 700px;
   position: relative;
+  border-radius: 2px;
 /*  overflow: auto;*/
 }
 
@@ -367,14 +369,12 @@ header div {
   font-size: 24pt;
   padding: 8px;
   margin: 12px;
-  /*    width: 360px;
-   *    */
-background-color: lightyellow;
-border: 2px dashed moccasin;
-border-radius: 10px;
-box-shadow: 0 0 0 -4px lightyellow, -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
-text-transform: capitalize;
-text-align: center;
+  background-color: lightyellow;
+  border: 2px dashed moccasin;
+  border-radius: 10px;
+  box-shadow: 0 0 0 -4px lightyellow, -2px -1px -6px -4px rgba(10, 10, 0, 0.5);
+  text-transform: capitalize;
+  text-align: center;
 }
 
 footer::before{
@@ -495,7 +495,7 @@ li.dropdown {
 }
 
 #tree-explorer-container {
-  width: 160px;
+  width: 170px;
 }
 
 #tree-explorer-links li {
