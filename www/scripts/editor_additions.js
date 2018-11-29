@@ -388,7 +388,7 @@ function populate_attribute_inspector() {
         value = got_value;
       }
 
-      let callback = function(attribute, value) {
+      callback = function(attribute, value) {
         modify_tag_attribute(nearest_tag, attribute, value);
         // Since we are modifying an attribute, we need to change
         // the callback for this field if we commit an empty value,
