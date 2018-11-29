@@ -121,7 +121,7 @@ function validate_schema(tags) {
   function handle_tag_not_found(tag) {
     console.log("a tag:", tag);
     let problem_line = Number(tag.line) + 1;
-    validate_failure("Óþekkt tag: " + tag.tag_label + " í línu " + problem_line);
+    validate_failure("Óþekkt tag: <" + tag.tag_label + "> í línu " + problem_line);
   }
 
   // assumes a schema_tags variable
