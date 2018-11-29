@@ -155,11 +155,12 @@ function createKeyEditElement(label, input_id) {
 function createKeyEditHandler(key_id, key_input) {
   return function(evt) {
     let key = evt.key;
-    if (key == 'Escape') {
-      closeKeyEditModal();
-      return;
-    }
     switch (key) {
+      case 'Escape':
+        closeKeyEditorModal();
+        return;
+      case 'Tab':
+        return;
       // double check to make sure the key isn't in use
       case _key_editor_focus_toggle:
       case _key_sound_play_pause:
