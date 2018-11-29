@@ -601,6 +601,10 @@ function fix_insert_quotes(instance, changeObj) {
 
 
 function handleEnterPressed(instance) {
+  // If we are in raw mode, just send Enter
+  if (_current_view == 'XML') {
+    return CodeMirror.Pass;
+  }
   // Let's insert some <mgr> </mgr> tags
   // If inside a <vísa>, insert a <lína> </lína> pair instead
   // Step 1: figure out our context
@@ -614,7 +618,7 @@ function handleEnterPressed(instance) {
   for (let i = 0; i < tokens.length; ++i) {
     let tok = tokens[i].string;
     if (next_candidate) {
-      switch(tok) {
+      switch (tok) {
         case 'mgr':
         case 'lína':
         case 'erindi':
@@ -634,6 +638,36 @@ function handleEnterPressed(instance) {
       next_candidate = true;
       continue;
     }
+    next_candidate = false;
+  }
+
+  if (!label || !token) {
+      // The tag might close on the next line...
+      let next_tokens = instance.getLineTokens(pos.line + 1);
+      for (let i = 0; i < next_tokens.length; ++i) {
+        let tok = next_tokens[i].string;
+        if (next_candidate) {
+          switch (tok) {
+            case 'mgr':
+            case 'lína':
+            case 'erindi':
+              label = tok;
+              fix_line = -1;
+              break;
+            case 'vísa':
+              label = 'erindi';
+              break;
+          }
+        }
+        if (label && !token) {
+          token = next_tokens[i];
+        }
+        if (tok == '</') {
+          next_candidate = true;
+          continue;
+        }
+        next_candidate = false;
+      }
   }
 
   if (!label || !token) {
@@ -641,7 +675,7 @@ function handleEnterPressed(instance) {
       for (let i = tokens.length - 1; i >= 0; --i) {
         let tok = tokens[i].string;
         if (next_candidate) {
-          switch(tok) {
+          switch (tok) {
             case 'vísa':
               label = 'erindi';
               break;
@@ -661,6 +695,7 @@ function handleEnterPressed(instance) {
           next_candidate = true;
           continue;
         }
+        next_candidate = false;
       }
   }
   
