@@ -132,6 +132,7 @@ header div {
   text-align: center;
   vertical-align: center;
   height: 3.5em;
+  padding-bottom: 0.5em;
 }
 
 .close {
