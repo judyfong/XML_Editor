@@ -49,7 +49,9 @@ function initialize_keybindings() {
 function handleKeyDownEvent(e) {
   if (_in_key_settings) {
     if (e.key == 'Escape') {
-      closeKeyEditModal();
+      closeKeyEditModal(e);
+    } else if (e.key == 'Tab') {
+      return;
     }
     e.preventDefault();
     return;
@@ -109,16 +111,19 @@ function closeKeyEditModal(evt) {
   // this ugly hack ensures that the modal can be closed ONLY by:
   // - clicking outside of the content
   // - clicking the close button
+  // - escape button
   // - (deleting the elements in the DOM, but that's OK)
-  let target = evt.target;
-  if (!target) { return; }
-  let id = target.id;
-  switch (id) {
-    case 'keybind_modal':
-    case 'keybind_close':
-      break
-    default:
-      return;
+  if (!evt.key || evt.key != 'Escape') {
+    let target = evt.target;
+    if (!target) { return; }
+    let id = target.id;
+    switch (id) {
+      case 'keybind_modal':
+      case 'keybind_close':
+        break
+      default:
+        return;
+    }
   }
   let modal = document.getElementById('keybind_modal');
   modal.classList.add("closed");
@@ -157,7 +162,7 @@ function createKeyEditHandler(key_id, key_input) {
     let key = evt.key;
     switch (key) {
       case 'Escape':
-        closeKeyEditorModal();
+        closeKeyEditModal(evt);
         return;
       case 'Tab':
         return;
