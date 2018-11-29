@@ -618,7 +618,6 @@ function handleEnterPressed(instance) {
   let label = undefined;
   let token = undefined;
   let fix_line = 0;
-  console.log(tokens);
   for (let i = 0; i < tokens.length; ++i) {
     let tok = tokens[i].string;
     if (next_candidate) {
@@ -652,8 +651,10 @@ function handleEnterPressed(instance) {
         let tok = next_tokens[i].string;
         if (next_candidate) {
           switch (tok) {
-            case 'mgr':
             case 'lína':
+              label = tok;
+              break;
+            case 'mgr':
             case 'erindi':
               label = tok;
               fix_line = -1;
@@ -685,6 +686,7 @@ function handleEnterPressed(instance) {
               break;
             case 'erindi':
               label = 'lína';
+              fix_line = 1;
               break;
             case 'ræðutexti':
               label = 'mgr';
