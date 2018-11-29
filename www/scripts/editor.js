@@ -715,8 +715,6 @@ function start() {
   editor.setValue(example_xml);
   set_editor_options(editor);
 
-  //    editor.on('cursorActivity', applyViewMode);
-  editor.on('cursorActivity', addDebugInfo);
   editor.on('beforeChange', fix_insert_quotes);
   editor.on('changes', autovalidator);
   editor.on('focus', autovalidator);
@@ -789,20 +787,6 @@ function toggle_display(id) {
   } else {
     container.style.display = 'none';
   }
-}
-
-function addDebugInfo() {
-  /* intentionally left blank */
-}
-
-function addDebugContent(content) {
-  // append the content
-  div = document.getElementById('debug_container');
-
-  div.innerHTML += "<p>" + content + "</p>";
-
-  // scroll to bottom
-  div.scrollTop = div.scrollHeight;
 }
 
 function toggle_autovalidate() {

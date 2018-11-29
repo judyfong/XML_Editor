@@ -57,18 +57,6 @@ function set_view(view_name) {
   save_view_option('viewmode', view_name);
 }
 
-function cycle_current_view() {
-  var views = ['XML', 'assisted', 'normal', 'debug'];
-  var new_index = (views.indexOf(_current_view) + 1) % views.length;
-
-  _current_view = views[new_index];
-}
-
-function cycleViewMode() {
-  cycle_current_view();
-  applyViewMode();
-}
-
 function applyViewMode() {
   // check first if anything changed
   if (_current_view == _last_view) {
@@ -78,8 +66,6 @@ function applyViewMode() {
   }
 
   // hide the debug container
-  debug_container = document.getElementById('debug_container');
-  debug_container.style.display = 'none';
   editor.setOption("firstLineNumber", 1);
 
   let view_name = 'XML';
@@ -101,11 +87,6 @@ function applyViewMode() {
     case 'XML':
     case 'raw':
       break
-      /*
-    case 'debug':
-      apply_debug_mode();
-      break;
-      */
     case 'normal':
       apply_normal_mode();
       break;
@@ -300,6 +281,9 @@ function format_default() {
   // fix lines
   format_tags_on_own_lines();
 
+  // replace self-closing <mgr/> tags with <mgr></mgr>
+  format_replace_mgr_selfclose();
+
   // fix indentation
   for (var i = 0; i < editor.lineCount(); ++i) {
     editor.indentLine(i);
@@ -307,6 +291,19 @@ function format_default() {
 
   // update the editor
   setTimeout(function(){ editor.refresh(); }, 300);
+}
+
+function format_replace_mgr_selfclose() {
+  let tag_pairs = parse_tags();
+
+  for (let i = tag_pairs.length-1; i >= 0; --i) {
+    let tag = tag_pairs[i].tag_open;
+    if (tag.tag_label == 'mgr/') {
+      let from = { line: tag.line, ch: tag.start_index };
+      let to   = { line: tag.line, ch: tag.start_index + 6 };
+      editor.replaceRange("<mgr></mgr>", from, to);
+    }
+  }
 }
 
 function format_tags_on_own_lines() {
@@ -467,17 +464,6 @@ function mark_tag(tag, options) {
 
   assign_tag_label(tag.line, tag.start_index, tag.end_index, className, options);
 }
-
-/*
-function apply_debug_mode() {
-  editor.setOption("lineNumbers", true);
-  editor.setOption("firstLineNumber", 0);
-  debug_container = document.getElementById('debug_container');
-  debug_container.style.display = 'block';
-  console.log("applied debug mode.");
-  _visible_tags = true;
-}
-*/
 
 function apply_normal_mode() {
   var tag_pairs = parse_tags(); // from editor_tools.js

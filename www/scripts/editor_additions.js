@@ -70,7 +70,6 @@ function populate_insert_element_container(data) {
 }
 
 function populate_tree_explorer() {
-  // TODO: Make this all a lot prettier by adding indentation (and maybe using something other than li and a)
   function get_text_at_tag_location(tag) {
     var pos = { line: tag.line, ch: tag.start_index };
     var word = editor.findWordAt(pos);
@@ -89,6 +88,8 @@ function populate_tree_explorer() {
 
     if (phrase) {
       phrase += '...';
+    } else {
+      phrase = editor.getLine(tag.line + 1).substring(0, 24) + "..."
     }
 
     return phrase;
@@ -101,7 +102,6 @@ function populate_tree_explorer() {
     var text_node = document.createTextNode(text_content);
     link_element.appendChild(text_node);
 
-/*    list_element.setAttribute('class', 'button');*/
     link_element.setAttribute('href', '#');
     link_element.addEventListener('click', function() { 
       var pos = { line: tag.line, ch: tag.end_index };
@@ -117,7 +117,7 @@ function populate_tree_explorer() {
   var link_node = document.getElementById('tree-explorer-links');
   remove_all_children(link_node);
 
-  // populate the tree explorer with every <mgr> and <vísa> tag
+  // populate the tree explorer with every <mgr> tag
   var tag_pairs = parse_tags();  
   for (var i = 0; i < tag_pairs.length; ++i) {
     var detected_tag = tag_pairs[i].tag_open;
