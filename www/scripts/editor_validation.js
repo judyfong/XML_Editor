@@ -23,7 +23,7 @@ function checkErrorXML(x) {
 }
 
 function checkXML(n) {
-  var l,i,nam
+  let l,i,nam
   nam=n.nodeName
   if (nam=="h3") {
     if (h3OK==0) {
@@ -57,8 +57,8 @@ function validateXML_W3(content) {
     // code for Mozilla, Firefox, Opera, etc.
   } else if (document.implementation.createDocument) {
     try {
-      var text=content;
-      var parser=new DOMParser();
+      let text=content;
+      let parser=new DOMParser();
       var xmlDoc=parser.parseFromString(text,"application/xml");
     } catch(err) {
       return "Exception: " + err.message;
@@ -85,7 +85,7 @@ function autovalidator() {
     $("#validation_error").css('display', 'none');
     return;
   }
-  var tags = parse_tags(); // from editor_tools.js
+  let tags = parse_tags(); // from editor_tools.js
   if (validate_schema(tags)) {
     /* schema validation failed, don't do any other validation */
     return;
@@ -102,16 +102,16 @@ function autovalidator() {
 // Returns true if an error is found
 function validate_schema(tags) {
   function is_tag_ok(tag_label) {
-    var meta_char = tag_label[0]
+    let meta_char = tag_label[0]
     if (meta_char == '?' || meta_char == '!') {
       // It's a meta tag or a comment, we will allow it
       return true;
     }
-    var slash_index = tag_label.indexOf('/')
+    let slash_index = tag_label.indexOf('/')
     if (slash_index > 0) {
       tag_label = tag_label.substr(0, slash_index);
     }
-    var found = schema_tags[tag_label];
+    let found = schema_tags[tag_label];
     if (!found) {
       return false;
     }
@@ -120,7 +120,7 @@ function validate_schema(tags) {
 
   function handle_tag_not_found(tag) {
     console.log("a tag:", tag);
-    var problem_line = Number(tag.line) + 1;
+    let problem_line = Number(tag.line) + 1;
     validate_failure("Óþekkt tag: " + tag.tag_label + " í línu " + problem_line);
   }
 
@@ -131,12 +131,12 @@ function validate_schema(tags) {
   }
 
   // first prototype: just validate that tags are legal
-  for (var i = 0; i < tags.length; ++i) {
+  for (let i = 0; i < tags.length; ++i) {
     // check the opening tag, 
     // if the opening tags are OK
     // then bad closing tags will not match
-    var tag = tags[i].tag_open
-    var label = tag.tag_label;
+    let tag = tags[i].tag_open
+    let label = tag.tag_label;
     if (!is_tag_ok(label)) {
       handle_tag_not_found(tag);
       return true;
@@ -149,21 +149,21 @@ function validate_insertion_at_cursor(tag_label) {
     // validation is not enabled, do not validate here either
     return true;
   }
-  var selection = ''
+  let selection = ''
   if (editor.somethingSelected()) {
     selection = editor.getSelection();
   }
-  var element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
-  var cursor_loc = editor.getCursor('from');
+  let element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+  let cursor_loc = editor.getCursor('from');
 
   // validate the replacement
-  var content_before = editor.getValue();
+  let content_before = editor.getValue();
 
-  var cursor_index = editor.getDoc().indexFromPos(cursor_loc);
+  let cursor_index = editor.getDoc().indexFromPos(cursor_loc);
 
-  var content_after = [content_before.slice(0, cursor_index), element, content_before.slice(cursor_index)].join('');
+  let content_after = [content_before.slice(0, cursor_index), element, content_before.slice(cursor_index)].join('');
 
-  var result = validateXML_W3(content_after) == "OK";
+  let result = validateXML_W3(content_after) == "OK";
 
   return result;
 }

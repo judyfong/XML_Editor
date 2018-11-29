@@ -2,7 +2,7 @@ var editor;
 
 function set_editor_options(editor) {
   function completeAfter(cm, pred) {
-    var cur = cm.getCursor();
+    let cur = cm.getCursor();
     if (!pred || pred()) setTimeout(function() {
       if (!cm.state.completionActive)
         cm.showHint({completeSingle: false});
@@ -12,16 +12,16 @@ function set_editor_options(editor) {
 
   function completeIfAfterLt(cm) {
     return completeAfter(cm, function() {
-      var cur = cm.getCursor();
+      let cur = cm.getCursor();
       return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
     });
   }
 
   function completeIfInTag(cm) {
     return completeAfter(cm, function() {
-      var tok = cm.getTokenAt(cm.getCursor());
+      let tok = cm.getTokenAt(cm.getCursor());
       if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
-        var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+        let inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
         return inner.tagName;
       });
   }
@@ -41,7 +41,7 @@ function set_editor_options(editor) {
       "Ctrl-Space": "autocomplete"
     }
   );
-  var callback = function(obj) {
+  let callback = function(obj) {
     editor.setOption('hintOptions', { schemaInfo: obj });
     schema_tags = obj;
   };
@@ -50,10 +50,10 @@ function set_editor_options(editor) {
 }
 
 function read_tags(path, callback) {
-  var xmlhttp = new XMLHttpRequest();
+  let xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
+      let myObj = JSON.parse(this.responseText);
       callback(myObj);
     }
   };
@@ -64,7 +64,7 @@ function read_tags(path, callback) {
 var schema_tags;
 
 function start() {
-  var example_xml=`
+  let example_xml=`
 <?dctm xml_app="Raeduskjal"?>
 <ræða id="r2017-12-14T16:09:27" skst="SJS" tegr="R" tegflm="E" frhr="0">
 <umsýsla fundur="1" tími="2017-12-14T16:09:27" lgþ="148">
@@ -735,7 +735,7 @@ function start() {
 }
 
 function loadXMLtoEditor(xml_path) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open('GET', xml_path, true);
   xhr.send();
   xhr.timeout = 2000;
@@ -757,8 +757,8 @@ function change_font_size(value) {
 }
 
 function get_font_size() {
-  var fz = $('.CodeMirror').css('font-size');
-  var got_int = parseInt(fz);
+  let fz = $('.CodeMirror').css('font-size');
+  let got_int = parseInt(fz);
   if (isNaN(got_int)) { return 13; }
   return got_int;
 }

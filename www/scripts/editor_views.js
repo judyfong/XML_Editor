@@ -8,8 +8,8 @@ function restoreLocalSettings() {
     return;
   }
  
-  var cw = localStorage.getItem('viewmode');
-  var vt = localStorage.getItem('tag_visibility');
+  let cw = localStorage.getItem('viewmode');
+  let vt = localStorage.getItem('tag_visibility');
   if (cw) {
     set_view(cw);
   }
@@ -17,21 +17,21 @@ function restoreLocalSettings() {
     _visible_tags = (vt == 'true');
   }
 
-  var inserter_symbols = localStorage.getItem('symbols_inserter');
-  var inserter_special = localStorage.getItem('special_inserter');
+  let inserter_symbols = localStorage.getItem('symbols_inserter');
+  let inserter_special = localStorage.getItem('special_inserter');
   if (inserter_symbols && inserter_symbols == 'true') {
     toggle_symbol_inserter();
   }
   if (inserter_special && inserter_special == 'true') {
     toggle_specialchars_inserter();
   }
-  var line_numbers = localStorage.getItem('line_numbers');
+  let line_numbers = localStorage.getItem('line_numbers');
   if (line_numbers && line_numbers == 'false') {
     // by default, line numbers are enabled
     toggle_line_numbers();
   }
 
-  var font_size = localStorage.getItem('font_size');
+  let font_size = localStorage.getItem('font_size');
   if (font_size) {
     fsz_number = parseInt(font_size);
     if (!isNaN(fsz_number)) {
@@ -111,26 +111,26 @@ function applyViewMode() {
 }
 
 function update_helper_elements() {
-  var content = editor.getValue();
-  var congress = get_congress_number(content);
-  var initials = get_member_initials_from_content(content);
+  let content = editor.getValue();
+  let congress = get_congress_number(content);
+  let initials = get_member_initials_from_content(content);
   display_member_name_from_initials(congress, initials);
   initials = get_address_type_initials_from_content(content)
   display_address_type_by_initials(congress, initials);
 }
 
 function set_view_theme(chosen_theme) {
-  var sheets = document.getElementsByClassName('view-stylesheet');
-  for (var i = 0; i < sheets.length; i++) {
+  let sheets = document.getElementsByClassName('view-stylesheet');
+  for (let i = 0; i < sheets.length; i++) {
     if (sheets[i].id && sheets[i].id == 'view-hide-tags-stylesheet') {
       continue;
     }
     sheets[i].rel = 'alternate stylesheet';
   }
 
-  var full_theme_name = 'view-'+chosen_theme+'-stylesheet';
+  let full_theme_name = 'view-'+chosen_theme+'-stylesheet';
 
-  var theme_link = document.getElementById(full_theme_name);
+  let theme_link = document.getElementById(full_theme_name);
   if (theme_link) {
     theme_link.rel = 'stylesheet';
   }
@@ -138,14 +138,14 @@ function set_view_theme(chosen_theme) {
 
 function render_tag_visibility() {
   // NEVER turn off tags in raw mode!! Leads to PEBCAK problems!
-  var show_tags = _visible_tags;
+  let show_tags = _visible_tags;
   if (_current_view == 'XML') {
     show_tags = true;
   }
   // validate the view-hide-tags stylesheet visibility
-  var tag_visibility_theme = document.getElementById('view-hide-tags-stylesheet');
+  let tag_visibility_theme = document.getElementById('view-hide-tags-stylesheet');
   if (tag_visibility_theme) {
-    var rel = 'stylesheet';
+    let rel = 'stylesheet';
     if (show_tags) {
       rel = 'stylesheet alternate';
     }
@@ -153,9 +153,9 @@ function render_tag_visibility() {
   }
   
   // if marks exist on tags, collapse the tags
-  var markers = editor.getAllMarks();
+  let markers = editor.getAllMarks();
 
-  for (var i = 0; i < markers.length; ++i) {
+  for (let i = 0; i < markers.length; ++i) {
     if (markers[i].className == 'marked-tag-no-hide') {
       continue;
     }
@@ -206,14 +206,14 @@ function toggle_tags() {
 }
 
 function toggle_line_numbers() {
-  var option = !editor.getOption('lineNumbers');
+  let option = !editor.getOption('lineNumbers');
   editor.setOption('lineNumbers', option);
   save_view_option('line_numbers', option);
 }
 
 function toggle_symbol_inserter() {
-  var cont_id = 'special-symbol-inserter'
-  var container = document.getElementById(cont_id);
+  let cont_id = 'special-symbol-inserter'
+  let container = document.getElementById(cont_id);
   
   // if the inserter exists, remove it
   if (container.childElementCount > 0) {
@@ -223,7 +223,7 @@ function toggle_symbol_inserter() {
   }
   save_view_option('symbols_inserter', 'true');
 
-  var symbols = [
+  let symbols = [
     '¡', '¿', '¢', '£', '¤', '¥', '¶', '§', '©', '®', '™', 'ª', '«', '»', '<', '>', '„', '“', '…', '–', '—', 'µ', 'ƒ', '×', '÷', '±', '¹', '²', '³', '¼', '½', '¾', '¦',
   ];
   
@@ -232,8 +232,8 @@ function toggle_symbol_inserter() {
 }
 
 function toggle_specialchars_inserter() {
-  var cont_id = 'special-characters-inserter'
-  var container = document.getElementById(cont_id);
+  let cont_id = 'special-characters-inserter'
+  let container = document.getElementById(cont_id);
   
   // if the inserter exists, remove it
   if (container.childElementCount > 0) {
@@ -243,29 +243,29 @@ function toggle_specialchars_inserter() {
   }
   save_view_option('special_inserter', 'true');
 
-  var cont_upper = 'special-characters-inserter-uppercase';
-  var cont_lower = 'special-characters-inserter-lowercase';
+  let cont_upper = 'special-characters-inserter-uppercase';
+  let cont_lower = 'special-characters-inserter-lowercase';
 
-  var symbols_upper = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÚÛÜÙÝß".split("");
-  var symbols_lower = "àáâãäåæçèéêëìíîïðñòóôõöøúûüùýÿ".split("");
+  let symbols_upper = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÚÛÜÙÝß".split("");
+  let symbols_lower = "àáâãäåæçèéêëìíîïðñòóôõöøúûüùýÿ".split("");
 
-  var parent_container = document.getElementById('special-characters-inserter');
-  var lower = create_symbol_inserter(cont_upper, symbols_upper);
-  var upper = create_symbol_inserter(cont_lower, symbols_lower);
+  let parent_container = document.getElementById('special-characters-inserter');
+  let lower = create_symbol_inserter(cont_upper, symbols_upper);
+  let upper = create_symbol_inserter(cont_lower, symbols_lower);
   parent_container.appendChild(upper);
   parent_container.appendChild(lower);
 }
 
 function create_symbol_inserter(container_id, symbols) {
 
-  var container = document.createElement('div');
+  let container = document.createElement('div');
   container.setAttribute('id', container_id);
   container.setAttribute('style', 'border: 1px teal dotted;');
-  var main_symbol_container = document.getElementById('symbol-inserter-container');
+  let main_symbol_container = document.getElementById('symbol-inserter-container');
   main_symbol_container.appendChild(container);
   // create buttons for each symbol
-  for (var i = 0; i < symbols.length; ++i) {
-    var btn = document.createElement('button');
+  for (let i = 0; i < symbols.length; ++i) {
+    let btn = document.createElement('button');
     btn.appendChild(document.createTextNode(symbols[i]));
     btn.setAttribute('class', 'insert-symbol button');
     btn.addEventListener('click', function() {
@@ -285,7 +285,7 @@ function format_default() {
   format_replace_mgr_selfclose();
 
   // fix indentation
-  for (var i = 0; i < editor.lineCount(); ++i) {
+  for (let i = 0; i < editor.lineCount(); ++i) {
     editor.indentLine(i);
   }
 
@@ -293,6 +293,7 @@ function format_default() {
   setTimeout(function(){ editor.refresh(); }, 300);
 }
 
+// Replaces <mgr/> tags with <mgr></mgr> so that users can type text inside them.
 function format_replace_mgr_selfclose() {
   let tag_pairs = parse_tags();
 
@@ -323,21 +324,21 @@ function format_tags_on_own_lines() {
         /* intentionally blank */
     }
 
-    var tag_line = editor.getLine(tag.line);
+    let tag_line = editor.getLine(tag.line);
 
     // check if there is content *after* the tag
     if (tag_line.length > tag.end_index) {
       // there is content after the tag
       // only replace if this is a closing tag
       if (!tag.tag_is_open) {
-        var from = { line: tag.line, ch: tag.end_index };
+        let from = { line: tag.line, ch: tag.end_index };
         editor.replaceRange('\n', from);
       }
     }
 
     // check if there is content *before* the tag
-    var trimmed_line = tag_line.trimLeft();
-    var delta = tag_line.length - trimmed_line.length;
+    let trimmed_line = tag_line.trimLeft();
+    let delta = tag_line.length - trimmed_line.length;
     if (tag.start_index - delta > 0) {
       // only replace if this is an opening tag
       if (tag.tag_is_open) {
@@ -347,21 +348,21 @@ function format_tags_on_own_lines() {
     }
   }
 
-  var tag_pairs;  
+  let tag_pairs;  
 
   // iterate backwards to prevent propagation errors
 
   // do opening tags
   tag_pairs = parse_tags(); // from editor_tools.js
-  for (var i = tag_pairs.length-1 ; i >= 0; --i) {
+  for (let i = tag_pairs.length-1 ; i >= 0; --i) {
     put_tag_on_line(tag_pairs[i].tag_open);
   }
 
   // then backwards iterate over SORTED closing tags
-  var closing_tags = get_closing_tags_from_pairs(parse_tags());
+  let closing_tags = get_closing_tags_from_pairs(parse_tags());
 
-  for (var i = closing_tags.length - 1; i >= 0; --i) {
-    var tag_close = closing_tags[i];
+  for (let i = closing_tags.length - 1; i >= 0; --i) {
+    let tag_close = closing_tags[i];
     if (!tag_close) {
       continue;
     }
@@ -370,7 +371,7 @@ function format_tags_on_own_lines() {
 }
 
 function get_closing_tags_from_pairs(tag_pairs) {
-  var closers = [];
+  let closers = [];
 
   for (i=0; i < tag_pairs.length; ++i) {
     tag = tag_pairs[i].tag_close;
@@ -391,9 +392,9 @@ function assign_tag_label(line_number, start, finish, className, options = { ass
   start_obj = { line: line_number, ch: start, }
   finish_obj = { line: line_number, ch: finish, }
 
-  var collapse;
+  let collapse;
 
-  var markTextOptions = {
+  let markTextOptions = {
     className: className,
     collapsed: false, //true,
     atomic: true,
@@ -423,13 +424,13 @@ function mark_selection_custom_class(start_obj, finish_obj, className) {
 }
 
 function extract_tag_name(full_tag) {
-  var tag_content_start = 1;
+  let tag_content_start = 1;
   if (full_tag[1] == '/') {
     tag_content_start = 2;
   }
 
-  var tag_content_end = full_tag.length - 1;
-  var first_space = full_tag.indexOf(' ')
+  let tag_content_end = full_tag.length - 1;
+  let first_space = full_tag.indexOf(' ')
 
   if (first_space != -1) {
     tag_content_end = first_space;
@@ -439,7 +440,7 @@ function extract_tag_name(full_tag) {
 }
 
 function mark_tag(tag, options) {
-  var className;
+  let className;
   if (typeof options.className != 'undefined') {
     // allow className overriding
     className = options.className;
@@ -454,9 +455,9 @@ function mark_tag(tag, options) {
   }
 
   // If it's a special, un-hideable tag, give it a special className
-  var special_tags = ["bjalla", "frammíkall"]
-  for (var i = 0; i < special_tags.length; ++i) {
-    var found = tag.tag_label.indexOf(special_tags[i]);
+  let special_tags = ["bjalla", "frammíkall"]
+  for (let i = 0; i < special_tags.length; ++i) {
+    let found = tag.tag_label.indexOf(special_tags[i]);
     if (found != -1) {
       className = 'marked-tag-no-hide';
     }
@@ -466,13 +467,13 @@ function mark_tag(tag, options) {
 }
 
 function apply_normal_mode() {
-  var tag_pairs = parse_tags(); // from editor_tools.js
+  let tag_pairs = parse_tags(); // from editor_tools.js
 
   // mark_selection_custom_class on content_start, content_end
   // content_start and content_end should be an object like { line: ln, ch: i }
-  for (var i = 0; i < tag_pairs.length; ++i) {
-    var tag_open = tag_pairs[i].tag_open;
-    var tag_close = tag_pairs[i].tag_close;
+  for (let i = 0; i < tag_pairs.length; ++i) {
+    let tag_open = tag_pairs[i].tag_open;
+    let tag_close = tag_pairs[i].tag_close;
     if (!tag_close) {
       // We have some kind of meta tag, just mark it
       mark_tag(tag_open, { className: "" } );
@@ -485,13 +486,13 @@ function apply_normal_mode() {
 }
 
 function apply_assisted_mode() {
-  var tag_pairs = parse_tags(); // from editor_tools.js
+  let tag_pairs = parse_tags(); // from editor_tools.js
 
   // mark_selection_custom_class on content_start, content_end
   // content_start and content_end should be an object like { line: ln, ch: i }
-  for (var i = 0; i < tag_pairs.length; ++i) {
-    var tag_open = tag_pairs[i].tag_open;
-    var tag_close = tag_pairs[i].tag_close;
+  for (let i = 0; i < tag_pairs.length; ++i) {
+    let tag_open = tag_pairs[i].tag_open;
+    let tag_close = tag_pairs[i].tag_close;
     mark_tag(tag_open, { assisted: true, stopLeft: true });
     if (tag_close) {
       mark_tag(tag_close, { assisted: true, stopRight: true });
@@ -509,27 +510,27 @@ function remove_tag_labels() {
 
 function place_navbar_anchor(element, parent_id) {
   // insert the element in the right <ul> identified by parent_id
-  var parent_menu = document.getElementById(parent_id);
+  let parent_menu = document.getElementById(parent_id);
   parent_menu.appendChild(element);
 }
 
 function insert_navbar_anchor_at(element, parent_id, before_id) {
-  var parent_menu = document.getElementById(parent_id);
-  var before_target = document.getElementById(before_id);
+  let parent_menu = document.getElementById(parent_id);
+  let before_target = document.getElementById(before_id);
 
   parent_menu.insertBefore(element, before_target);
 }
 
 function make_nice_containers_collapsible() {
-	var containers = document.getElementsByClassName("nice-container");
+	let containers = document.getElementsByClassName("nice-container");
 
-	for (var i = 0; i < containers.length; i++) {
-    var heading = containers[i].firstElementChild;
+	for (let i = 0; i < containers.length; i++) {
+    let heading = containers[i].firstElementChild;
     heading.classList.toggle("collapsible-inactive");
 		heading.addEventListener("click", function() {
 			this.classList.toggle("collapsible-active");
       this.classList.toggle("collapsible-inactive");
-			var content = this.nextElementSibling;
+			let content = this.nextElementSibling;
       toggle_display(content.id);
 		});
 	}
