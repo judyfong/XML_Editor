@@ -414,7 +414,11 @@ function insert_comment_prompt() {
   }
 
   // comments may not have double hyphens, so replace any instances of double hyphens with a hyphen, space, hyphen
-  let comment_element = '<!-- ' + comment_content.replace(new RegExp('--', 'g'), '- -') + ' -->';
+  let re = new RegExp('--', 'g');
+  let comment_element = comment_content.replace(re, '- -');
+  comment_element = comment_element.replace(re, '- -');
+  // do it again just in case of triplets
+  comment_element = '<!-- ' + comment_element + ' -->';
 
   insert_element_at_cursor(comment_element);
 }
