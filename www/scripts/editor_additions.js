@@ -371,7 +371,7 @@ function populate_attribute_inspector() {
 
     // get the current value of this attribute on the tag
     let attrs = nearest_tag.attrs[attribute];
-    let callback;
+    var callback;
     let value = '';
 
     if (!attrs) {
