@@ -118,8 +118,7 @@ header div {
   background-color: #c0c0c0;
 }
 
-.key_section input,
-.key_section label {
+.key_section input {
   width: 100px;
   max-width: 100%;
   display: block;
@@ -127,8 +126,12 @@ header div {
 }
 
 .key_section label {
+  width: 100px;
+  max-width: 100%;
+  display: block;
   text-align: center;
   vertical-align: center;
+  height: 3.5em;
 }
 
 .close {
