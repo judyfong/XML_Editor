@@ -43,6 +43,7 @@ function populate_insert_element_container(data) {
   remove_all_children(link_node);
 
   let list_empty = true;
+  data.list.sort();
   // populate the list
   for (let i=0; i<data.list.length; i++) {
     let tag_hint_label = data.list[i];
