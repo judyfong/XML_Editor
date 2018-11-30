@@ -155,6 +155,7 @@ function createKeyEditElement(label, input_id) {
   let content = document.getElementById('keybind_content');
   content.appendChild(key_div);
   key_input.addEventListener('keydown', createKeyEditHandler(input_id, key_input));
+  return key_input
 }
 
 function createKeyEditHandler(key_id, key_input) {
@@ -201,7 +202,7 @@ function showKeyEditModalOverlay() {
   let content = document.getElementById('keybind_content');
 
   // add all the keys
-  createKeyEditElement("Fókus á ritil", "key_editor_focus_toggle");
+  let focuser = createKeyEditElement("Fókus á ritil", "key_editor_focus_toggle");
   createKeyEditElement("Spilari - spila/pása", "key_sound_play_pause");
   createKeyEditElement("Spilari - spóla áfram", "key_sound_seek_forward");
   createKeyEditElement("Spilari - spóla aftur á bak", "key_sound_seek_backward");
@@ -211,6 +212,7 @@ function showKeyEditModalOverlay() {
   let close = document.getElementById("keybind_close");
   close.onclick = closeKeyEditModal;
   modal.onclick = closeKeyEditModal;
+  focuser.focus();
 }
 
 $(document).ready(initialize_keybindings);

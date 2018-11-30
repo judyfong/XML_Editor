@@ -1,24 +1,5 @@
 var _sound_seek_seconds = 0.5;
 
-function windBackward() {
-  let player = document.getElementById("audio_player");
-  if (player.currentTime <= _seekSeconds) {
-    player.currentTime = 0;
-  } else {
-    player.currentTime -= _seekSeconds;
-  }
-}
-
-function windForward() {
-  let player = document.getElementById("audio_player");
-  if (player.currentTime >= player.duration + _seekSeconds) {
-    player.currentTime = player.duration;
-    stopMediaSeek();
-  } else {
-    player.currentTime += _seekSeconds;
-  }
-}
-
 function sound_play_pause() {
   let player = document.getElementById("audio_player");
   if (!player) {

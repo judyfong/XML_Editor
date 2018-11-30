@@ -174,3 +174,20 @@ function get_speech_id_from_content(content) {
 
   return speech_identifier;
 }
+
+function get_display(container) {
+  style = window.getComputedStyle(container);
+  display = style.getPropertyValue('display');
+  return display
+}
+
+function toggle_display(id) {
+  container = document.getElementById(id);
+  display = get_display(container);
+  if (display == 'none') {
+    container.style.display = 'block';
+  } else {
+    container.style.display = 'none';
+  }
+}
+

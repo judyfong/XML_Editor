@@ -277,6 +277,23 @@ function create_symbol_inserter(container_id, symbols) {
   return container;
 }
 
+function get_font_size() {
+  let fz = $('.CodeMirror').css('font-size');
+  let got_int = parseInt(fz);
+  if (isNaN(got_int)) { return 13; }
+  return got_int;
+}
+
+function inc_font_size() {
+  new_size = get_font_size() + 2;
+  change_font_size(new_size);
+}
+
+function dec_font_size() {
+  new_size = get_font_size() - 2;
+  change_font_size(new_size);
+}
+
 function format_default() {
   // fix lines
   format_tags_on_own_lines();

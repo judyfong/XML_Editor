@@ -756,43 +756,6 @@ function change_font_size(value) {
   }
 }
 
-function get_font_size() {
-  let fz = $('.CodeMirror').css('font-size');
-  let got_int = parseInt(fz);
-  if (isNaN(got_int)) { return 13; }
-  return got_int;
-}
-
-function inc_font_size() {
-  new_size = get_font_size() + 2;
-  change_font_size(new_size);
-}
-
-function dec_font_size() {
-  new_size = get_font_size() - 2;
-  change_font_size(new_size);
-}
-
-function get_display(container) {
-  style = window.getComputedStyle(container);
-  display = style.getPropertyValue('display');
-  return display
-}
-
-function toggle_display(id) {
-  container = document.getElementById(id);
-  display = get_display(container);
-  if (display == 'none') {
-    container.style.display = 'block';
-  } else {
-    container.style.display = 'none';
-  }
-}
-
-function toggle_autovalidate() {
-  _validation_disabled = !_validation_disabled;
-}
-
 function editor_focus_toggle() { 
   if (editor.hasFocus()) {
     document.activeElement.blur();

@@ -603,7 +603,6 @@ function fix_insert_quotes(instance, changeObj) {
   editor.replaceRange(replacement, changeObj.from);
 }
 
-
 function handleEnterPressed(instance) {
   // If we are in raw mode, just send Enter
   if (_current_view == 'XML') {

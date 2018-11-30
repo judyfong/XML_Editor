@@ -1,5 +1,9 @@
 var _validation_disabled = false;
 
+function toggle_autovalidate() {
+  _validation_disabled = !_validation_disabled;
+}
+
 function validate_success() {
   $("#validation_status").text("Löglegt XML");
   $("#validation_status").css('color', 'green');
