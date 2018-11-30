@@ -80,6 +80,7 @@ function start() {
 </ræðutexti>
 </ræða>
 `;
+  /*
   schema_tags = {
 
     "!top": ["top"],
@@ -709,6 +710,7 @@ function start() {
       ]
     }
   }
+  */
 
   editor = CodeMirror(document.getElementById("editor_container"));
 

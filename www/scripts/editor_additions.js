@@ -163,6 +163,15 @@ function parse_tag_attribute_values(tag) {
   return attributes;
 }
 
+function handler_tag_attribute_mutation(attribute_tag, key, value) {
+  let attrs = attribute_tag.attrs[key];
+  if (!attrs) {
+    add_tag_attribute(attribute_tag, key, value);
+  } else {
+    modify_tag_attribute(attribute_tag, key, value);
+  }
+}
+
 function add_tag_attribute(attribute_tag, key, value) {
   let added_tag_string = ' ' + key + '="' + value + '"';
 
@@ -371,31 +380,14 @@ function populate_attribute_inspector() {
     let attribute = tag_attributes[i];
 
     // get the current value of this attribute on the tag
-    let attrs = nearest_tag.attrs[attribute];
-    var callback;
     let value = '';
-
-    if (!attrs) {
-      callback = function(attribute, value) {
-        add_tag_attribute(nearest_tag, attribute, value);
-        // Since we are adding an attribute, we need to change
-        // the callback for this field if we commit,
-        // easiest way to do that is to just compute the inspector again
-        populate_attribute_inspector();
-      }
-    } else {
-      let got_value = nearest_tag.attrs[attribute].value;
-      if (got_value) {
-        value = got_value;
-      }
-
-      callback = function(attribute, value) {
-        modify_tag_attribute(nearest_tag, attribute, value);
-        // Since we are modifying an attribute, we need to change
-        // the callback for this field if we commit an empty value,
-        // easiest way to do that is to just compute the inspector again
-        populate_attribute_inspector();
-      }
+    let attrs = nearest_tag.attrs[attribute];
+    if (attrs && attrs.value) {
+      value = attrs.value;
+    }
+    
+    let callback = function(attribute, value) {
+      handler_tag_attribute_mutation(nearest_tag, attribute, value);
     }
 
     create_tag_attribute_element(attribute, value, callback);
