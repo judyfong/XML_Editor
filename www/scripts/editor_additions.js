@@ -3,7 +3,7 @@
 // (2) modify the DOM
 
 // inserts a tag element of type tag_label at the cursor location and moves the cursor inside the tag
-function insert_tag_element(tag_label, newline=false) {
+function insertTagElement(tag_label, newline=false) {
   // Possible TODO: create self-closing elements properly (e.g. <bjalla/> instead of <bjalla></bjalla>)
   let to;
   let selection = ''
@@ -14,12 +14,12 @@ function insert_tag_element(tag_label, newline=false) {
   let cursor_loc = editor.getCursor('from');
   let movement = tag_label.length + 2;
   let element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
-  insert_element_at_cursor(element, movement, newline);
+  insertElementAtCursor(element, movement, newline);
   return;
 }
 
-function populate_insert_element_container(data) {
-  function create_element(tag_label) {
+function populateInsertElementContainer(data) {
+  function createElement(tag_label) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
     let text = document.createTextNode(tag_label);
@@ -28,7 +28,7 @@ function populate_insert_element_container(data) {
 
     link_element.setAttribute('href', '#');
     link_element.addEventListener('click', function() { 
-      insert_tag_element(tag_label);
+      insertTagElement(tag_label);
       _last_view = 'changed';
       applyViewMode();
     });
@@ -40,7 +40,7 @@ function populate_insert_element_container(data) {
 
   // clear the list
   let link_node = document.getElementById('insert-element-links');
-  remove_all_children(link_node);
+  removeAllChildren(link_node);
 
   let list_empty = true;
   data.list.sort();
@@ -57,8 +57,8 @@ function populate_insert_element_container(data) {
       continue;
     }
     let label = tag_hint_label.substring(1)
-    if (validate_insertion_at_cursor(label)) {
-      create_element(label);
+    if (validateInsertionAtCursor(label)) {
+      createElement(label);
       list_empty = false;
     } // else: we thought we could create an element here, but it doesn't validate.
   }
@@ -70,8 +70,8 @@ function populate_insert_element_container(data) {
   }
 }
 
-function populate_tree_explorer() {
-  function get_text_at_tag_location(tag) {
+function populateTreeExplorer() {
+  function getTextAtTagLocation(tag) {
     let pos = { line: tag.line, ch: tag.start_index };
     let word = editor.findWordAt(pos);
     let line = editor.getLine(word.anchor.line);
@@ -96,10 +96,10 @@ function populate_tree_explorer() {
     return phrase;
   }
 
-  function add_tag_to_tree(tag) {
+  function addTagToTree(tag) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
-    let text_content = 1 + tag.line + ' ' + get_text_at_tag_location(tag);
+    let text_content = 1 + tag.line + ' ' + getTextAtTagLocation(tag);
     let text_node = document.createTextNode(text_content);
     link_element.appendChild(text_node);
 
@@ -116,20 +116,20 @@ function populate_tree_explorer() {
   }
 
   let link_node = document.getElementById('tree-explorer-links');
-  remove_all_children(link_node);
+  removeAllChildren(link_node);
 
   // populate the tree explorer with every <mgr> tag
-  let tag_pairs = parse_tags();  
+  let tag_pairs = parseTags();  
   for (let i = 0; i < tag_pairs.length; ++i) {
     let detected_tag = tag_pairs[i].tag_open;
     if (detected_tag.tag_label == 'mgr') {
-      add_tag_to_tree(detected_tag);
+      addTagToTree(detected_tag);
     }
   }
 }
 
-function parse_tag_attribute_values(tag) {
-  function extract_value(attribute_value) {
+function parseTagAttributeValues(tag) {
+  function extractValue(attribute_value) {
     if (!attribute_value) {
       return "";
     }
@@ -153,7 +153,7 @@ function parse_tag_attribute_values(tag) {
     let pair = tag_parts[i].split('=');
     let attribute_descriptor = {
       attribute_index: i,
-      value: extract_value(pair[1]),
+      value: extractValue(pair[1]),
       start_index: current_index + pair[0].length + 1,
     }
     attributes[pair[0]] = attribute_descriptor;
@@ -163,16 +163,16 @@ function parse_tag_attribute_values(tag) {
   return attributes;
 }
 
-function handler_tag_attribute_mutation(attribute_tag, key, value) {
+function handlerTagAttributeMutation(attribute_tag, key, value) {
   let attrs = attribute_tag.attrs[key];
   if (!attrs) {
-    add_tag_attribute(attribute_tag, key, value);
+    addTagAttribute(attribute_tag, key, value);
   } else {
-    modify_tag_attribute(attribute_tag, key, value);
+    modifyTagAttribute(attribute_tag, key, value);
   }
 }
 
-function add_tag_attribute(attribute_tag, key, value) {
+function addTagAttribute(attribute_tag, key, value) {
   let added_tag_string = ' ' + key + '="' + value + '"';
 
   // calculate the position where the tag closes
@@ -183,7 +183,7 @@ function add_tag_attribute(attribute_tag, key, value) {
   editor.replaceRange(added_tag_string, from)
 }
 
-function modify_tag_attribute(attribute_tag, key, value) {
+function modifyTagAttribute(attribute_tag, key, value) {
   // calculate the start and end of the attribute's value
   let line = attribute_tag.lineo;
   let start_index = attribute_tag.attrs[key].start_index + attribute_tag.index + 1;
@@ -205,9 +205,9 @@ function modify_tag_attribute(attribute_tag, key, value) {
   editor.replaceRange(value, from, to);
 }
 
-function populate_attribute_inspector() {
-  function tags_on_line(doc_tags, line) {
-    function create_found_tag(tag_pair) {
+function populateAttributeInspector() {
+  function tagsOnLine(doc_tags, line) {
+    function createFoundTag(tag_pair) {
       // NOTE: false works here, because start_index won't be zero
       // UNLESS it's on another line,
       // and then we *are* inside the tag anyway... </hack>
@@ -217,7 +217,7 @@ function populate_attribute_inspector() {
         close = tag_pair.tag_close.start_index;
         linec = tag_pair.tag_close.line;
       }
-      let tag_attrs = parse_tag_attribute_values(tag_pair.tag_open);
+      let tag_attrs = parseTagAttributeValues(tag_pair.tag_open);
       let obj = {
         label: tag_pair.tag_open.tag_label,
         index: tag_pair.tag_open.start_index,
@@ -234,15 +234,15 @@ function populate_attribute_inspector() {
     for (let i = 0; i < doc_tags.length; ++i) {
       let this_tag = doc_tags[i].tag_open;
       if (this_tag.line == line) {
-        found_tags.push(create_found_tag(doc_tags[i]))
+        found_tags.push(createFoundTag(doc_tags[i]))
       }
     }
 
     return found_tags;
   }
 
-  function get_nearest_tag() {
-    let doc_tags = parse_tags();
+  function getNearestTag() {
+    let doc_tags = parseTags();
     // find the closest tag, looking left first, then right 
     let pos = editor.getCursor();
     let current_line_number = pos.line;
@@ -251,7 +251,7 @@ function populate_attribute_inspector() {
     let nearby_tags;
 
     do {
-      nearby_tags = tags_on_line(doc_tags, current_line_number);
+      nearby_tags = tagsOnLine(doc_tags, current_line_number);
 
       // OK, at this point we have a list of nearby tags, pick the first one that doesn't close before pos
       while (nearby_tags.length > 0) {
@@ -295,7 +295,7 @@ function populate_attribute_inspector() {
     return false;
   }
 
-  function get_tag_attributes(label) {
+  function getTagAttributes(label) {
     // find the tag's entry in schema_tags
     // and return the attributes it has
     let schema_tag = schema_tags[label];
@@ -308,7 +308,7 @@ function populate_attribute_inspector() {
     return schema_tag.attrs;
   }
 
-  function create_tag_attribute_element(attribute, current_value, callback) {
+  function createTagAttributeElement(attribute, current_value, callback) {
     let row_element = document.createElement("tr");
     let col_element = document.createElement("td");
     let text = document.createTextNode(attribute);
@@ -332,14 +332,14 @@ function populate_attribute_inspector() {
     document.getElementById("attribute-inspector-table").appendChild(row_element);
   }
 
-  let nearest_tag = get_nearest_tag();
+  let nearest_tag = getNearestTag();
   if (!nearest_tag) {
     return;
   }
 
   // now find the nearest tag's entry in schema_tags
   // and figure out what attributes it can have
-  let tag_attributes = get_tag_attributes(nearest_tag.label);
+  let tag_attributes = getTagAttributes(nearest_tag.label);
   if (!tag_attributes) {
     // we're probably in a meta tag or something,
     // anyway, we don't know how to deal with this type of tag
@@ -348,7 +348,7 @@ function populate_attribute_inspector() {
 
   // clear the list
   let div_node = document.getElementById('attribute-inspector-div');
-  remove_all_children(div_node);
+  removeAllChildren(div_node);
 
   // add the title
   let title_element = document.createElement("h4");
@@ -387,14 +387,14 @@ function populate_attribute_inspector() {
     }
     
     let callback = function(attribute, value) {
-      handler_tag_attribute_mutation(nearest_tag, attribute, value);
+      handlerTagAttributeMutation(nearest_tag, attribute, value);
     }
 
-    create_tag_attribute_element(attribute, value, callback);
+    createTagAttributeElement(attribute, value, callback);
   }
 }
 
-function insert_comment_prompt() {
+function insertCommentPrompt() {
   let comment_content;
   if (editor.somethingSelected()) {
     comment_content = editor.getSelection();
@@ -413,7 +413,7 @@ function insert_comment_prompt() {
   // do it again just in case of triplets
   comment_element = '<!-- ' + comment_element + ' -->';
 
-  insert_element_at_cursor(comment_element);
+  insertElementAtCursor(comment_element);
 }
 
 function createSpellCheckMenuItem(editor, link_text, callback) {
@@ -432,7 +432,7 @@ function createSpellCheckMenuItem(editor, link_text, callback) {
   link_node.addEventListener('click', callback);
 
   // insert the anchor node into the navigation bar
-  insert_navbar_anchor_at(link_node, 'function_menu', 'toggle_autovalidate');
+  insertNavbarAnchorAt(link_node, 'function_menu', 'toggle_autovalidate');
 }
 
 function createSpellChecker(editor) {
@@ -467,7 +467,7 @@ function createSpellCheckDisabler(editor) {
   createSpellCheckMenuItem(editor, link_text, callback);
 }
 
-function get_member_initials_from_content(content) {
+function getMemberInitialsFromContent(content) {
   let parser = new DOMParser();
   let xmlDoc = parser.parseFromString(content, "text/xml");
   let elems = xmlDoc.getElementsByTagName("ræða");
@@ -477,7 +477,7 @@ function get_member_initials_from_content(content) {
   return initials;
 }
 
-function get_congress_number(content) {
+function getCongressNumber(content) {
   let parser = new DOMParser();
   let xmlDoc = parser.parseFromString(content, "text/xml");
   let elems = xmlDoc.getElementsByTagName("umsýsla");
@@ -487,7 +487,7 @@ function get_congress_number(content) {
   return congress;
 }
 
-function get_address_type_initials_from_content(content) {
+function getAddressTypeInitialsFromContent(content) {
   let parser = new DOMParser();
   let xmlDoc = parser.parseFromString(content, "text/xml");
   let elems = xmlDoc.getElementsByTagName("ræða");
@@ -497,7 +497,7 @@ function get_address_type_initials_from_content(content) {
   return initials;
 }
 
-function display_address_type_by_initials(congress, initials) {
+function displayAddressTypeByInitials(congress, initials) {
   // TODO HERE: Use variable congress (lgþ) to fetch the right file
   let xml_path = 'resources/xml/tegra.php4.xml';
 
@@ -529,7 +529,7 @@ function display_address_type_by_initials(congress, initials) {
   };
 }
 
-function display_member_name_from_initials(congress, initials) {
+function displayMemberNameFromInitials(congress, initials) {
   // TODO HERE: Use variable congress (lgþ) to fetch the right file
   let xml_path = 'resources/xml/thingmenn.php4.xml';
 
@@ -562,7 +562,7 @@ function display_member_name_from_initials(congress, initials) {
 }
 
 // If something is highlighted and the user presses '"', enclose in „quotes“
-function fix_insert_quotes(instance, changeObj) {
+function fixInsertQuotes(instance, changeObj) {
   // Check if a double quote was inserted
   let quote_inserted = false;
   // Something inserted
@@ -707,10 +707,10 @@ function handleEnterPressed(instance) {
   instance.setCursor(new_pos);
  
   // Step 3: insert a new <mgr> or <lína>
-  insert_tag_element(label, newline=true);
+  insertTagElement(label, newline=true);
 
   if (label == 'erindi') {
-    insert_tag_element('lína', newline=true);
+    insertTagElement('lína', newline=true);
   }
 
   // Step 4: Render the view again to mark the new tags if they should be marked

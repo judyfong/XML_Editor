@@ -48,7 +48,7 @@
 
       if (data && data.list.length) {
         CodeMirror.signal(data, "shown");
-        populate_insert_element_container(data);
+        populateInsertElementContainer(data);
       }
     }
   };

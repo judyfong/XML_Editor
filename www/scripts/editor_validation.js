@@ -1,16 +1,16 @@
 var _validation_disabled = false;
 
-function toggle_autovalidate() {
+function toggleAutovalidate() {
   _validation_disabled = !_validation_disabled;
 }
 
-function validate_success() {
+function validateSuccess() {
   $("#validation_status").text("Löglegt XML");
   $("#validation_status").css('color', 'green');
   $("#validation_error").css('display', 'none');
 }
 
-function validate_failure(result) {
+function validateFailure(result) {
   $("#validation_status").text("XML Villa!");
   $("#validation_status").css('color', 'red');
   $("#validation_error").css('display', 'block');
@@ -44,7 +44,7 @@ function checkXML(n) {
   }
 }
 
-function validateXML_W3(content) {
+function validateXMLW3(content) {
   // code for IE // TODO: Can we remove this? Since IE doesn't seem to work anyway
   if (window.ActiveXObject) {
     var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
@@ -89,23 +89,23 @@ function autovalidator() {
     $("#validation_error").css('display', 'none');
     return;
   }
-  let tags = parse_tags(); // from editor_tools.js
-  if (validate_schema(tags)) {
+  let tags = parseTags(); // from editor_tools.js
+  if (validateSchema(tags)) {
     /* schema validation failed, don't do any other validation */
     return;
   }
-  result = validateXML_W3(editor.getValue());
+  result = validateXMLW3(editor.getValue());
   if (result == "OK") {
-    validate_success();
+    validateSuccess();
   } else {
     console.log(result, "is not", "OK");
-    validate_failure(result);
+    validateFailure(result);
   }
 }
 
 // Returns true if an error is found
-function validate_schema(tags) {
-  function is_tag_ok(tag_label) {
+function validateSchema(tags) {
+  function isTagOk(tag_label) {
     let meta_char = tag_label[0]
     if (meta_char == '?' || meta_char == '!') {
       // It's a meta tag or a comment, we will allow it
@@ -122,10 +122,10 @@ function validate_schema(tags) {
     return true;
   }
 
-  function handle_tag_not_found(tag) {
+  function handleTagNotFound(tag) {
     console.log("a tag:", tag);
     let problem_line = Number(tag.line) + 1;
-    validate_failure("Óþekkt tag: <" + tag.tag_label + "> í línu " + problem_line);
+    validateFailure("Óþekkt tag: <" + tag.tag_label + "> í línu " + problem_line);
   }
 
   // assumes a schema_tags variable
@@ -141,14 +141,14 @@ function validate_schema(tags) {
     // then bad closing tags will not match
     let tag = tags[i].tag_open
     let label = tag.tag_label;
-    if (!is_tag_ok(label)) {
-      handle_tag_not_found(tag);
+    if (!isTagOk(label)) {
+      handleTagNotFound(tag);
       return true;
     }
   }
 }
 
-function validate_insertion_at_cursor(tag_label) {
+function validateInsertionAtCursor(tag_label) {
   if (_validation_disabled) {
     // validation is not enabled, do not validate here either
     return true;
@@ -167,7 +167,7 @@ function validate_insertion_at_cursor(tag_label) {
 
   let content_after = [content_before.slice(0, cursor_index), element, content_before.slice(cursor_index)].join('');
 
-  let result = validateXML_W3(content_after) == "OK";
+  let result = validateXMLW3(content_after) == "OK";
 
   return result;
 }

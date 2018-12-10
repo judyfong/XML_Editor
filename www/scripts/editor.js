@@ -1,6 +1,6 @@
 var editor;
 
-function set_editor_options(editor) {
+function setEditorOptions(editor) {
   function completeAfter(cm, pred) {
     let cur = cm.getCursor();
     if (!pred || pred()) setTimeout(function() {
@@ -46,10 +46,10 @@ function set_editor_options(editor) {
     schema_tags = obj;
   };
 
-  read_tags('resources/tags.json', callback);
+  readTags('resources/tags.json', callback);
 }
 
-function read_tags(path, callback) {
+function readTags(path, callback) {
   let xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -715,9 +715,9 @@ function start() {
   editor = CodeMirror(document.getElementById("editor_container"));
 
   editor.setValue(example_xml);
-  set_editor_options(editor);
+  setEditorOptions(editor);
 
-  editor.on('beforeChange', fix_insert_quotes);
+  editor.on('beforeChange', fixInsertQuotes);
   editor.on('changes', autovalidator);
   editor.on('focus', autovalidator);
   editor.on('focus', applyViewMode);
@@ -725,11 +725,11 @@ function start() {
     // insert element
     editor.populateElementInserter({completeSingle: false})
     // tree explorer
-    populate_tree_explorer();
+    populateTreeExplorer();
     // attribute explorer
-    populate_attribute_inspector();
+    populateAttributeInspector();
   });
-  $(document).ready(editor_initializers);
+  $(document).ready(editorInitializers);
 
   $(document).ready( function() {
     createSpellChecker(editor);
@@ -744,21 +744,21 @@ function loadXMLtoEditor(xml_path) {
 
   xhr.onload = function() {
     content = this.responseText;
-    set_editor_content(content);
+    setEditorContent(content);
   };
   xhr.ontimeout = function (e) {
     alert("Could not load XML file:", e);
   };
 }
 
-function change_font_size(value) {
+function changeFontSize(value) {
   $('.CodeMirror').css('font-size', value);
   if (storageAvailable('localStorage')) {
     localStorage.setItem('font_size', value);
   }
 }
 
-function editor_focus_toggle() { 
+function editorFocusToggle() { 
   if (editor.hasFocus()) {
     document.activeElement.blur();
   } else {
@@ -766,22 +766,22 @@ function editor_focus_toggle() {
   }
 }
 
-function editor_initializers() {
+function editorInitializers() {
   restoreLocalSettings(); // from editor_views.js
   _last_view = 'changed';
   applyViewMode();
-  initialize_local_storage(); // from editor_local_storage.js
+  initializeLocalStorage(); // from editor_local_storage.js
 }
 
-function set_editor_content(content) {
+function setEditorContent(content) {
   editor.setValue(content);
-  editor_initializers();
+  editorInitializers();
 }
 
 $(document).ready(function() {
-  document.getElementById('toggle_autovalidate').addEventListener('click', toggle_autovalidate);
+  document.getElementById('toggle_autovalidate').addEventListener('click', toggleAutovalidate);
 
-  document.getElementById('insert_comment').addEventListener('click', insert_comment_prompt);
+  document.getElementById('insert_comment').addEventListener('click', insertCommentPrompt);
 
   document.getElementById('load_example_1').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180612T234422.xml');});
   document.getElementById('load_example_2').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180613T003335.xml');});

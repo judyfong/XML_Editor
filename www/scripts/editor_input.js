@@ -16,7 +16,7 @@ var
 
 var _in_key_settings = false;
 
-function initialize_keybindings() {
+function initializeKeybindings() {
   // if there is local storage...
   // try to load keybindings that are saved
   if (storageAvailable('localStorage')) {
@@ -58,11 +58,11 @@ function handleKeyDownEvent(e) {
   }
   switch(e.key) {
     case _key_sound_seek_forward:
-      sound_seek_relative(_sound_seek_seconds);
+      soundSeekRelative(_sound_seek_seconds);
       e.preventDefault();
       break;
     case _key_sound_seek_backward:
-      sound_seek_relative(-_sound_seek_seconds);
+      soundSeekRelative(-_sound_seek_seconds);
       e.preventDefault();
       break;
     case _key_editor_focus_toggle:
@@ -85,21 +85,21 @@ function handleKeyUpEvent(e) {
 
   switch(key) {
     case _key_editor_focus_toggle:
-      editor_focus_toggle();
+      editorFocusToggle();
       break;
     case _key_sound_play_pause:
-      sound_play_pause();
+      soundPlayPause();
       break;
       /*
     case _key_sound_seek_forward:
-      //sound_seek_relative(_sound_seek_seconds);
+      //soundSeekRelative(_sound_seek_seconds);
       audio_player = document.getElementById("audio_player");
       audio_player.playbackRate = 1.0;
       */
       break;
     case _key_sound_seek_backward:
     case _key_sound_seek_forward:
-      //sound_seek_relative(-_sound_seek_seconds);
+      //soundSeekRelative(-_sound_seek_seconds);
       break;
     default:
       return false;
@@ -127,7 +127,7 @@ function closeKeyEditModal(evt) {
   }
   let modal = document.getElementById('keybind_modal');
   modal.classList.add("closed");
-  remove_all_children(document.getElementById('keybind_content'));
+  removeAllChildren(document.getElementById('keybind_content'));
   _in_key_settings = false;
 }
 
@@ -215,4 +215,4 @@ function showKeyEditModalOverlay() {
   focuser.focus();
 }
 
-$(document).ready(initialize_keybindings);
+$(document).ready(initializeKeybindings);
