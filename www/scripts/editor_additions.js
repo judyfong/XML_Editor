@@ -99,7 +99,7 @@ function populate_tree_explorer() {
   function add_tag_to_tree(tag) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
-    let text_content = 1 + tag.line + ' <' + tag.tag_label + '> ' + get_text_at_tag_location(tag);
+    let text_content = 1 + tag.line + ' ' + get_text_at_tag_location(tag);
     let text_node = document.createTextNode(text_content);
     link_element.appendChild(text_node);
 
@@ -440,13 +440,13 @@ function createSpellChecker(editor) {
   let link_text = 'Virkja stafsetningarpúka';
 
   let callback = function() {
-    /*
     const aff = 'resources/spell/index.aff';
     const dic = 'resources/spell/index.dic';
-    */
+    /*
     // TODO remove below and uncomment above, because of awardspace demo restrictions
     const aff = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.aff';
     const dic = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.dic';
+    */
     let typoLoaded=loadTypo(aff, dic);
     typoLoaded.then(typo => {
       startSpellCheck(editor, typo);
