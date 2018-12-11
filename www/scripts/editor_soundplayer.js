@@ -104,7 +104,7 @@ function getTimestampFromContent(content) {
 }
 
 function setAudioSeekSize() {
-  let new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:"));
+  let new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:", _sound_seek_seconds));
   if (isNaN(new_seek_size)) {
     alert("Inntak þarf að vera tala!");
     return;
