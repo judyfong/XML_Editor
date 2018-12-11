@@ -145,7 +145,7 @@ function initializeLocalStorage() {
     _autosave_documents = false;
   }
 
-  let parent_menu = document.getElementById('local_storage_menu');
+  let parent_menu = document.getElementById('local-storage-menu');
   removeAllChildren(parent_menu);
 
   // add the file saver

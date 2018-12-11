@@ -24,6 +24,6 @@ function dctmCheckOut() {
 }
 
 $(document).ready(function() {
-  document.getElementById('dctm_check_out').addEventListener('click', dctmError);
-  document.getElementById('dctm_check_in').addEventListener('click', dctmError);
+  document.getElementById('dctm-check-out').addEventListener('click', dctmError);
+  document.getElementById('dctm-check-in').addEventListener('click', dctmError);
 });

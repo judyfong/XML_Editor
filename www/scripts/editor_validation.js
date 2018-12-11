@@ -5,16 +5,16 @@ function toggleAutovalidate() {
 }
 
 function validateSuccess() {
-  $("#validation_status").text("Löglegt XML");
-  $("#validation_status").css('color', 'green');
-  $("#validation_error").css('display', 'none');
+  $("#validation-status").text("Löglegt XML");
+  $("#validation-status").css('color', 'green');
+  $("#validation-error").css('display', 'none');
 }
 
 function validateFailure(result) {
-  $("#validation_status").text("XML Villa!");
-  $("#validation_status").css('color', 'red');
-  $("#validation_error").css('display', 'block');
-  $("#validation_message").text(result);
+  $("#validation-status").text("XML Villa!");
+  $("#validation-status").css('color', 'red');
+  $("#validation-error").css('display', 'block');
+  $("#validation-message").text(result);
 }
 
 
@@ -83,10 +83,10 @@ function validateXMLW3(content) {
 function autovalidator() {
 
   if (_validation_disabled) {
-    status_container = $("#validation_status");
+    status_container = $("#validation-status");
     status_container.text("Slökkt er á tæknilegri villuleitun");
     status_container.css('color', 'orangered');
-    $("#validation_error").css('display', 'none');
+    $("#validation-error").css('display', 'none');
     return;
   }
   let tags = parseTags(); // from editor_tools.js

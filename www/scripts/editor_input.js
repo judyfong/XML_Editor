@@ -41,7 +41,7 @@ function initializeKeybindings() {
   document.addEventListener('keydown', handleKeyDownEvent);
   document.addEventListener('keyup', handleKeyUpEvent);
 
-  let settings_btn = document.getElementById("open_key_settings");
+  let settings_btn = document.getElementById("open-key-settings");
   settings_btn.addEventListener('click', showKeyEditModalOverlay);
 }
 
@@ -93,7 +93,7 @@ function handleKeyUpEvent(e) {
       /*
     case _key_sound_seek_forward:
       //soundSeekRelative(_sound_seek_seconds);
-      audio_player = document.getElementById("audio_player");
+      audio_player = document.getElementById("audio-player");
       audio_player.playbackRate = 1.0;
       */
       break;
@@ -118,16 +118,16 @@ function closeKeyEditModal(evt) {
     if (!target) { return; }
     let id = target.id;
     switch (id) {
-      case 'keybind_modal':
-      case 'keybind_close':
+      case 'keybind-modal':
+      case 'keybind-close':
         break
       default:
         return;
     }
   }
-  let modal = document.getElementById('keybind_modal');
+  let modal = document.getElementById('keybind-modal');
   modal.classList.add("closed");
-  removeAllChildren(document.getElementById('keybind_content'));
+  removeAllChildren(document.getElementById('keybind-content'));
   _in_key_settings = false;
 }
 
@@ -145,14 +145,14 @@ function createKeyEditElement(label, input_id) {
   key_label.setAttribute("for", input_id);
   key_input.setAttribute("id", input_id);
 
-  key_div.setAttribute("class", "key_section");
-  key_label.setAttribute("class", "key_label");
-  key_input.setAttribute("class", "key_input");
+  key_div.setAttribute("class", "key-section");
+  key_label.setAttribute("class", "key-label");
+  key_input.setAttribute("class", "key-input");
 
   key_div.appendChild(key_label);
   key_div.appendChild(key_input);
 
-  let content = document.getElementById('keybind_content');
+  let content = document.getElementById('keybind-content');
   content.appendChild(key_div);
   key_input.addEventListener('keydown', createKeyEditHandler(input_id, key_input));
   return key_input
@@ -198,8 +198,8 @@ function createKeyEditHandler(key_id, key_input) {
 
 function showKeyEditModalOverlay() {
   _in_key_settings = true;
-  let modal = document.getElementById('keybind_modal');
-  let content = document.getElementById('keybind_content');
+  let modal = document.getElementById('keybind-modal');
+  let content = document.getElementById('keybind-content');
 
   // add all the keys
   let focuser = createKeyEditElement("Fókus á ritil", "key_editor_focus_toggle");
@@ -209,7 +209,7 @@ function showKeyEditModalOverlay() {
 
   modal.classList.remove("closed");
 
-  let close = document.getElementById("keybind_close");
+  let close = document.getElementById("keybind-close");
   close.onclick = closeKeyEditModal;
   modal.onclick = closeKeyEditModal;
   focuser.focus();

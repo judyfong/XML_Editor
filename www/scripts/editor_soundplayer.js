@@ -1,7 +1,7 @@
 var _sound_seek_seconds = 0.5;
 
 function soundPlayPause() {
-  let player = document.getElementById("audio_player");
+  let player = document.getElementById("audio-player");
   if (!player) {
     initializeSoundPlayer();
     return;
@@ -14,14 +14,14 @@ function soundPlayPause() {
 }
 
 function soundSeekRelative(seconds) {
-  let player = document.getElementById("audio_player");
+  let player = document.getElementById("audio-player");
   player.currentTime += seconds;
 }
 
 var speech_start_date;
 var speech_bufsz;
 function updateRealTimer(evt) {
-  audio_player = document.getElementById('audio_player');
+  audio_player = document.getElementById('audio-player');
   let play_time = audio_player.currentTime - speech_bufsz;
   let seconds = speech_start_date.getSeconds() + play_time;
   current_time = new Date(speech_start_date);
@@ -45,7 +45,7 @@ function initializeSoundPlayer(evt, bufsz='TRUE') {
   attr = document.createAttribute("autoplay");
   audio_player.setAttributeNode(attr);
   audio_player.setAttribute("type", "audio/mpeg");
-  audio_player.setAttribute("id", "audio_player");
+  audio_player.setAttribute("id", "audio-player");
   let startTime = parseInt(bufsz, 10);
   if (isNaN(startTime)) {
     startTime = 60;
@@ -69,7 +69,7 @@ function initializeSoundPlayer(evt, bufsz='TRUE') {
   parent_container.appendChild(real_timer);
 
   // bookmarks bar
-  let add_bookmark = document.getElementById("add_bookmark");
+  let add_bookmark = document.getElementById("add-bookmark");
 
   add_bookmark.addEventListener("click", function() {
     let link_node = document.createElement("a");
@@ -83,11 +83,11 @@ function initializeSoundPlayer(evt, bufsz='TRUE') {
     link_node.appendChild(text);
     link_node.setAttribute('href', '#');
     link_node.addEventListener("click", function(evt) {
-      let player = document.getElementById("audio_player");
+      let player = document.getElementById("audio-player");
       player.currentTime = time;
     });
 
-    parent_menu = document.getElementById("audio_player_menu");
+    parent_menu = document.getElementById("audio-player-menu");
     parent_menu.appendChild(link_node);
   });
   
@@ -118,7 +118,7 @@ function setAudioSeekSize() {
 }
 
 function setAudioRate() {
-  let audio_player = document.getElementById("audio_player");
+  let audio_player = document.getElementById("audio-player");
   if (!audio_player) {
     alert("Spilari hefur ekki verið virkjaður!");
     return;
@@ -147,10 +147,10 @@ $(document).ready( function () {
   sound_player.innerHTML = '🔊';
 
   // Menu item, same function as main player icon
-  let initializer_menu_item = document.getElementById("initialize_sound_player");
+  let initializer_menu_item = document.getElementById("initialize-sound-player");
   initializer_menu_item.addEventListener('click', initializeSoundPlayer);
 
-  let custom_initializer_menu_item = document.getElementById("sound_player_custom_buffer");
+  let custom_initializer_menu_item = document.getElementById("sound-player-custom-buffer");
   custom_initializer_menu_item.addEventListener('click', function(evt) {
     let bufsz = prompt("Aukastærð hljóðbúts:", 60);
     if (bufsz) {
@@ -159,11 +159,11 @@ $(document).ready( function () {
   });
 
   // set seek size
-  let seek_size_setter = document.getElementById("set_audio_seek_size");
+  let seek_size_setter = document.getElementById("set-audio-seek-size");
   seek_size_setter.addEventListener('click', setAudioSeekSize);
 
   // set playback rate
-  let playback_rate_setter = document.getElementById("set_audio_rate");
+  let playback_rate_setter = document.getElementById("set-audio-rate");
   playback_rate_setter.addEventListener('click', setAudioRate);
 
   // Restore local settings

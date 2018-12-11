@@ -461,12 +461,6 @@ function markTag(tag, options) {
   if (typeof options.className != 'undefined') {
     // allow className overriding
     className = options.className;
-    /*
-    } else if (tag.tag_is_open) {
-        className = 'close_tag';
-    } else {
-        className = 'open_tag';
-        */
   } else {
     className = 'marked-tag';
   }
@@ -554,22 +548,22 @@ function makeNiceContainersCollapsible() {
 }
 
 $(document).ready(function() {
-  document.getElementById('view_normal_mode').addEventListener('click', function() { setView('normal'); });
-  document.getElementById('view_assisted_mode').addEventListener('click', function() { setView('assisted'); });
-  document.getElementById('view_raw_mode').addEventListener('click', function() { setView('XML'); });
+  document.getElementById('view-normal-mode').addEventListener('click', function() { setView('normal'); });
+  document.getElementById('view-assisted-mode').addEventListener('click', function() { setView('assisted'); });
+  document.getElementById('view-raw-mode').addEventListener('click', function() { setView('XML'); });
 
-  document.getElementById('hide_side_left').addEventListener('click', function() { toggleDisplay('side-container-left'); });
-  document.getElementById('hide_side_right').addEventListener('click', function() { toggleDisplay('side-container-right'); });
+  document.getElementById('hide-side-left').addEventListener('click', function() { toggleDisplay('side-container-left'); });
+  document.getElementById('hide-side-right').addEventListener('click', function() { toggleDisplay('side-container-right'); });
 
-  document.getElementById('toggle_symbol_inserter').addEventListener('click', toggleSymbolInserter);
-  document.getElementById('toggle_specialchars_inserter').addEventListener('click', toggleSpecialcharsInserter);
+  document.getElementById('toggle-symbol-inserter').addEventListener('click', toggleSymbolInserter);
+  document.getElementById('toggle-specialchars-inserter').addEventListener('click', toggleSpecialcharsInserter);
 
-  document.getElementById('toggle_tags').addEventListener('click', toggleTags);
-  document.getElementById('toggle_line_numbers').addEventListener('click', toggleLineNumbers);
+  document.getElementById('toggle-tags').addEventListener('click', toggleTags);
+  document.getElementById('toggle-line-numbers').addEventListener('click', toggleLineNumbers);
 
-  document.getElementById('inc_font').addEventListener('click', incFontSize);
-  document.getElementById('dec_font').addEventListener('click', decFontSize);
-  document.getElementById('def_font').addEventListener('click', function() {changeFontSize('inherit');});
+  document.getElementById('inc-font').addEventListener('click', incFontSize);
+  document.getElementById('dec-font').addEventListener('click', decFontSize);
+  document.getElementById('def-font').addEventListener('click', function() {changeFontSize('inherit');});
 
   makeNiceContainersCollapsible();
 });

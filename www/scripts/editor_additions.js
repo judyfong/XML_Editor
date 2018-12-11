@@ -432,7 +432,7 @@ function createSpellCheckMenuItem(editor, link_text, callback) {
   link_node.addEventListener('click', callback);
 
   // insert the anchor node into the navigation bar
-  insertNavbarAnchorAt(link_node, 'function_menu', 'toggle_autovalidate');
+  insertNavbarAnchorAt(link_node, 'function-menu', 'toggle-autovalidate');
 }
 
 function createSpellChecker(editor) {

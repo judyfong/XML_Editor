@@ -108,24 +108,24 @@ header div {
   margin-top: 16px;
 }
 
-#keybind_content {
+#keybind-content {
   z-index: 60;
   display: flex;
   flex-flow: row wrap;
 }
 
-#keybind_content div {
+#keybind-content div {
   background-color: #c0c0c0;
 }
 
-.key_section input {
+.key-section input {
   width: 100px;
   max-width: 100%;
   display: block;
   height: 2.5em;
 }
 
-.key_section label {
+.key-section label {
   width: 100px;
   max-width: 100%;
   display: block;
@@ -154,7 +154,7 @@ header div {
   cursor: pointer;
 }
 
-.flex_container {
+.flex-container {
   display: flex;
   flex-direction: row;
 }
@@ -231,7 +231,7 @@ header div {
   order: 3;
 }
 
-#main_container {
+#main-container {
   max-width: 95%;
   min-height: 400px;
   height: auto;
@@ -255,7 +255,7 @@ header div {
   height: auto;
 }
 
-#editor_container {
+#editor-container {
   /*    width: 75%; */
   height: auto;
   border: skyblue 1px dashed; 
@@ -313,7 +313,7 @@ header div {
   /*  padding-bottom: 0px;*/
 }
 
-#validation_status {
+#validation-status {
   max-width: 160px;
   font-weight: bold;
   text-align: center;
@@ -322,45 +322,21 @@ header div {
   background: lightcyan;
 }
 
-#validation_error {
+#validation-error {
   display: none;
   border: crimson 2px dotted;
   color: crimson;
   padding-top: 16px;
 }
 
-#validation_error>h3 {
+#validation-error>h3 {
   margin-top: 0px;
   padding-top: 0px;
 }
 
-#validation_message {
+#validation-message {
   color: black;
   font-family: monospace;
-}
-
-#debug_container {
-  background-color: darkslategrey;
-  color: seagreen;
-  font-family: monospace;
-  min-width: 75%;
-  width: auto;
-  height: auto;
-  border: orange 1px dotted;
-  overflow-y: scroll;
-  overflow-x: none;
-  height: 200px;
-}
-
-#tips_container {
-  /*    width: 75%; */
-  min-width: 75%;
-  width: auto;
-  height: auto;
-  border: orange 1px dotted;
-  /*
-  float:left;
-   */
 }
 
 #description {
@@ -648,16 +624,4 @@ ul.links {
 .marked-tag-hidden {
   display: none;
   opacity: 0.1;
-}
-
-.open_tag {
-  background-color: yellow;
-  /*    border: 1px solid goldenrod; */
-  border-radius: 2px;
-}
-
-.close_tag {
-  background-color: yellow;
-  /*    border: 1px solid goldenrod; */
-  border-radius: 2px;
 }

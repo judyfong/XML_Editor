@@ -712,7 +712,7 @@ function start() {
   }
   */
 
-  editor = CodeMirror(document.getElementById("editor_container"));
+  editor = CodeMirror(document.getElementById("editor-container"));
 
   editor.setValue(example_xml);
   setEditorOptions(editor);
@@ -779,20 +779,20 @@ function setEditorContent(content) {
 }
 
 $(document).ready(function() {
-  document.getElementById('toggle_autovalidate').addEventListener('click', toggleAutovalidate);
+  document.getElementById('toggle-autovalidate').addEventListener('click', toggleAutovalidate);
 
-  document.getElementById('insert_comment').addEventListener('click', insertCommentPrompt);
+  document.getElementById('insert-comment').addEventListener('click', insertCommentPrompt);
 
-  document.getElementById('load_example_1').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180612T234422.xml');});
-  document.getElementById('load_example_2').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180613T003335.xml');});
-  document.getElementById('load_example_3').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180718T150651.xml');});
-  document.getElementById('load_example_dag014').addEventListener('click', function() { loadXMLtoEditor('/example_xml/dag014.xml');});
-  document.getElementById('load_example_fja012').addEventListener('click', function() { loadXMLtoEditor('/example_xml/fja012.xml');});
-  document.getElementById('load_example_fun023').addEventListener('click', function() { loadXMLtoEditor('/example_xml/fun023.xml');});
-  document.getElementById('load_example_inn029').addEventListener('click', function() { loadXMLtoEditor('/example_xml/inn029.xml');});
-  document.getElementById('load_example_les025').addEventListener('click', function() { loadXMLtoEditor('/example_xml/les025.xml');});
-  document.getElementById('load_example_lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20171215T103413.xml');});
-  document.getElementById('load_example_lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20181009T230112.xml');});
-  document.getElementById('load_example_utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('/example_xml/utb20171215T201027.xml');});
+  document.getElementById('load-example-1').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180612T234422.xml');});
+  document.getElementById('load-example-2').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180613T003335.xml');});
+  document.getElementById('load-example-3').addEventListener('click', function() { loadXMLtoEditor('/example_xml/rad20180718T150651.xml');});
+  document.getElementById('load-example-dag014').addEventListener('click', function() { loadXMLtoEditor('/example_xml/dag014.xml');});
+  document.getElementById('load-example-fja012').addEventListener('click', function() { loadXMLtoEditor('/example_xml/fja012.xml');});
+  document.getElementById('load-example-fun023').addEventListener('click', function() { loadXMLtoEditor('/example_xml/fun023.xml');});
+  document.getElementById('load-example-inn029').addEventListener('click', function() { loadXMLtoEditor('/example_xml/inn029.xml');});
+  document.getElementById('load-example-les025').addEventListener('click', function() { loadXMLtoEditor('/example_xml/les025.xml');});
+  document.getElementById('load-example-lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20171215T103413.xml');});
+  document.getElementById('load-example-lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('/example_xml/lid20181009T230112.xml');});
+  document.getElementById('load-example-utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('/example_xml/utb20171215T201027.xml');});
 });
 
