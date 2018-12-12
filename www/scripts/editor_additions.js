@@ -13,7 +13,14 @@ function insertTagElement(tag_label, newline=false) {
   }
   let cursor_loc = editor.getCursor('from');
   let movement = tag_label.length + 2;
-  let element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+  let element;
+  switch (tag_label) {
+    case 'bjalla':
+      element = '<' + tag_label + '/>';
+      break;
+    default:
+      element = '<' + tag_label + '>' + selection + '</' + tag_label + '>';
+  }
   insertElementAtCursor(element, movement, newline);
   return;
 }
