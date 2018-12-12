@@ -19,6 +19,12 @@ function insertTagElement(tag_label, newline=false) {
 }
 
 function populateInsertElementContainer(data) {
+  function createDivWithId(id) {
+    let div = document.createElement("div");
+    div.setAttribute("id", id);
+    return div;
+  }
+  
   function createElement(tag_label) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
@@ -33,7 +39,9 @@ function populateInsertElementContainer(data) {
       applyViewMode();
     });
 
-    document.getElementById("insert-element-links").appendChild(list_element);
+    let target_element = "insert-element-links";
+
+    document.getElementById(target_element).appendChild(list_element);
   }
 
   // function body start
@@ -44,9 +52,16 @@ function populateInsertElementContainer(data) {
 
   let list_empty = true;
   data.list.sort();
-  // populate the list
-  for (let i=0; i<data.list.length; i++) {
-    let tag_hint_label = data.list[i];
+  data.list.reverse();
+
+  let list_deco1 = [],
+    list_deco2 = [],
+    list_events = [],
+    list_main = [];
+
+  // split the list into parts
+  while (data.list.length) {
+    let tag_hint_label = data.list.pop()
     if (tag_hint_label[0] != '<') {
       // this isn't a tag, so what is it?
       // Nothing that belongs here, at least.
@@ -57,10 +72,39 @@ function populateInsertElementContainer(data) {
       continue;
     }
     let label = tag_hint_label.substring(1)
-    if (validateInsertionAtCursor(label)) {
-      createElement(label);
-      list_empty = false;
-    } // else: we thought we could create an element here, but it doesn't validate.
+    switch (label) {
+      case "feitletrað":
+      case "skáletrað":
+      case "undirstrikað":
+        list_deco1.push(label);
+        break;
+      case "niðurskrift":
+      case "uppskrift":
+      case "brot":
+        list_deco2.push(label);
+        break;
+      case "atburður":
+      case "frammíkall":
+      case "truflun":
+        list_events.push(label);
+        break;
+      default:
+        list_main.push(label);
+    }
+  }
+
+  let lists = [ list_deco1, list_deco2, list_events, list_main ];
+
+  for (let i=0; i<lists.length; i++) {
+
+    // populate the list
+    for (let j=0; j<lists[i].length; j++) {
+      let label = lists[i][j];
+      if (validateInsertionAtCursor(label)) {
+        createElement(label);
+        list_empty = false;
+      } // else: we thought we could create an element here, but it doesn't validate.
+    }
   }
   if (list_empty) {
     let list_element = document.createElement("li");
