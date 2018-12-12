@@ -30,7 +30,7 @@ function setEditorOptions(editor) {
   editor.setOption('tabindex', -1);
   editor.setOption('lineWrapping', true);
   editor.setOption('lineNumbers', true);
-  editor.setOption('viewportMargin', Infinity);
+//  editor.setOption('viewportMargin', Infinity);
   editor.setOption('extraKeys', 
     {
       "Enter": handleEnterPressed,

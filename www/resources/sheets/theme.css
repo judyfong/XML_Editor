@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 button {
@@ -379,7 +380,8 @@ footer {
 }
 
 .CodeMirror {
-  height: auto;
+  height: 75vh;
+/*  overflow-y: scroll;*/
 }
 
 ul.horizontal-links {
