@@ -52,14 +52,13 @@ function saveViewOption(optname, optval) {
 function setView(view_name) {
   _current_view = view_name;
   applyViewMode();
-  hideEmptyLines();
 
   saveViewOption('viewmode', view_name);
 }
 
-function applyViewMode() {
+function applyViewMode(force=false) {
   // check first if anything changed
-  if (_current_view == _last_view) {
+  if (_current_view == _last_view && !force) {
     // Nothing to do, return
     editor.refresh();
     return;
@@ -174,6 +173,10 @@ function hideIfEmpty(lineHandle) {
   while (indexOpen != -1) {
     indexOpen = text.indexOf('<');
     indexClose = text.indexOf('>', indexOpen) + 1;
+    let contains = text.substr(indexOpen, indexClose);
+    if (contains == "<ræðutexti>") {
+      return;
+    }
     text = text.substr(0, indexOpen) + text.substr(indexClose);
   }
   text = text.trim();
@@ -200,9 +203,7 @@ function toggleTags() {
   // toggle the variable
   _visible_tags = !_visible_tags;
   saveViewOption('tag_visibility', _visible_tags);
-  renderTagVisibility();
-  hideEmptyLines();
-  editor.refresh();
+  applyViewMode(true);
 }
 
 function toggleLineNumbers() {
@@ -328,6 +329,7 @@ function formatTagsOnOwnLines() {
   function putTagOnLine(tag) {
     // don't put special tags on lines
     switch (tag.tag_label) {
+      case 'bjalla':
       case 'bjalla/':
       case 'truflun':
       case 'frammíkall':
@@ -336,6 +338,9 @@ function formatTagsOnOwnLines() {
       case 'feitletrað':
       case 'skáletrað':
       case 'undirstrikað':
+      case 'brot':
+      case 'forseti':
+      case 'abturður':
         return;
       default:
         /* intentionally blank */
@@ -466,12 +471,16 @@ function markTag(tag, options) {
   }
 
   // If it's a special, un-hideable tag, give it a special className
-  let special_tags = ["bjalla", "frammíkall"]
+  let special_tags = ["bjalla", "frammíkall", "brot"]
   for (let i = 0; i < special_tags.length; ++i) {
     let found = tag.tag_label.indexOf(special_tags[i]);
     if (found != -1) {
       className = 'marked-tag-no-hide';
     }
+  }
+
+  if (tag.tag_label.indexOf("brot") != -1) {
+    console.log("assigning tag label", className, "to", tag);
   }
 
   assignTagLabel(tag.line, tag.start_index, tag.end_index, className, options);
