@@ -90,19 +90,7 @@ function start() {
   editor.on('changes', autovalidator);
 /*  editor.on('focus', autovalidator);*/
   editor.on('focus', applyViewMode);
-  editor.on('cursorActivity', function() {
-    // insert element
-    editor.populateElementInserter({completeSingle: false})
-    // tree explorer
-    populateTreeExplorer();
-    // attribute explorer
-    populateAttributeInspector();
-  });
-  $(document).ready(editorInitializers);
-
-  $(document).ready( function() {
-    createSpellChecker(editor);
-  });
+  editor.on('cursorActivity', handleCursorActivity);
 }
 
 function loadXMLtoEditor(xml_path) {
