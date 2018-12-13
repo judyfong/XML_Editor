@@ -85,7 +85,7 @@ function validateXMLW3(content) {
   return false;
 }
 
-function autovalidator() {
+var autovalidator = debounce(function() {
 
   if (_validation_disabled) {
     status_container = $("#validation-status");
@@ -106,7 +106,7 @@ function autovalidator() {
     console.log(result, "is not", "OK");
     validateFailure(result);
   }
-}
+}, 1000);
 
 // Returns true if an error is found
 function validateSchema(tags) {
