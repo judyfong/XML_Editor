@@ -31,7 +31,7 @@ function populateInsertElementContainer(data) {
     div.setAttribute("id", id);
     return div;
   }
-  
+
   function createElement(tag_label) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
@@ -436,7 +436,7 @@ function populateAttributeInspector() {
     if (attrs && attrs.value) {
       value = attrs.value;
     }
-    
+
     let callback = function(attribute, value) {
       handlerTagAttributeMutation(nearest_tag, attribute, value);
     }
@@ -493,11 +493,6 @@ function createSpellChecker(editor) {
   let callback = function() {
     const aff = 'resources/spell/index.aff';
     const dic = 'resources/spell/index.dic';
-    /*
-    // TODO remove below and uncomment above, because of awardspace demo restrictions
-    const aff = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.aff';
-    const dic = 'https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/is/index.dic';
-    */
     let typoLoaded=loadTypo(aff, dic);
     typoLoaded.then(typo => {
       startSpellCheck(editor, typo);
@@ -688,66 +683,66 @@ function handleEnterPressed(instance) {
   }
 
   if (!label || !token) {
-      // The tag might close on the next line...
-      let next_tokens = instance.getLineTokens(pos.line + 1);
-      for (let i = 0; i < next_tokens.length; ++i) {
-        let tok = next_tokens[i].string;
-        if (next_candidate) {
-          switch (tok) {
-            case 'lína':
-              label = tok;
-              break;
-            case 'mgr':
-            case 'erindi':
-              label = tok;
-              fix_line = -1;
-              break;
-            case 'vísa':
-              label = 'erindi';
-              break;
-          }
+    // The tag might close on the next line...
+    let next_tokens = instance.getLineTokens(pos.line + 1);
+    for (let i = 0; i < next_tokens.length; ++i) {
+      let tok = next_tokens[i].string;
+      if (next_candidate) {
+        switch (tok) {
+          case 'lína':
+            label = tok;
+            break;
+          case 'mgr':
+          case 'erindi':
+            label = tok;
+            fix_line = -1;
+            break;
+          case 'vísa':
+            label = 'erindi';
+            break;
         }
-        if (label && !token) {
-          token = next_tokens[i];
-        }
-        if (tok == '</') {
-          next_candidate = true;
-          continue;
-        }
-        next_candidate = false;
       }
+      if (label && !token) {
+        token = next_tokens[i];
+      }
+      if (tok == '</') {
+        next_candidate = true;
+        continue;
+      }
+      next_candidate = false;
+    }
   }
 
   if (!label || !token) {
-      // We didn't find any closers, so find what's open instead
-      for (let i = tokens.length - 1; i >= 0; --i) {
-        let tok = tokens[i].string;
-        if (next_candidate) {
-          switch (tok) {
-            case 'vísa':
-              label = 'erindi';
-              break;
-            case 'erindi':
-              label = 'lína';
-              fix_line = 1;
-              break;
-            case 'ræðutexti':
-              label = 'mgr';
-              break;
-          }
+    // We didn't find any closers, so find what's open instead
+    for (let i = tokens.length - 1; i >= 0; --i) {
+      let tok = tokens[i].string;
+      if (next_candidate) {
+        switch (tok) {
+          case 'vísa':
+            label = 'erindi';
+            break;
+          case 'erindi':
+            label = 'lína';
+            fix_line = 1;
+            break;
+          case 'ræðutexti':
+            label = 'mgr';
+            break;
         }
-        if (label && !token) {
-          token = tokens[i];
-          break;
-        }
-        if (tok == '>') {
-          next_candidate = true;
-          continue;
-        }
-        next_candidate = false;
       }
+      if (label && !token) {
+        token = tokens[i];
+        break;
+      }
+      if (tok == '>') {
+        next_candidate = true;
+        continue;
+      }
+      next_candidate = false;
+    }
   }
-  
+
   if (!label || !token) {
     console.log("Enter pressed in unknown context");
     return CodeMirror.Pass;
@@ -756,7 +751,7 @@ function handleEnterPressed(instance) {
 
   let new_pos = { line: pos.line + 1 - fix_line, ch: 0 }
   instance.setCursor(new_pos);
- 
+
   // Step 3: insert a new <mgr> or <lína>
   insertTagElement(label, newline=true);
 
@@ -768,4 +763,19 @@ function handleEnterPressed(instance) {
   instance.indentLine(pos.line + 1);
   _last_view = 'raw';
   applyViewMode();
+}
+
+var limitedElementInserter = debounce(function(instance) {
+    instance.populateElementInserter({completeSingle: false})}, 200),
+  limitedTreeExplorerPopulator = throttle(populateTreeExplorer, 500),
+  limitedAttributeInspectorPopulator = debounce(populateAttributeInspector, 200);
+
+function handleCursorActivity(instance) {
+
+  // insert element
+  limitedElementInserter(instance);
+  // tree explorer
+  limitedTreeExplorerPopulator();
+  // attribute explorer
+  limitedAttributeInspectorPopulator();
 }
