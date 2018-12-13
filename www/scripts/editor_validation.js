@@ -8,6 +8,8 @@ function validateSuccess() {
   $("#validation-status").text("Löglegt XML");
   $("#validation-status").css('color', 'green');
   $("#validation-error").css('display', 'none');
+  // Resize the editor height
+  resetEditorHeight();
 }
 
 function validateFailure(result) {
@@ -15,6 +17,9 @@ function validateFailure(result) {
   $("#validation-status").css('color', 'red');
   $("#validation-error").css('display', 'block');
   $("#validation-message").text(result);
+
+  // Resize the editor based on the height of the validation window
+  resetEditorHeight();
 }
 
 

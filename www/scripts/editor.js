@@ -719,7 +719,7 @@ function start() {
 
   editor.on('beforeChange', fixInsertQuotes);
   editor.on('changes', autovalidator);
-  editor.on('focus', autovalidator);
+/*  editor.on('focus', autovalidator);*/
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', function() {
     // insert element

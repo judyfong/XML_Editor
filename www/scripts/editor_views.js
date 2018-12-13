@@ -230,6 +230,7 @@ function toggleSymbolInserter() {
   
   container = createSymbolInserter(cont_id, symbols);
   document.getElementById('special-symbol-inserter').appendChild(container);
+  resetEditorHeight();
 }
 
 function toggleSpecialcharsInserter() {
@@ -255,6 +256,7 @@ function toggleSpecialcharsInserter() {
   let upper = createSymbolInserter(cont_lower, symbols_lower);
   parent_container.appendChild(upper);
   parent_container.appendChild(lower);
+  resetEditorHeight();
 }
 
 function createSymbolInserter(container_id, symbols) {
@@ -539,6 +541,22 @@ function insertNavbarAnchorAt(element, parent_id, before_id) {
   let before_target = document.getElementById(before_id);
 
   parent_menu.insertBefore(element, before_target);
+}
+
+function resetEditorHeight() {
+  // reset the editor to the default size
+  editor.setSize(null, '75vh');
+  
+  // calculate the size of other elements
+  let other_elements = ['#validation-error', '#symbol-inserter-container' ]
+  let sub_size = 0;
+  for (let i = 0; i < other_elements.length; ++i) {
+    sub_size += $(other_elements[i]).height();
+  }
+  // subtract the value and set the new size
+  let new_size = $('#editor-container').height() - sub_size;
+
+  editor.setSize(null, new_size);
 }
 
 function makeNiceContainersCollapsible() {

@@ -19,7 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 button {
@@ -381,6 +381,7 @@ footer {
 
 .CodeMirror {
   height: 75vh;
+  max-height: 75vh;
 /*  overflow-y: scroll;*/
 }
 
