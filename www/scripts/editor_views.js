@@ -592,6 +592,9 @@ $(document).ready(function() {
   document.getElementById('dec-font').addEventListener('click', decFontSize);
   document.getElementById('def-font').addEventListener('click', function() {changeFontSize('inherit');});
 
+  document.getElementById('insert-comment').addEventListener('click', insertCommentPrompt);
+  document.getElementById('toggle-autovalidate').addEventListener('click', toggleAutovalidate);
+
   makeNiceContainersCollapsible();
 });
 

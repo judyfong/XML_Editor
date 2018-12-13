@@ -175,4 +175,3 @@ function validateInsertionAtCursor(tag_label) {
 
   return result;
 }
-
