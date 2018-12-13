@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="AdalmennTakaSaeti"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <umsýsla lgþ="148" fundur="29" dags="2018-02-26"/>
+  <aðalmennTakaSætiÁNý>
+    <þm skst="GuðmT" embætti=""/>
+    <þm skst="ÞórE" embætti="4vfors."/>
+  </aðalmennTakaSætiÁNý>
+</gerðabók>

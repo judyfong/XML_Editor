@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="UtbytingThingskjala"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <umsýsla lgþ="148" fundur="3" dags="2017-12-15" tími="2017-12-15T20:10:27"/>
+  <útbýting>
+    <skjal nr="10" tegund="frv.">
+      <flm skst="JSV"/>
+      <flm skst="AIJ"/>
+      <flm skst="ÁÓÁ"/>
+      <flm skst="BHar"/>
+      <flm skst="HallM"/>
+      <flm skst="HKF"/>
+      <flm skst="HVH"/>
+      <flm skst="HHG"/>
+      <flm skst="SilG"/>
+      <flm skst="WÞÞ"/>
+      <flm skst="ÞKG"/>
+      <flm skst="ÞorstV"/>
+      <mál nr="10"/>
+      <titill>almenn hegningarlög</titill>
+    </skjal>
+    <skjal nr="12" tegund="frv.">
+      <flm skst="BLG"/>
+      <flm skst="HallM"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="12"/>
+      <titill>ársreikningar og hlutafélög</titill>
+    </skjal>
+    <skjal nr="22" tegund="frv.">
+      <flm skst="SilG"/>
+      <flm skst="WÞÞ"/>
+      <mál nr="22"/>
+      <titill>brottnám líffæra</titill>
+    </skjal>
+    <skjal nr="8" tegund="stjfrv." embætti="dómsmrh.">
+      <flm skst="SÁA" embætti="dómsmrh."/>
+      <mál nr="8"/>
+      <titill>dómstólar o.fl.</titill>
+    </skjal>
+    <skjal nr="27" tegund="stjfrv." embætti="félmrh.">
+      <flm skst="ÁsmD" embætti="félmrh."/>
+      <mál nr="27"/>
+      <titill>félagsþjónusta sveitarfélaga</titill>
+    </skjal>
+    <skjal nr="28" tegund="stjfrv." embætti="félmrh.">
+      <flm skst="ÁsmD" embætti="félmrh."/>
+      <mál nr="28"/>
+      <titill>málefni fatlaðs fólks og aðbúnaður, hollustuhættir og öryggi á vinnustöðum</titill>
+    </skjal>
+    <skjal nr="18" tegund="þáltill.">
+      <flm skst="HallM"/>
+      <flm skst="BLG"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="18"/>
+      <titill>notkun og ræktun lyfjahamps</titill>
+    </skjal>
+    <skjal nr="13" tegund="þáltill.">
+      <flm skst="BLG"/>
+      <flm skst="HallM"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="13"/>
+      <titill>rafræn fasteignaviðskipti og ástandsskýrslur fasteigna</titill>
+    </skjal>
+    <skjal nr="9" tegund="þáltill.">
+      <flm skst="HallM"/>
+      <flm skst="BLG"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="9"/>
+      <titill>skilyrðislaus grunnframfærsla</titill>
+    </skjal>
+    <skjal nr="21" tegund="frv.">
+      <flm skst="ÁslS"/>
+      <flm skst="ÓBK"/>
+      <flm skst="VilÁ"/>
+      <flm skst="PállM"/>
+      <flm skst="NF"/>
+      <flm skst="ÁsF"/>
+      <flm skst="BHar"/>
+      <flm skst="BN"/>
+      <mál nr="21"/>
+      <titill>stimpilgjald</titill>
+    </skjal>
+    <skjal nr="6" tegund="frv.">
+      <flm skst="OH"/>
+      <flm skst="LE"/>
+      <flm skst="GBr"/>
+      <flm skst="HVH"/>
+      <flm skst="ÁÓÁ"/>
+      <flm skst="AFE"/>
+      <flm skst="GuðmT"/>
+      <flm skst="BLG"/>
+      <flm skst="HallM"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="6"/>
+      <titill>stjórn fiskveiða</titill>
+    </skjal>
+    <skjal nr="11" tegund="stjfrv." embætti="samgrh.">
+      <flm skst="SIJ" embætti="samgrh."/>
+      <mál nr="11"/>
+      <titill>tekjustofnar sveitarfélaga</titill>
+    </skjal>
+    <skjal nr="14" tegund="þáltill.">
+      <flm skst="JSV"/>
+      <flm skst="BLG"/>
+      <flm skst="BHar"/>
+      <flm skst="GBr"/>
+      <flm skst="HKF"/>
+      <flm skst="LA"/>
+      <flm skst="LE"/>
+      <flm skst="ÞKG"/>
+      <flm skst="ÞorstV"/>
+      <mál nr="14"/>
+      <titill>trygging gæða, hagkvæmni og skilvirkni opinberra fjárfestinga</titill>
+    </skjal>
+    <skjal nr="7" tegund="stjfrv." embætti="dómsmrh.">
+      <flm skst="SÁA" embætti="dómsmrh."/>
+      <mál nr="7"/>
+      <titill>útlendingar</titill>
+    </skjal>
+    <skjal nr="17" tegund="þáltill.">
+      <flm skst="HallM"/>
+      <flm skst="BLG"/>
+      <flm skst="HHG"/>
+      <flm skst="JÞÓ"/>
+      <flm skst="SMc"/>
+      <flm skst="ÞSÆ"/>
+      <mál nr="17"/>
+      <titill>valfrjáls bókun við alþjóðasamning um efnahagsleg, félagsleg og menningarleg réttindi</titill>
+    </skjal>
+    <skjal nr="26" tegund="stjfrv." embætti="félmrh.">
+      <flm skst="ÁsmD" embætti="félmrh."/>
+      <mál nr="26"/>
+      <titill>þjónusta við fatlað fólk með miklar stuðningsþarfir</titill>
+    </skjal>
+  </útbýting>
+</gerðabók>
