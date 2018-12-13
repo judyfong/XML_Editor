@@ -7,7 +7,7 @@ function restoreLocalSettings() {
     console.log("Could not restore local settings: No storage available.");
     return;
   }
- 
+
   let cw = localStorage.getItem('viewmode');
   let vt = localStorage.getItem('tag_visibility');
   if (cw) {
@@ -150,7 +150,7 @@ function renderTagVisibility() {
     }
     tag_visibility_theme.rel = rel;
   }
-  
+
   // if marks exist on tags, collapse the tags
   let markers = editor.getAllMarks();
 
@@ -215,7 +215,7 @@ function toggleLineNumbers() {
 function toggleSymbolInserter() {
   let cont_id = 'special-symbol-inserter'
   let container = document.getElementById(cont_id);
-  
+
   // if the inserter exists, remove it
   if (container.childElementCount > 0) {
     removeAllChildren(container);
@@ -227,7 +227,7 @@ function toggleSymbolInserter() {
   let symbols = [
     '¡', '¿', '¢', '£', '¤', '¥', '¶', '§', '©', '®', '™', 'ª', '«', '»', '<', '>', '„', '“', '…', '–', '—', 'µ', 'ƒ', '×', '÷', '±', '¹', '²', '³', '¼', '½', '¾', '¦',
   ];
-  
+
   container = createSymbolInserter(cont_id, symbols);
   document.getElementById('special-symbol-inserter').appendChild(container);
   resetEditorHeight();
@@ -236,7 +236,7 @@ function toggleSymbolInserter() {
 function toggleSpecialcharsInserter() {
   let cont_id = 'special-characters-inserter'
   let container = document.getElementById(cont_id);
-  
+
   // if the inserter exists, remove it
   if (container.childElementCount > 0) {
     removeAllChildren(container);
@@ -542,7 +542,7 @@ function insertNavbarAnchorAt(element, parent_id, before_id) {
 function resetEditorHeight() {
   // reset the editor to the default size
   editor.setSize(null, '75vh');
-  
+
   // calculate the size of other elements
   let other_elements = ['#validation-error', '#symbol-inserter-container' ]
   let sub_size = 0;
@@ -556,18 +556,18 @@ function resetEditorHeight() {
 }
 
 function makeNiceContainersCollapsible() {
-	let containers = document.getElementsByClassName("nice-container");
+  let containers = document.getElementsByClassName("nice-container");
 
-	for (let i = 0; i < containers.length; i++) {
+  for (let i = 0; i < containers.length; i++) {
     let heading = containers[i].firstElementChild;
     heading.classList.toggle("collapsible-inactive");
-		heading.addEventListener("click", function() {
-			this.classList.toggle("collapsible-active");
+    heading.addEventListener("click", function() {
+      this.classList.toggle("collapsible-active");
       this.classList.toggle("collapsible-inactive");
-			let content = this.nextElementSibling;
+      let content = this.nextElementSibling;
       toggleDisplay(content.id);
-		});
-	}
+    });
+  }
 }
 
 $(document).ready(function() {
@@ -592,5 +592,8 @@ $(document).ready(function() {
   document.getElementById('toggle-autovalidate').addEventListener('click', toggleAutovalidate);
 
   makeNiceContainersCollapsible();
+  window.onresize = function(evt) {
+    resetEditorHeight();
+  };
 });
 
