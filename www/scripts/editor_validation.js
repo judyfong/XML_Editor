@@ -128,7 +128,6 @@ function validateSchema(tags) {
   }
 
   function handleTagNotFound(tag) {
-    console.log("a tag:", tag);
     let problem_line = Number(tag.line) + 1;
     validateFailure("Óþekkt tag: <" + tag.tag_label + "> í línu " + problem_line);
   }
