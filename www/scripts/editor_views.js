@@ -481,10 +481,6 @@ function markTag(tag, options) {
     }
   }
 
-  if (tag.tag_label.indexOf("brot") != -1) {
-    console.log("assigning tag label", className, "to", tag);
-  }
-
   assignTagLabel(tag.line, tag.start_index, tag.end_index, className, options);
 }
 
