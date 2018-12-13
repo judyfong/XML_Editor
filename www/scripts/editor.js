@@ -782,7 +782,6 @@ $(document).ready(function() {
   document.getElementById('toggle-autovalidate').addEventListener('click', toggleAutovalidate);
 
   document.getElementById('insert-comment').addEventListener('click', insertCommentPrompt);
-
   document.getElementById('load-example-1').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180612T234422.xml');});
   document.getElementById('load-example-2').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180613T003335.xml');});
   document.getElementById('load-example-3').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180718T150651.xml');});
