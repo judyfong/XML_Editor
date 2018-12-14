@@ -155,7 +155,11 @@ CodeMirror.defineMode("xml_tagged", function(editorConf, config_) {
           break;
         }
       }
-      return "in-tag string";
+      var inAttrLabel = 'attr';
+      if (state.tagName) {
+          inAttrLabel += '-' + state.tagName;
+      }
+      return "in-tag string " + inAttrLabel;
     };
     closure.isInAttribute = true;
     return closure;

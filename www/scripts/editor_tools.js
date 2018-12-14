@@ -1,5 +1,5 @@
 // Helpful helper function
-function remove_all_children(node) {
+function removeAllChildren(node) {
   let child = node.firstChild;
   while (child) {
     node.removeChild(child);
@@ -8,16 +8,16 @@ function remove_all_children(node) {
 }
 
 // Simple tag parser for finding tags for marking
-function parse_tags() {
+function parseTags() {
   // tags array for opening tags and closing tags
   let tags = []
   // Just find tags when they start, then parse until you find a matching closer
   // we want to create a tag_object which looks like:
   // { line, start_index, end_index, tag_label, tag_is_open }
 
-  function tag_finder(lineHandle) {
+  function tagFinder(lineHandle) {
 
-    function find_full_tag(text, start_index) {
+    function findFullTag(text, start_index) {
       // start_index points to a '<' and we will stop at the first '>'
       let content = text.substr(start_index);
       let stop_index = content.indexOf('>') + 1;
@@ -33,9 +33,9 @@ function parse_tags() {
 
       if (letter == '<' && content.length > i+1) {
         // We found a tag!
-        let full_tag = find_full_tag(content, i);
+        let full_tag = findFullTag(content, i);
         // what kind of tag is it?
-        let tag_type = extract_tag_name(full_tag);
+        let tag_type = extractTagName(full_tag);
 
         // figure out what to do with it
         let tag_is_open = true;
@@ -56,7 +56,7 @@ function parse_tags() {
     }
   }
 
-  function find_closing_tag(index, opening_tag) {
+  function findClosingTag(index, opening_tag) {
     // 1. N := count of how many tags of the same kind open after index in tags
     //
     // 2. find the Nth tag of that kind that closes
@@ -84,7 +84,7 @@ function parse_tags() {
   }
 
   // populate the tags array
-  editor.eachLine(tag_finder);
+  editor.eachLine(tagFinder);
 
   // array of tag_pair object: { tag_open: tag_object, tag_close: tag_object }
   let tag_pairs = []
@@ -96,7 +96,7 @@ function parse_tags() {
       // in other words, we only want to close 'opening' tags
       continue;
     }
-    let closer = find_closing_tag(i, tag_object);
+    let closer = findClosingTag(i, tag_object);
     if (!closer) {
       //console.log("Couldn't find a closing tag for", tag_object.tag_label, "on line", tag_object.line);
     }
@@ -108,7 +108,7 @@ function parse_tags() {
   return tag_pairs
 }
 
-function insert_element_at_cursor(element, movement=undefined, newline=false) {
+function insertElementAtCursor(element, movement=undefined, newline=false) {
   let to;
   let selection = ''
   if (editor.somethingSelected()) {
@@ -127,7 +127,7 @@ function insert_element_at_cursor(element, movement=undefined, newline=false) {
   let content_before = editor.getValue();
   editor.replaceRange(element, cursor_loc, to);
 
-  if (validateXML_W3(editor.getValue()) != "OK") {
+  if (validateXMLW3(editor.getValue()) != "OK") {
     console.log("Inserting element", element, "at position", cursor_loc, "produces invalid XML.");
     alert("Villa! Tag er ekki leyfilegt á tilsettum stað.");
     editor.setValue(content_before);
@@ -146,7 +146,7 @@ function insert_element_at_cursor(element, movement=undefined, newline=false) {
   editor.focus();
 }
 
-function get_speech_id_from_content(content) {
+function getSpeechIdFromContent(content) {
   // Since we know the legal XML layout, we can use this silly hack:
   // We want to find the first instance of "id=r" and start parsing from there to the closing quote
   let start_index = content.indexOf("id=\"r") + 5;
@@ -175,15 +175,15 @@ function get_speech_id_from_content(content) {
   return speech_identifier;
 }
 
-function get_display(container) {
+function getDisplay(container) {
   style = window.getComputedStyle(container);
   display = style.getPropertyValue('display');
   return display
 }
 
-function toggle_display(id) {
+function toggleDisplay(id) {
   container = document.getElementById(id);
-  display = get_display(container);
+  display = getDisplay(container);
   if (display == 'none') {
     container.style.display = 'block';
   } else {
@@ -191,3 +191,45 @@ function toggle_display(id) {
   }
 }
 
+// Throttling and Debouncing, taken from:
+// https://codeburst.io/throttling-and-debouncing-in-javascript-b01cad5c8edf 
+/**
+	* debounce function
+	* use inDebounce to maintain internal reference of timeout to clear
+	*/
+const debounce = (func, delay) => {
+  let inDebounce
+  return function() {
+    const context = this
+    const args = arguments
+    clearTimeout(inDebounce)
+    inDebounce = setTimeout(() =>
+      func.apply(context, args)
+      , delay)
+  }
+}
+
+/**
+  * throttle function that catches and triggers last invocation
+  * use time to see if there is a last invocation
+  */
+const throttle = (func, limit) => {
+  let lastFunc
+  let lastRan
+  return function() {
+    const context = this
+    const args = arguments
+    if (!lastRan) {
+      func.apply(context, args)
+      lastRan = Date.now()
+    } else {
+      clearTimeout(lastFunc)
+      lastFunc = setTimeout(function() {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args)
+          lastRan = Date.now()
+        }
+      }, limit - (Date.now() - lastRan))
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.cm-feitletrað {
+  font-weight: bolder;
+}
+
+.cm-skáletrað {
+  font-style: italic;
+}
+
+.cm-undirstrikað {
+  text-decoration: underline;
+}
+
+.cm-uppskrift {
+  position: relative;
+  top: -0.5em;
+  font-size: 80%;
+}
+
+.cm-niðurskrift {
+  position: relative;
+  top: +0.5em;
+  font-size: 80%;
+}

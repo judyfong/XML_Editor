@@ -1,9 +1,9 @@
 var _sound_seek_seconds = 0.5;
 
-function sound_play_pause() {
-  let player = document.getElementById("audio_player");
+function soundPlayPause() {
+  let player = document.getElementById("audio-player");
   if (!player) {
-    initialize_sound_player();
+    initializeSoundPlayer();
     return;
   }
   if (player.paused) {
@@ -13,15 +13,15 @@ function sound_play_pause() {
   }
 }
 
-function sound_seek_relative(seconds) {
-  let player = document.getElementById("audio_player");
+function soundSeekRelative(seconds) {
+  let player = document.getElementById("audio-player");
   player.currentTime += seconds;
 }
 
 var speech_start_date;
 var speech_bufsz;
 function updateRealTimer(evt) {
-  audio_player = document.getElementById('audio_player');
+  audio_player = document.getElementById('audio-player');
   let play_time = audio_player.currentTime - speech_bufsz;
   let seconds = speech_start_date.getSeconds() + play_time;
   current_time = new Date(speech_start_date);
@@ -29,13 +29,13 @@ function updateRealTimer(evt) {
   document.getElementById('sound-player-real-timer').innerHTML = current_time.toLocaleString('is');
 }
 
-function initialize_sound_player(evt, bufsz='TRUE') {
-  let start_timestamp = get_timestamp_from_content(editor.getValue());
+function initializeSoundPlayer(evt, bufsz='TRUE') {
+  let start_timestamp = getTimestampFromContent(editor.getValue());
 
   let src_url = "https://butar.althingi.is/raedur/?start=" + start_timestamp + "&buffer=" + bufsz;
 
   let parent_container = document.getElementById("sound-player-container");
-  remove_all_children(parent_container);
+  removeAllChildren(parent_container);
 
   let audio_player = document.createElement("audio");
   let audio_src = document.createElement("source");
@@ -45,7 +45,7 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   attr = document.createAttribute("autoplay");
   audio_player.setAttributeNode(attr);
   audio_player.setAttribute("type", "audio/mpeg");
-  audio_player.setAttribute("id", "audio_player");
+  audio_player.setAttribute("id", "audio-player");
   let startTime = parseInt(bufsz, 10);
   if (isNaN(startTime)) {
     startTime = 60;
@@ -59,8 +59,8 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   document.getElementById("sound-player-container").style.display = "block";
   // make the icon act as a play/pause button now
   let sound_player = document.getElementById('sound-player-icon');
-  sound_player.removeEventListener('click', initialize_sound_player);
-  sound_player.addEventListener('click', sound_play_pause);
+  sound_player.removeEventListener('click', initializeSoundPlayer);
+  sound_player.addEventListener('click', soundPlayPause);
 
   // display a little realtime clock
   let real_timer = document.createElement("div");
@@ -69,7 +69,7 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   parent_container.appendChild(real_timer);
 
   // bookmarks bar
-  let add_bookmark = document.getElementById("add_bookmark");
+  let add_bookmark = document.getElementById("add-bookmark");
 
   add_bookmark.addEventListener("click", function() {
     let link_node = document.createElement("a");
@@ -83,11 +83,11 @@ function initialize_sound_player(evt, bufsz='TRUE') {
     link_node.appendChild(text);
     link_node.setAttribute('href', '#');
     link_node.addEventListener("click", function(evt) {
-      let player = document.getElementById("audio_player");
+      let player = document.getElementById("audio-player");
       player.currentTime = time;
     });
 
-    parent_menu = document.getElementById("audio_player_menu");
+    parent_menu = document.getElementById("audio-player-menu");
     parent_menu.appendChild(link_node);
   });
   
@@ -95,7 +95,7 @@ function initialize_sound_player(evt, bufsz='TRUE') {
   speech_start_date = new Date(start_timestamp);
 }
 
-function get_timestamp_from_content(content) {
+function getTimestampFromContent(content) {
   let start_search_index = content.indexOf("<umsýsla") + 7;
 
   let start_index = content.indexOf("tími", start_search_index) + 6;
@@ -103,8 +103,8 @@ function get_timestamp_from_content(content) {
   return content.substring(start_index, end_index);
 }
 
-function set_audio_seek_size() {
-  let new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:"));
+function setAudioSeekSize() {
+  let new_seek_size = Number(prompt("Sekúndur til að spóla fram eða aftur í hverju þrepi:", _sound_seek_seconds));
   if (isNaN(new_seek_size)) {
     alert("Inntak þarf að vera tala!");
     return;
@@ -117,8 +117,8 @@ function set_audio_seek_size() {
   }
 }
 
-function set_audio_rate() {
-  let audio_player = document.getElementById("audio_player");
+function setAudioRate() {
+  let audio_player = document.getElementById("audio-player");
   if (!audio_player) {
     alert("Spilari hefur ekki verið virkjaður!");
     return;
@@ -143,28 +143,28 @@ function set_audio_rate() {
 $(document).ready( function () {
   // Main player icon
   let sound_player = document.getElementById('sound-player-icon');
-  sound_player.addEventListener('click', initialize_sound_player);
+  sound_player.addEventListener('click', initializeSoundPlayer);
   sound_player.innerHTML = '🔊';
 
   // Menu item, same function as main player icon
-  let initializer_menu_item = document.getElementById("initialize_sound_player");
-  initializer_menu_item.addEventListener('click', initialize_sound_player);
+  let initializer_menu_item = document.getElementById("initialize-sound-player");
+  initializer_menu_item.addEventListener('click', initializeSoundPlayer);
 
-  let custom_initializer_menu_item = document.getElementById("sound_player_custom_buffer");
+  let custom_initializer_menu_item = document.getElementById("sound-player-custom-buffer");
   custom_initializer_menu_item.addEventListener('click', function(evt) {
     let bufsz = prompt("Aukastærð hljóðbúts:", 60);
     if (bufsz) {
-      initialize_sound_player(evt, bufsz);
+      initializeSoundPlayer(evt, bufsz);
     }
   });
 
   // set seek size
-  let seek_size_setter = document.getElementById("set_audio_seek_size");
-  seek_size_setter.addEventListener('click', set_audio_seek_size);
+  let seek_size_setter = document.getElementById("set-audio-seek-size");
+  seek_size_setter.addEventListener('click', setAudioSeekSize);
 
   // set playback rate
-  let playback_rate_setter = document.getElementById("set_audio_rate");
-  playback_rate_setter.addEventListener('click', set_audio_rate);
+  let playback_rate_setter = document.getElementById("set-audio-rate");
+  playback_rate_setter.addEventListener('click', setAudioRate);
 
   // Restore local settings
   if (storageAvailable('localStorage')) {

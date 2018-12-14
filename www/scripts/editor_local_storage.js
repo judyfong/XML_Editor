@@ -36,7 +36,7 @@ function getAvailableFiles() {
 }
 
 function saveEditorContentAuto() {
-  let speech_id = get_speech_id_from_content(editor.getValue())
+  let speech_id = getSpeechIdFromContent(editor.getValue())
   if (!speech_id) {
     /* don't autosave documents that don't have a name yet */
     /* speech_id = 'unknown_' + new Date().toISOString();  */
@@ -84,7 +84,7 @@ function saveEditorContentAs(identifier, overwrite=false) {
   localStorage.setItem("saved_files", saved_files);
 
   if (!exists) {
-    initialize_local_storage()
+    initializeLocalStorage()
   }
 }
 
@@ -111,7 +111,7 @@ function removeSavedContent(identifier) {
 
   localStorage.setItem("saved_files", saved_files_string);
   localStorage.removeItem(identifier);
-  initialize_local_storage();
+  initializeLocalStorage();
 }
 
 function loadSavedContent(identifier) {
@@ -127,10 +127,10 @@ function loadSavedContent(identifier) {
     }
   }
 
-  set_editor_content(content);
+  setEditorContent(content);
 }
 
-function initialize_local_storage() {
+function initializeLocalStorage() {
   if (!storageAvailable('localStorage')) {
     console.log("Local storage is not available!");
   }
@@ -145,15 +145,15 @@ function initialize_local_storage() {
     _autosave_documents = false;
   }
 
-  let parent_menu = document.getElementById('local_storage_menu');
-  remove_all_children(parent_menu);
+  let parent_menu = document.getElementById('local-storage-menu');
+  removeAllChildren(parent_menu);
 
   // add the file saver
   let link_node = document.createElement("a");
   link_node.appendChild(document.createTextNode('Vista skjal...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    let speech_id = get_speech_id_from_content(editor.getValue())
+    let speech_id = getSpeechIdFromContent(editor.getValue())
     let identifier = prompt("Vista sem...", speech_id);
     if (identifier) {
       saveEditorContentAs(identifier);
@@ -172,7 +172,7 @@ function initialize_local_storage() {
   link_node.addEventListener('click', function() {
     _autosave_documents = !_autosave_documents;
     localStorage.setItem("autosave", _autosave_documents);
-    initialize_local_storage();
+    initializeLocalStorage();
   });
   parent_menu.appendChild(link_node);
 
@@ -209,7 +209,7 @@ function initialize_local_storage() {
   link_node.appendChild(document.createTextNode('Eyða vistun...'));
   link_node.setAttribute('href', '#');
   link_node.addEventListener('click', function() {
-    let speech_id = get_speech_id_from_content(editor.getValue())
+    let speech_id = getSpeechIdFromContent(editor.getValue())
     let auto_identifier = ''
     let avails = getAvailableFiles();
     for (let i = 0; i < avails.length; ++i) {
