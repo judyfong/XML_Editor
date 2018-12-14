@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="is">
   <head>
-
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
@@ -14,9 +13,9 @@
 
     <link rel="stylesheet" href="resources/sheets/theme.css">
 
-    <link id='view-normal-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_normal.css">
-    <link id='view-assisted-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_assisted.css">
-    <link id='view-hide-tags-stylesheet' class='view-stylesheet' rel="stylesheet alternate" href="resources/sheets/view_hide_tags.css">
+    <link id="view-normal-stylesheet" class="view-stylesheet" rel="stylesheet alternate" href="resources/sheets/view_normal.css">
+    <link id="view-assisted-stylesheet" class="view-stylesheet" rel="stylesheet alternate" href="resources/sheets/view_assisted.css">
+    <link id="view-hide-tags-stylesheet" class="view-stylesheet" rel="stylesheet alternate" href="resources/sheets/view_hide_tags.css">
 
     <!-- Codemirror & addons -->
     <script src="codemirror/lib/codemirror.js"></script>
@@ -64,42 +63,41 @@
 
     <!-- Documentum integration -->
     <script src="scripts/editor_dctm.js"></script>
-
   </head>
   <body onload="start()">
     <div id="main-container">
       <div id="top-link-bar">
-        <nav id='dawgdrops'>
+        <nav id="dawgdrops">
           <ul class="nav-menu">
-            <li class='nav-item'>
-              <a href='javascript:void(0)'>Virkni</a>
-              <div class='sub-nav' id='function-menu'>
-                <a href='#' id='insert-comment'>Bæta við athugasemd</a>
-                <div class='separator'></div>
-                <a id='toggle-autovalidate' href='#'>Slökkva/Kveikja á tæknilegri villuleitun</a>
-                <div class='separator'></div>
-                <a id='open-key-settings' href='#'>Takkastillingar...</a>
+            <li class="nav-item">
+              <a href="javascript:void(0)">Virkni</a>
+              <div class="sub-nav" id="function-menu">
+                <a href="#" id="insert-comment">Bæta við athugasemd</a>
+                <div class="separator"></div>
+                <a id="toggle-autovalidate" href="#">Slökkva/Kveikja á tæknilegri villuleitun</a>
+                <div class="separator"></div>
+                <a id="open-key-settings" href="#">Takkastillingar...</a>
               </div>
             </li>
-            <li class='nav-item'>
-              <a href='javascript:void(0)'>Útlit</a>
-              <div class='sub-nav'>
-                <a href="#" id='view-normal-mode'>Áberandi sýn</a>
-                <a href="#" id='view-assisted-mode'>Einföld sýn</a>
-                <a href="#" id='view-raw-mode'>&#9888; XML sýn &#9888;</a>
-                <div class='separator'></div>
-                <a href="#" id='hide-side-left'>Sýna/Fela vinstri hlið</a>
-                <a href="#" id='hide-side-right'>Sýna/Fela hægri hlið</a>
-                <div class='separator'></div>
-                <a id='toggle-symbol-inserter' href='#'>Sýna/Fela táknastiku</a>
-                <a id='toggle-specialchars-inserter' href='#'>Sýna/Fela stiku með sérstöfum</a>
-                <div class='separator'></div>
-                <a id='toggle-tags' href='#'>Sýna/Fela tög</a>
-                <a id='toggle-line-numbers' href='#'>Sýna/Fela línunúmer</a>
-                <div class='separator'></div>
-                <a id='inc-font' href='#'>Stækka leturstærð</a>
-                <a id='dec-font' href='#'>Minnka leturstærð</a>
-                <a id='def-font' href='#'>Endurstilla leturstærð</a>
+            <li class="nav-item">
+              <a href="javascript:void(0)">Útlit</a>
+              <div class="sub-nav">
+                <a href="#" id="view-normal-mode">Áberandi sýn</a>
+                <a href="#" id="view-assisted-mode">Einföld sýn</a>
+                <a href="#" id="view-raw-mode">&#9888; XML sýn &#9888;</a>
+                <div class="separator"></div>
+                <a href="#" id="hide-side-left">Sýna/Fela vinstri hlið</a>
+                <a href="#" id="hide-side-right">Sýna/Fela hægri hlið</a>
+                <div class="separator"></div>
+                <a id="toggle-symbol-inserter" href="#">Sýna/Fela táknastiku</a>
+                <a id="toggle-specialchars-inserter" href="#">Sýna/Fela stiku með sérstöfum</a>
+                <div class="separator"></div>
+                <a id="toggle-tags" href="#">Sýna/Fela tög</a>
+                <a id="toggle-line-numbers" href="#">Sýna/Fela línunúmer</a>
+                <div class="separator"></div>
+                <a id="inc-font" href="#">Stækka leturstærð</a>
+                <a id="dec-font" href="#">Minnka leturstærð</a>
+                <a id="def-font" href="#">Endurstilla leturstærð</a>
               </div>
             </li>
             <li class='nav-item'>
@@ -118,38 +116,38 @@
                 <a id='load-example-lid20181009T230112' href="#">Liðaskjal með atkvæðagreiðslu (Nýtt)</a>
               </div>
             </li>
-            <li class='nav-item'>
-              <a href='javascript:void(0)'>Hljóðspilun</a>
-              <div class='sub-nav' id='audio-player-menu'>
-                <a id='initialize-sound-player' href='#'>Virkja spilara</a>
-                <a id='sound-player-custom-buffer' href='#'>Sækja hljóðbút...</a>
-                <div class='separator'></div>
-                <a id='set-audio-seek-size' href='#'>Stilla skrefastærð</a>
-                <a id='set-audio-rate' href='#'>Stilla spilunarhraða</a>
-                <div class='separator'></div>
-                <a id='add-bookmark' href='#'>Bæta við bókamerki</a>
+            <li class="nav-item">
+              <a href="javascript:void(0)">Hljóðspilun</a>
+              <div class="sub-nav" id="audio-player-menu">
+                <a id="initialize-sound-player" href="#">Virkja spilara</a>
+                <a id="sound-player-custom-buffer" href="#">Sækja hljóðbút...</a>
+                <div class="separator"></div>
+                <a id="set-audio-seek-size" href="#">Stilla skrefastærð</a>
+                <a id="set-audio-rate" href="#">Stilla spilunarhraða</a>
+                <div class="separator"></div>
+                <a id="add-bookmark" href="#">Bæta við bókamerki</a>
               </div>
             </li>
-            <li class='nav-item'>
-              <a href='javascript:void(0)'>Vafrageymsla</a>
-              <div class='dropdown-content' id='local-storage-menu'>
+            <li class="nav-item">
+              <a href="javascript:void(0)">Vafrageymsla</a>
+              <div class="dropdown-content" id="local-storage-menu">
               </div>
             </li>
-            <li class='nav-item'>
-              <a href='javascript:void(0)'>Documentum</a>
-              <div class='dropdown-content' id='documentum-menu'>
-                <a href='#' id='dctm-check-out'>Check out...</a>
-                <a href='#' id='dctm-check-in'>Check in</a>
+            <li class="nav-item">
+              <a href="javascript:void(0)">Documentum</a>
+              <div class="dropdown-content" id="documentum-menu">
+                <a href="#" id="dctm-check-out">Check out...</a>
+                <a href="#" id="dctm-check-in">Check in</a>
               </div>
             </li>
           </ul>
         </nav>
       </div>
-      <div class='flex-container'>
-        <div id='content-container'>
-          <div id='symbol-inserter-container'>
-            <div id='special-symbol-inserter'></div>
-            <div id='special-characters-inserter'></div>
+      <div class="flex-container">
+        <div id="content-container">
+          <div id="symbol-inserter-container">
+            <div id="special-symbol-inserter"></div>
+            <div id="special-characters-inserter"></div>
           </div>
           <div id="editor-main">
             <div id="extra-info-container" class="flex-container">
@@ -175,29 +173,29 @@
             </div>
           </div>
         </div>
-        <div id='side-container-left' class="sticky">
-          <div id='editor-mode'>
+        <div id="side-container-left" class="sticky">
+          <div id="editor-mode">
           </div>
-          <div id="validation-status" style='border: 1px maroon solid;'>
+          <div id="validation-status" style="border: 1px maroon solid;">
             Validation Status Unknown...
           </div>
           <div id="tree-explorer-container" class="nice-container">
-            <h4><a href='javascript:void(0)'>Yfirlitssamantekt</a></h4>
+            <h4><a href="javascript:void(0)">Yfirlitssamantekt</a></h4>
             <ul id="tree-explorer-links" class="links">
               <li> Virkja þarf skjal til að sjá yfirlitssamantekt</li>
             </ul>
           </div>
         </div>
-        <div id='side-container-right' class="sticky">
+        <div id="side-container-right" class="sticky">
           <div id="insert-element-container" class="nice-container">
-            <h4 class='collapsible'><a href='javascript:void(0)'>Tög</a></h4>
+            <h4 class="collapsible"><a href="javascript:void(0)">Tög</a></h4>
             <ul id="insert-element-links" class="links">
               <li> Smellið í ritilinn til að virkja</li>
             </ul>
           </div>
           <div id="attribute-inspector-container" class="nice-container">
-            <h4 class='collapsible'><a href='javascript:void(0)'>Eigindi</a></h4>
-            <div id='attribute-inspector-div'>
+            <h4 class="collapsible"><a href="javascript:void(0)">Eigindi</a></h4>
+            <div id="attribute-inspector-div">
               <p> Smellið inn í tag til að sjá eigindi. </p>
             </div>
           </div>
