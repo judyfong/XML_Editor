@@ -175,6 +175,31 @@ function getSpeechIdFromContent(content) {
   return speech_identifier;
 }
 
+function getTextAtTagLocation(tag) {
+  let pos = { line: tag.line, ch: tag.start_index };
+  let word = editor.findWordAt(pos);
+  let line = editor.getLine(word.anchor.line);
+
+  let word_left  = line.substring(0, word.anchor.ch);
+  let word_right = line.substring(word.head.ch);
+
+  let start = tag.end_index;
+  let end = start + 24;
+  if (line.length < end) {
+    end = line.length;
+  }
+
+  let phrase = line.substring(start, end);
+
+  if (phrase) {
+    phrase += '...';
+  } else {
+    phrase = editor.getLine(tag.line + 1).substring(0, 24) + "..."
+  }
+
+  return phrase;
+}
+
 function getDisplay(container) {
   style = window.getComputedStyle(container);
   display = style.getPropertyValue('display');

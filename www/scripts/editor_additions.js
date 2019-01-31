@@ -122,31 +122,6 @@ function populateInsertElementContainer(data) {
 }
 
 function populateTreeExplorer() {
-  function getTextAtTagLocation(tag) {
-    let pos = { line: tag.line, ch: tag.start_index };
-    let word = editor.findWordAt(pos);
-    let line = editor.getLine(word.anchor.line);
-
-    let word_left  = line.substring(0, word.anchor.ch);
-    let word_right = line.substring(word.head.ch);
-
-    let start = tag.end_index;
-    let end = start + 24;
-    if (line.length < end) {
-      end = line.length;
-    }
-
-    let phrase = line.substring(start, end);
-
-    if (phrase) {
-      phrase += '...';
-    } else {
-      phrase = editor.getLine(tag.line + 1).substring(0, 24) + "..."
-    }
-
-    return phrase;
-  }
-
   function addTagToTree(tag) {
     let list_element = document.createElement("li");
     let link_element = document.createElement("a");
@@ -373,7 +348,7 @@ function populateAttributeInspector() {
     mutate_col_element.appendChild(mutate_col_textbox);
     row_element.appendChild(mutate_col_element);
 
-    // TODO HERE: listen for changes in the textbox, and reflect in CodeMirror
+    // listen for changes in the textbox, and reflect in CodeMirror
     mutate_col_textbox.addEventListener('change', function() { 
       callback(attribute, this.value); 
       _last_view = 'changed';
@@ -460,8 +435,8 @@ function insertCommentPrompt() {
   // comments may not have double hyphens, so replace any instances of double hyphens with a hyphen, space, hyphen
   let re = new RegExp('--', 'g');
   let comment_element = comment_content.replace(re, '- -');
+  // do it twice just in case of triplets
   comment_element = comment_element.replace(re, '- -');
-  // do it again just in case of triplets
   comment_element = '<!-- ' + comment_element + ' -->';
 
   insertElementAtCursor(comment_element);
@@ -768,14 +743,16 @@ function handleEnterPressed(instance) {
 var limitedElementInserter = debounce(function(instance) {
     instance.populateElementInserter({completeSingle: false})}, 200),
   limitedTreeExplorerPopulator = throttle(populateTreeExplorer, 500),
-  limitedAttributeInspectorPopulator = debounce(populateAttributeInspector, 200);
+  limitedAttributeInspectorPopulator = debounce(populateAttributeInspector, 200),
+  limitedCorrectionSuggestor = debounce(populateCorrections, 200);
 
 function handleCursorActivity(instance) {
-
   // insert element
   limitedElementInserter(instance);
   // tree explorer
   limitedTreeExplorerPopulator();
   // attribute explorer
   limitedAttributeInspectorPopulator();
+  // suggested automatic corrections based on ASR
+  limitedCorrectionSuggestor();
 }

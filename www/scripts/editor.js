@@ -86,7 +86,7 @@ function start() {
   setEditorOptions(editor);
 
   editor.on('beforeChange', fixInsertQuotes);
-  editor.on('changes', autovalidator);
+  editor.on('changes', handleChanges);
 /*  editor.on('focus', autovalidator);*/
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', handleCursorActivity);
@@ -134,4 +134,16 @@ function editorInitializers() {
 function setEditorContent(content) {
   editor.setValue(content);
   editorInitializers();
+}
+
+function handleChanges(instance, changes) {
+  // check if there were any changes that match with correction lattices
+
+  // TODO
+  // NOTE: We would have to check for replacements of an entire word with (probably) the first character of a candidate lattice, as generally the user types a single character.
+  // Alternatively, we can offer a GUI component where each possible change position can be entered to select a new word from a list of candidates, but then we don't have the opportunity to replace entire words.
+  // Eventually the server side will find the differences so the front end does not need to "know" what the full replacement was anyway, if it didn't exist in the candidate list.
+
+  // finally, validate
+  autovalidator();
 }

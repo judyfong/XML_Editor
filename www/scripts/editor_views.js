@@ -64,7 +64,6 @@ function applyViewMode(force=false) {
     return;
   }
 
-  // hide the debug container
   editor.setOption("firstLineNumber", 1);
 
   let view_name = 'XML';
@@ -500,7 +499,6 @@ function applyNormalMode() {
     markTag(tag_open,  { stopLeft:  true , className: "" } );
     markTag(tag_close, { stopRight: true , className: "" } );
   }
-  // editor.setOption("lineNumbers", false);
 }
 
 function applyAssistedMode() {
@@ -516,7 +514,6 @@ function applyAssistedMode() {
       markTag(tag_close, { assisted: true, stopRight: true });
     }
   }
-  //editor.setOption("lineNumbers", true);
 }
 
 function removeTagLabels() {

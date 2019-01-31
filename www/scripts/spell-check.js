@@ -144,7 +144,7 @@ function getSuggestionBox(typo) {
 				cm.setOption('maxHighlightLength', (--cm.options.maxHighlightLength) + 1); // ugly hack to rerun overlays
       } else if (correction == '##addword##') {
         // TODO HERE: Do something to add to the dictionary on Althingi's web
-        let msg = "Ekki var hægt að bæta við orðinu ,," + sbox.token + "'' við orðabókina."
+        let msg = "Ekki var hægt að bæta við orðinu ,," + sbox.token + "'' við orðabókina. Virkni vantar.";
         alert(msg);
 			} else {
 				cm.replaceRange(correction, { line: sbox.cmpos.line, ch: sbox.cmpos.start}, { line: sbox.cmpos.line, ch: sbox.cmpos.end});
