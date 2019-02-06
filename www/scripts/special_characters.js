@@ -29,8 +29,8 @@ function createSpecialCharacterInserter(parent_name) {
   let cont_upper = 'special-characters-inserter-uppercase';
   let cont_lower = 'special-characters-inserter-lowercase';
 
-  let symbols_upper = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÚÛÜÙÝß".split("");
-  let symbols_lower = "àáâãäåæçèéêëìíîïðñòóôõöøúûüùýÿ".split("");
+  let symbols_upper = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÚÛÜÙÝßÞ".split("");
+  let symbols_lower = "àáâãäåæçèéêëìíîïðñòóôõöøúûüùýÿþ".split("");
 
   let parent_container = document.getElementById(parent_name);
   let lower = createSymbolInserter(cont_upper, symbols_upper);
