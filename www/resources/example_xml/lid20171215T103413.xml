@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="Lidaskjal"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<umsýsla lgþ="148" fundur="3">
+<mál nr="1" málsflokkur="A" málstegund="l" umr="1">
+<málsheiti>fjárlög 2018</málsheiti>
+<flm skst="BjarnB" embætti="fjmrh."/>
+<þskj tegund="stjfrv." nr="1"/> </mál>
+</umsýsla>
+<liðaskjal atkvæðagreiðsla="false" tími="2017-12-15T10:34:13">
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T10:34:22" tegr="F" tegflm="R"/>
+<þingræða skst="SDG" tími="2017-12-15T10:50:19" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T10:52:39" tegr="A" tegflm="R"/>
+<þingræða skst="SDG" tími="2017-12-15T10:55:10" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T10:57:16" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T10:59:22" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:01:43" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:03:32" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:05:23" tegr="A" tegflm="R"/>
+<þingræða skst="ÞorstV" tími="2017-12-15T11:07:30" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:09:31" tegr="A" tegflm="R"/>
+<þingræða skst="ÞorstV" tími="2017-12-15T11:12:04" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:14:09" tegr="A" tegflm="R"/>
+<þingræða skst="BLG" tími="2017-12-15T11:16:29" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:18:38" tegr="A" tegflm="R"/>
+<þingræða skst="BLG" tími="2017-12-15T11:21:02" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjarnB" embætti="fjmrh." tími="2017-12-15T11:23:21" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:26:10" tegr="R" tegflm="Þ"/>
+<þingræða skst="KJak" embætti="forsrh." tími="2017-12-15T11:36:38" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:39:17" tegr="A" tegflm="Þ"/>
+<þingræða skst="KJak" embætti="forsrh." tími="2017-12-15T11:41:32" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:43:54" tegr="A" tegflm="Þ"/>
+<þingræða skst="SSv" embætti="heilbrrh." tími="2017-12-15T11:46:10" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:48:38" tegr="A" tegflm="Þ"/>
+<þingræða skst="SSv" embætti="heilbrrh." tími="2017-12-15T11:50:35" tegr="A" tegflm="R"/>
+<þingræða skst="ÁÓÁ" tími="2017-12-15T11:52:50" tegr="A" tegflm="Þ"/>
+<þingræða skst="BirgÞ" tími="2017-12-15T11:55:06" tegr="R" tegflm="Þ"/>
+<þingræða skst="BLG" tími="2017-12-15T12:03:44" tegr="R" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:13:01" tegr="R" tegflm="Þ"/>
+<þingræða skst="BLG" tími="2017-12-15T12:23:23" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:25:37" tegr="A" tegflm="Þ"/>
+<þingræða skst="BLG" tími="2017-12-15T12:27:27" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:28:13" tegr="A" tegflm="Þ"/>
+<þingræða skst="OH" tími="2017-12-15T12:29:39" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:32:07" tegr="A" tegflm="Þ"/>
+<þingræða skst="OH" tími="2017-12-15T12:34:39" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:36:13" tegr="A" tegflm="Þ"/>
+<þingræða skst="ÞKG" tími="2017-12-15T12:37:43" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:39:58" tegr="A" tegflm="Þ"/>
+<þingræða skst="ÞKG" tími="2017-12-15T12:42:18" tegr="A" tegflm="Þ"/>
+<þingræða skst="BjG" tími="2017-12-15T12:43:41" tegr="A" tegflm="Þ"/>
+<þingræða skst="WÞÞ" tími="2017-12-15T12:45:25" tegr="R" tegflm="Þ"/>
+<þingræða skst="BLG" tími="2017-12-15T12:52:46" tegr="A" tegflm="Þ"/>
+<þingræða skst="WÞÞ" tími="2017-12-15T12:55:04" tegr="A" tegflm="Þ"/>
+<þingræða skst="BLG" tími="2017-12-15T12:57:13" tegr="A" tegflm="Þ"/>
+<þingræða skst="WÞÞ" tími="2017-12-15T12:59:40" tegr="A" tegflm="Þ"/>
+<þingræða skst="ÞKG" tími="2017-12-15T13:01:34" tegr="A" tegflm="Þ"/>
+<þingræða skst="WÞÞ" tími="2017-12-15T13:03:46" tegr="A" tegflm="Þ"/>
+<þingræða skst="ÞKG" tími="2017-12-15T13:06:05" tegr="A" tegflm="Þ"/>
+<þingræða skst="WÞÞ" tími="2017-12-15T13:08:26" tegr="A" tegflm="Þ"/>
+</liðaskjal>
+<!-- gerð skjals tók: 0.050536870956421 --></gerðabók>

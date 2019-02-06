@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="Lidaskjal"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<umsýsla lgþ="149" fundur="15">
+<mál nr="189" málsflokkur="A" málstegund="l" umr="2f">
+<málsheiti>fiskeldi</málsheiti><undirtitill>rekstrarleyfi til bráðabirgða</undirtitill>
+<flm skst="KÞJ" embætti="sjútv.- og landbrh."/>
+<þskj tegund="stjfrv." nr="194"/><þskj tegund="nál." nr="216"/>
+<þskj tegund="breytingartillaga" nr="217"/>
+<þskj tegund="breytingartillaga" nr="218"/>
+ </mál>
+</umsýsla>
+<liðaskjal atkvæðagreiðsla="true" tími="2018-10-09T23:01:12">
+<atkvæðagreiðsla nr="56059" þskj="217" tegskjals="breytingartillaga" tími="2018-10-09T23:02:03" birtaatkvæði="nei" aðferð="S"><um tegatkvgr="bt">
+<mgr>,1</mgr>
+</um>
+<niðurstaða já="51" nei="0" fjarverandi="12" greiðaekkiatkvæði="0" samfel="S" samhljóða="já"/><!-- gerð SQL-atkvæðagreiðslu tók:  0.0060851573944092 --><atkv skst="AFE" gildi="já"/>
+<atkv skst="AIJ" gildi="já"/>
+<atkv skst="AKÁ" gildi="fjarverandi"/>
+<atkv skst="ATG" gildi="já"/>
+<atkv skst="ÁÓÁ" gildi="já"/>
+<atkv skst="ÁslS" gildi="já"/>
+<atkv skst="ÁsmD" gildi="fjarverandi"/>
+<atkv skst="ÁsF" gildi="já"/>
+<atkv skst="BÁ" gildi="já"/>
+<atkv skst="BirgÞ" gildi="já"/>
+<atkv skst="BjG" gildi="já"/>
+<atkv skst="BjarnB" gildi="fjarverandi"/>
+<atkv skst="BLG" gildi="já"/>
+<atkv skst="BHar" gildi="já"/>
+<atkv skst="BN" gildi="já"/>
+<atkv skst="GBr" gildi="já"/>
+<atkv skst="GÞÞ" gildi="fjarverandi"/>
+<atkv skst="GIK" gildi="fjarverandi"/>
+<atkv skst="GuðmT" gildi="fjarverandi"/>
+<atkv skst="HSK" gildi="já"/>
+<atkv skst="HallM" gildi="já"/>
+<atkv skst="HKF" gildi="já"/>
+<atkv skst="HVH" gildi="já"/>
+<atkv skst="HHG" gildi="já"/>
+<atkv skst="IngS" gildi="já"/>
+<atkv skst="JFF" gildi="já"/>
+<atkv skst="JónG" gildi="já"/>
+<atkv skst="JÞÓ" gildi="fjarverandi"/>
+<atkv skst="JSV" gildi="fjarverandi"/>
+<atkv skst="JÞÞ" gildi="já"/>
+<atkv skst="KGH" gildi="já"/>
+<atkv skst="KJak" gildi="já"/>
+<atkv skst="KÓP" gildi="fjarverandi"/>
+<atkv skst="KÞJ" gildi="já"/>
+<atkv skst="LA" gildi="já"/>
+<atkv skst="LRM" gildi="já"/>
+<atkv skst="LínS" gildi="já"/>
+<atkv skst="LE" gildi="já"/>
+<atkv skst="NTF" gildi="já"/>
+<atkv skst="OH" gildi="já"/>
+<atkv skst="ÓGunn" gildi="já"/>
+<atkv skst="ÓÍ" gildi="já"/>
+<atkv skst="ÓBK" gildi="já"/>
+<atkv skst="PállM" gildi="já"/>
+<atkv skst="RBB" gildi="fjarverandi"/>
+<atkv skst="SDG" gildi="fjarverandi"/>
+<atkv skst="SÁA" gildi="já"/>
+<atkv skst="SIJ" gildi="já"/>
+<atkv skst="SPJ" gildi="já"/>
+<atkv skst="SMc" gildi="já"/>
+<atkv skst="SnæB" gildi="já"/>
+<atkv skst="SJS" gildi="já"/>
+<atkv skst="SÞÁ" gildi="já"/>
+<atkv skst="SSv" gildi="fjarverandi"/>
+<atkv skst="TBE" gildi="já"/>
+<atkv skst="UMÓ" gildi="já"/>
+<atkv skst="VilÁ" gildi="já"/>
+<atkv skst="WÞÞ" gildi="já"/>
+<atkv skst="ÞKG" gildi="já"/>
+<atkv skst="ÞorS" gildi="já"/>
+<atkv skst="ÞorstV" gildi="já"/>
+<atkv skst="ÞórdG" gildi="já"/>
+<atkv skst="ÞórE" gildi="já"/>
+<!-- gerð atkvæðagreiðslu tók:  0.0092129707336426 --></atkvæðagreiðsla>
+<atkvæðagreiðsla nr="56060" þskj="218" tegskjals="breytingartillaga" tími="2018-10-09T23:03:35" birtaatkvæði="nei" aðferð="S"><um tegatkvgr="bt">
+</um>
+<niðurstaða já="15" nei="37" fjarverandi="11" greiðaekkiatkvæði="0" samfel="F" samhljóða="nei" geragrein="1"/><!-- gerð SQL-atkvæðagreiðslu tók:  0.005216121673584 --><atkv skst="AFE" gildi="já"/>
+<atkv skst="AIJ" gildi="nei"/>
+<atkv skst="AKÁ" gildi="fjarverandi"/>
+<atkv skst="ATG" gildi="nei"/>
+<atkv skst="ÁÓÁ" gildi="já"/>
+<atkv skst="ÁslS" gildi="nei"/>
+<atkv skst="ÁsmD" gildi="fjarverandi"/>
+<atkv skst="ÁsF" gildi="nei"/>
+<atkv skst="BÁ" gildi="nei"/>
+<atkv skst="BirgÞ" gildi="nei"/>
+<atkv skst="BjG" gildi="nei"/>
+<atkv skst="BjarnB" gildi="fjarverandi"/>
+<atkv skst="BLG" gildi="já"/>
+<atkv skst="BHar" gildi="nei"/>
+<atkv skst="BN" gildi="nei"/>
+<atkv skst="GBr" gildi="já"/>
+<atkv skst="GÞÞ" gildi="fjarverandi"/>
+<atkv skst="GIK" gildi="fjarverandi"/>
+<atkv skst="GuðmT" gildi="já"/>
+<atkv skst="HSK" gildi="nei"/>
+<atkv skst="HallM" gildi="já"/>
+<atkv skst="HKF" gildi="já"/>
+<atkv skst="HVH" gildi="já"/>
+<atkv skst="HHG" gildi="já"/>
+<atkv skst="IngS" gildi="nei"/>
+<atkv skst="JFF" gildi="nei"/>
+<atkv skst="JónG" gildi="nei"/>
+<atkv skst="JÞÓ" gildi="fjarverandi"/>
+<atkv skst="JSV" gildi="fjarverandi"/>
+<atkv skst="JÞÞ" gildi="nei"/>
+<atkv skst="KGH" gildi="nei"/>
+<atkv skst="KJak" gildi="nei"/>
+<atkv skst="KÓP" gildi="fjarverandi"/>
+<atkv skst="KÞJ" gildi="nei"/>
+<atkv skst="LA" gildi="nei"/>
+<atkv skst="LRM" gildi="nei"/>
+<atkv skst="LínS" gildi="nei"/>
+<atkv skst="LE" gildi="já"/>
+<atkv skst="NTF" gildi="nei"/>
+<atkv skst="OH" gildi="já"/>
+<atkv skst="ÓGunn" gildi="nei"/>
+<atkv skst="ÓÍ" gildi="nei"/>
+<atkv skst="ÓBK" gildi="nei"/>
+<atkv skst="PállM" gildi="nei"/>
+<atkv skst="RBB" gildi="fjarverandi"/>
+<atkv skst="SDG" gildi="fjarverandi"/>
+<atkv skst="SÁA" gildi="nei"/>
+<atkv skst="SIJ" gildi="nei"/>
+<atkv skst="SPJ" gildi="nei"/>
+<atkv skst="SMc" gildi="já"/>
+<atkv skst="SnæB" gildi="já"/>
+<atkv skst="SJS" gildi="nei"/>
+<atkv skst="SÞÁ" gildi="nei"/>
+<atkv skst="SSv" gildi="fjarverandi"/>
+<atkv skst="TBE" gildi="nei"/>
+<atkv skst="UMÓ" gildi="nei"/>
+<atkv skst="VilÁ" gildi="nei"/>
+<atkv skst="WÞÞ" gildi="nei"/>
+<atkv skst="ÞKG" gildi="já"/>
+<atkv skst="ÞorS" gildi="nei"/>
+<atkv skst="ÞorstV" gildi="já"/>
+<atkv skst="ÞórdG" gildi="nei"/>
+<atkv skst="ÞórE" gildi="nei"/>
+<!-- gerð atkvæðagreiðslu tók:  0.0083200931549072 --></atkvæðagreiðsla>
+<þingræða skst="HHG" tími="2018-10-09T23:02:29" tegr="G" tegflm="Þ"/>
+<atkvæðagreiðsla nr="56061" þskj="194" tegskjals="stjfrv." tími="2018-10-09T23:03:53" birtaatkvæði="nei" aðferð="S"><um tegatkvgr="gr">
+<mgr>1. gr., svo breytt,</mgr>
+</um>
+<niðurstaða já="48" nei="0" fjarverandi="11" greiðaekkiatkvæði="4" samfel="S" samhljóða="nei"/><!-- gerð SQL-atkvæðagreiðslu tók:  0.0053350925445557 --><atkv skst="AFE" gildi="já"/>
+<atkv skst="AIJ" gildi="já"/>
+<atkv skst="AKÁ" gildi="fjarverandi"/>
+<atkv skst="ATG" gildi="já"/>
+<atkv skst="ÁÓÁ" gildi="já"/>
+<atkv skst="ÁslS" gildi="já"/>
+<atkv skst="ÁsmD" gildi="fjarverandi"/>
+<atkv skst="ÁsF" gildi="já"/>
+<atkv skst="BÁ" gildi="já"/>
+<atkv skst="BirgÞ" gildi="já"/>
+<atkv skst="BjG" gildi="já"/>
+<atkv skst="BjarnB" gildi="fjarverandi"/>
+<atkv skst="BLG" gildi="já"/>
+<atkv skst="BHar" gildi="já"/>
+<atkv skst="BN" gildi="já"/>
+<atkv skst="GBr" gildi="já"/>
+<atkv skst="GÞÞ" gildi="fjarverandi"/>
+<atkv skst="GIK" gildi="fjarverandi"/>
+<atkv skst="GuðmT" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HSK" gildi="já"/>
+<atkv skst="HallM" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HKF" gildi="já"/>
+<atkv skst="HVH" gildi="já"/>
+<atkv skst="HHG" gildi="greiðir_ekki_atkv"/>
+<atkv skst="IngS" gildi="já"/>
+<atkv skst="JFF" gildi="já"/>
+<atkv skst="JónG" gildi="já"/>
+<atkv skst="JÞÓ" gildi="fjarverandi"/>
+<atkv skst="JSV" gildi="fjarverandi"/>
+<atkv skst="JÞÞ" gildi="já"/>
+<atkv skst="KGH" gildi="já"/>
+<atkv skst="KJak" gildi="já"/>
+<atkv skst="KÓP" gildi="fjarverandi"/>
+<atkv skst="KÞJ" gildi="já"/>
+<atkv skst="LA" gildi="já"/>
+<atkv skst="LRM" gildi="já"/>
+<atkv skst="LínS" gildi="já"/>
+<atkv skst="LE" gildi="já"/>
+<atkv skst="NTF" gildi="já"/>
+<atkv skst="OH" gildi="já"/>
+<atkv skst="ÓGunn" gildi="já"/>
+<atkv skst="ÓÍ" gildi="já"/>
+<atkv skst="ÓBK" gildi="já"/>
+<atkv skst="PállM" gildi="já"/>
+<atkv skst="RBB" gildi="fjarverandi"/>
+<atkv skst="SDG" gildi="fjarverandi"/>
+<atkv skst="SÁA" gildi="já"/>
+<atkv skst="SIJ" gildi="já"/>
+<atkv skst="SPJ" gildi="já"/>
+<atkv skst="SMc" gildi="já"/>
+<atkv skst="SnæB" gildi="greiðir_ekki_atkv"/>
+<atkv skst="SJS" gildi="já"/>
+<atkv skst="SÞÁ" gildi="já"/>
+<atkv skst="SSv" gildi="fjarverandi"/>
+<atkv skst="TBE" gildi="já"/>
+<atkv skst="UMÓ" gildi="já"/>
+<atkv skst="VilÁ" gildi="já"/>
+<atkv skst="WÞÞ" gildi="já"/>
+<atkv skst="ÞKG" gildi="já"/>
+<atkv skst="ÞorS" gildi="já"/>
+<atkv skst="ÞorstV" gildi="já"/>
+<atkv skst="ÞórdG" gildi="já"/>
+<atkv skst="ÞórE" gildi="já"/>
+<!-- gerð atkvæðagreiðslu tók:  0.0083651542663574 --></atkvæðagreiðsla>
+<atkvæðagreiðsla nr="56062" þskj="217" tegskjals="breytingartillaga" tími="2018-10-09T23:04:12" birtaatkvæði="nei" aðferð="S"><um tegatkvgr="bt">
+<mgr>,2</mgr>
+</um>
+<niðurstaða já="48" nei="0" fjarverandi="11" greiðaekkiatkvæði="4" samfel="S" samhljóða="nei"/><!-- gerð SQL-atkvæðagreiðslu tók:  0.0051760673522949 --><atkv skst="AFE" gildi="já"/>
+<atkv skst="AIJ" gildi="já"/>
+<atkv skst="AKÁ" gildi="fjarverandi"/>
+<atkv skst="ATG" gildi="já"/>
+<atkv skst="ÁÓÁ" gildi="já"/>
+<atkv skst="ÁslS" gildi="já"/>
+<atkv skst="ÁsmD" gildi="fjarverandi"/>
+<atkv skst="ÁsF" gildi="já"/>
+<atkv skst="BÁ" gildi="já"/>
+<atkv skst="BirgÞ" gildi="já"/>
+<atkv skst="BjG" gildi="já"/>
+<atkv skst="BjarnB" gildi="fjarverandi"/>
+<atkv skst="BLG" gildi="greiðir_ekki_atkv"/>
+<atkv skst="BHar" gildi="já"/>
+<atkv skst="BN" gildi="já"/>
+<atkv skst="GBr" gildi="já"/>
+<atkv skst="GÞÞ" gildi="fjarverandi"/>
+<atkv skst="GIK" gildi="fjarverandi"/>
+<atkv skst="GuðmT" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HSK" gildi="já"/>
+<atkv skst="HallM" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HKF" gildi="já"/>
+<atkv skst="HVH" gildi="já"/>
+<atkv skst="HHG" gildi="já"/>
+<atkv skst="IngS" gildi="já"/>
+<atkv skst="JFF" gildi="já"/>
+<atkv skst="JónG" gildi="já"/>
+<atkv skst="JÞÓ" gildi="fjarverandi"/>
+<atkv skst="JSV" gildi="fjarverandi"/>
+<atkv skst="JÞÞ" gildi="já"/>
+<atkv skst="KGH" gildi="já"/>
+<atkv skst="KJak" gildi="já"/>
+<atkv skst="KÓP" gildi="fjarverandi"/>
+<atkv skst="KÞJ" gildi="já"/>
+<atkv skst="LA" gildi="já"/>
+<atkv skst="LRM" gildi="já"/>
+<atkv skst="LínS" gildi="já"/>
+<atkv skst="LE" gildi="já"/>
+<atkv skst="NTF" gildi="já"/>
+<atkv skst="OH" gildi="já"/>
+<atkv skst="ÓGunn" gildi="já"/>
+<atkv skst="ÓÍ" gildi="já"/>
+<atkv skst="ÓBK" gildi="já"/>
+<atkv skst="PállM" gildi="já"/>
+<atkv skst="RBB" gildi="fjarverandi"/>
+<atkv skst="SDG" gildi="fjarverandi"/>
+<atkv skst="SÁA" gildi="já"/>
+<atkv skst="SIJ" gildi="já"/>
+<atkv skst="SPJ" gildi="já"/>
+<atkv skst="SMc" gildi="já"/>
+<atkv skst="SnæB" gildi="greiðir_ekki_atkv"/>
+<atkv skst="SJS" gildi="já"/>
+<atkv skst="SÞÁ" gildi="já"/>
+<atkv skst="SSv" gildi="fjarverandi"/>
+<atkv skst="TBE" gildi="já"/>
+<atkv skst="UMÓ" gildi="já"/>
+<atkv skst="VilÁ" gildi="já"/>
+<atkv skst="WÞÞ" gildi="já"/>
+<atkv skst="ÞKG" gildi="já"/>
+<atkv skst="ÞorS" gildi="já"/>
+<atkv skst="ÞorstV" gildi="já"/>
+<atkv skst="ÞórdG" gildi="já"/>
+<atkv skst="ÞórE" gildi="já"/>
+<!-- gerð atkvæðagreiðslu tók:  0.0081551074981689 --></atkvæðagreiðsla>
+<atkvæðagreiðsla nr="56063" þskj="194" tegskjals="stjfrv." tími="2018-10-09T23:04:28" birtaatkvæði="nei" aðferð="S"><um tegatkvgr="gr">
+<mgr>2. gr., svo breytt,</mgr>
+</um>
+<niðurstaða já="47" nei="0" fjarverandi="11" greiðaekkiatkvæði="5" samfel="S" samhljóða="nei"/><!-- gerð SQL-atkvæðagreiðslu tók:  0.0051271915435791 --><atkv skst="AFE" gildi="já"/>
+<atkv skst="AIJ" gildi="já"/>
+<atkv skst="AKÁ" gildi="fjarverandi"/>
+<atkv skst="ATG" gildi="já"/>
+<atkv skst="ÁÓÁ" gildi="já"/>
+<atkv skst="ÁslS" gildi="já"/>
+<atkv skst="ÁsmD" gildi="fjarverandi"/>
+<atkv skst="ÁsF" gildi="já"/>
+<atkv skst="BÁ" gildi="já"/>
+<atkv skst="BirgÞ" gildi="já"/>
+<atkv skst="BjG" gildi="já"/>
+<atkv skst="BjarnB" gildi="fjarverandi"/>
+<atkv skst="BLG" gildi="greiðir_ekki_atkv"/>
+<atkv skst="BHar" gildi="já"/>
+<atkv skst="BN" gildi="já"/>
+<atkv skst="GBr" gildi="já"/>
+<atkv skst="GÞÞ" gildi="fjarverandi"/>
+<atkv skst="GIK" gildi="fjarverandi"/>
+<atkv skst="GuðmT" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HSK" gildi="já"/>
+<atkv skst="HallM" gildi="greiðir_ekki_atkv"/>
+<atkv skst="HKF" gildi="já"/>
+<atkv skst="HVH" gildi="já"/>
+<atkv skst="HHG" gildi="greiðir_ekki_atkv"/>
+<atkv skst="IngS" gildi="já"/>
+<atkv skst="JFF" gildi="já"/>
+<atkv skst="JónG" gildi="já"/>
+<atkv skst="JÞÓ" gildi="fjarverandi"/>
+<atkv skst="JSV" gildi="fjarverandi"/>
+<atkv skst="JÞÞ" gildi="já"/>
+<atkv skst="KGH" gildi="já"/>
+<atkv skst="KJak" gildi="já"/>
+<atkv skst="KÓP" gildi="fjarverandi"/>
+<atkv skst="KÞJ" gildi="já"/>
+<atkv skst="LA" gildi="já"/>
+<atkv skst="LRM" gildi="já"/>
+<atkv skst="LínS" gildi="já"/>
+<atkv skst="LE" gildi="já"/>
+<atkv skst="NTF" gildi="já"/>
+<atkv skst="OH" gildi="já"/>
+<atkv skst="ÓGunn" gildi="já"/>
+<atkv skst="ÓÍ" gildi="já"/>
+<atkv skst="ÓBK" gildi="já"/>
+<atkv skst="PállM" gildi="já"/>
+<atkv skst="RBB" gildi="fjarverandi"/>
+<atkv skst="SDG" gildi="fjarverandi"/>
+<atkv skst="SÁA" gildi="já"/>
+<atkv skst="SIJ" gildi="já"/>
+<atkv skst="SPJ" gildi="já"/>
+<atkv skst="SMc" gildi="já"/>
+<atkv skst="SnæB" gildi="greiðir_ekki_atkv"/>
+<atkv skst="SJS" gildi="já"/>
+<atkv skst="SÞÁ" gildi="já"/>
+<atkv skst="SSv" gildi="fjarverandi"/>
+<atkv skst="TBE" gildi="já"/>
+<atkv skst="UMÓ" gildi="já"/>
+<atkv skst="VilÁ" gildi="já"/>
+<atkv skst="WÞÞ" gildi="já"/>
+<atkv skst="ÞKG" gildi="já"/>
+<atkv skst="ÞorS" gildi="já"/>
+<atkv skst="ÞorstV" gildi="já"/>
+<atkv skst="ÞórdG" gildi="já"/>
+<atkv skst="ÞórE" gildi="já"/>
+<!-- gerð atkvæðagreiðslu tók:  0.0081651210784912 --></atkvæðagreiðsla>
+<atkvæðagreiðsla nr="0" þskj="194" tegskjals="stjfrv." tími="2018-10-09T23:04:41" birtaatkvæði="nei" aðferð="Y"><um tegatkvgr="fy"/>
+</atkvæðagreiðsla>
+<atkvæðagreiðsla nr="56064" þskj="194" tegskjals="stjfrv." tími="2018-10-09T23:04:42" birtaatkvæði="nei" aðferð="G"><um tegatkvgr="v3">
+</um>
+<niðurstaða já="0" nei="0" fjarverandi="0" greiðaekkiatkvæði="0" samfel="S" samhljóða="já"/><!-- gerð atkvæðagreiðslu tók:   --></atkvæðagreiðsla>
+</liðaskjal>
+<!-- gerð skjals tók: 0.066515922546387 --></gerðabók>
