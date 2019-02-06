@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="is">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Listi yfir nýjum orðum</title>
+
+    <script src="scripts/special_characters.js"></script>
+    <script src="scripts/new_words.js"></script>
+
+    <style type="text/css">
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    h2 {
+      font-size: 200%;
+    }
+
+    button {
+      font: inherit;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      font-family: monospace;
+      border-collapse: collapse;
+      border-spacing: 0 1em;
+    }
+
+    table th {
+      font-weight: bold;
+    }
+
+    table input {
+      font-family: monospace;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    table tr > td + td{
+      color: purple;
+      padding-bottom: 8px;
+    }
+
+    table tr {
+      background-color: rgba(250, 256, 240, 0.5);
+      border-top: 1px powderblue dotted;
+      border-bottom: 1px powderblue dotted;
+    }
+
+    table tr:first-child  {
+      border-top: 0px;
+    }
+
+    table tr td {
+      padding: 16px;
+      border-left: 1px powderblue dotted;
+      border-right: 1px powderblue dotted;
+    }
+
+    #main-container {
+      max-width: 95%;
+      min-height: 400px;
+      height: auto;
+      margin: auto;
+      padding: 10px;
+      margin-bottom: 60px;
+      clear: both;
+    }
+
+    .container {
+      margin: 4px;
+      padding: 4px;
+    }
+
+    .word-col { 
+      width: 20%;
+    }
+
+    .phoneme-col { 
+      width: 20%;
+    }
+
+    .context-col { 
+      width: 55%;
+      padding-left: 20px;
+    }
+
+    .submit-col {
+      width: 5%;
+      text-align: center;
+    }
+
+    .save-button {
+      padding: 8px;
+      margin: 3px;
+      border: 1px solid purple;
+      border-radius: 6px;
+      background-color: khaki;
+      color: navy;
+      font-weight: bold;
+    }
+
+    .edit-button {
+      padding: 6px;
+      margin: 3px;
+      border: 1px dotted teal;
+      border-radius: 4px;
+      width: 100%;
+      color: navy;
+    }
+
+    .edit-input {
+      font-size: 150%;
+    }
+
+    .edit-input {
+      width: 80%;
+    }
+
+    .modal {
+      display: block;
+      position: fixed;
+      z-index: 51;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+    }
+
+    .modal.closed,
+    .modal-overlay.closed {
+      display: none;
+    }
+
+    .modal-content {
+      z-index: 55;
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: auto;
+      max-width: 700px;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    </style>
+
+  </head>
+  <body onload="initializeNewWords()">
+    <div id="main-container">
+      <div id="content-container">
+        <div id="content-main">
+          <div id="new-word-list">
+            <table>
+              <tbody id="new-word-table">
+                <tr>
+                  <th class="word-col">Orð</th>
+                  <th class="phoneme-col">Framburður</th>
+                  <th class="context-col">Samhengi</th>
+                  <th class="sumbit-col">Vistun</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="edit-modal" class="modal closed">
+      <div class="modal-content">
+        <span id="modal-close" class="close">&times; Loka</span>
+        <div id="edit-modal-content">
+        </div>
+        <div id="symbol-inserter-container">
+        </div>
+      </div>
+  </body>
+</html>
