@@ -136,14 +136,19 @@ function setEditorContent(content) {
   editorInitializers();
 }
 
-function handleChanges(instance, changes) {
-  // check if there were any changes that match with correction lattices
+$(document).ready(function() {
+  document.getElementById('toggle-autovalidate').addEventListener('click', toggleAutovalidate);
 
-  // TODO
-  // NOTE: We would have to check for replacements of an entire word with (probably) the first character of a candidate lattice, as generally the user types a single character.
-  // Alternatively, we can offer a GUI component where each possible change position can be entered to select a new word from a list of candidates, but then we don't have the opportunity to replace entire words.
-  // Eventually the server side will find the differences so the front end does not need to "know" what the full replacement was anyway, if it didn't exist in the candidate list.
-
-  // finally, validate
-  autovalidator();
-}
+  document.getElementById('insert-comment').addEventListener('click', insertCommentPrompt);
+  document.getElementById('load-example-1').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180612T234422.xml');});
+  document.getElementById('load-example-2').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180613T003335.xml');});
+  document.getElementById('load-example-3').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/rad20180718T150651.xml');});
+  document.getElementById('load-example-dag014').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/dag014.xml');});
+  document.getElementById('load-example-fja012').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/fja012.xml');});
+  document.getElementById('load-example-fun023').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/fun023.xml');});
+  document.getElementById('load-example-inn029').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/inn029.xml');});
+  document.getElementById('load-example-les025').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/les025.xml');});
+  document.getElementById('load-example-lid20171215T103413').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/lid20171215T103413.xml');});
+  document.getElementById('load-example-lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/lid20181009T230112.xml');});
+  document.getElementById('load-example-utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/utb20171215T201027.xml');});
+});

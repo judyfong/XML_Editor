@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="Dagskrarskjal"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <umsýsla lgþ="148" fundur="14" tími="2018-01-22T15:00:00"/>
+  <dagskrá>
+    <fundurhefst tími="2018-01-22T15:00:00"/>
+    <dagskrárliður>
+      <mál málstegund="fh" nr="113" málsflokkur="B"/>
+      <titill>Framhaldsfundir Alþingis</titill>
+    </dagskrárliður>
+    <dagskrárliður>
+      <mál málstegund="al" nr="111" málsflokkur="B" umr="E"/>
+      <titill>Staðan í stjórnmálunum í byrjun árs og verkefnin framundan</titill>
+    </dagskrárliður>
+    <utanDagskrár>
+      <mál málstegund="dr" nr="112" málsflokkur="B"/>
+      <titill>ElE fyrir BirgÞ, UnaH fyrir RBB, OC fyrir ÞSÆ</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="tk" nr="114" málsflokkur="B"/>
+      <titill>Mannabreytingar í nefndum</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="tk" nr="115" málsflokkur="B"/>
+      <titill>Embættismenn fastanefnda</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="tk" nr="116" málsflokkur="B"/>
+      <titill>Vísun skýrslna Ríkisendurskoðunar til nefndar</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="117" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Stjórnsýsla ferðamála</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="118" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Endurmenntun starfsmanna Stjórnarráðs Íslands</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="119" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Hjúkrunarfræðingar: Mönnun, menntun og starfsumhverfi</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="120" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Læknaminjasafn Íslands</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="121" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Vistvæn innkaup og grænn ríkisrekstur</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="122" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Póst- og fjarskiptastofnun -- Málsmeðferð og stjórnsýsluhættir</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="123" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Endurskoðun ríkisreiknings 2016</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="124" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Framkvæmd fjárlaga janúar til júní 2017</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="bu" nr="125" málsflokkur="B"/>
+      <titill>Skýrsla Ríkisendurskoðunar: Ársskýrsla Ríkisendurskoðunar fyrir árið 2016</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="56" málsflokkur="A"/>
+      <titill>Afnám vasapeningakerfis á dvalar- og hjúkrunarheimilum</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="68" málsflokkur="A"/>
+      <titill>Skattfrádráttur til nýsköpunarfyrirtækja</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="41" málsflokkur="A"/>
+      <titill>Eignir og tekjur landsmanna árið 2016</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="69" málsflokkur="A"/>
+      <titill>Búvörusamningar</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="73" málsflokkur="A"/>
+      <titill>Samkeppni í mjólkuriðnaði og stuðningur við hann</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="q" nr="70" málsflokkur="A"/>
+      <titill>Samkeppni með landbúnaðarvörur</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="tk" nr="126" málsflokkur="B"/>
+      <titill>Tilkynning</titill>
+    </utanDagskrár>
+    <utanDagskrár>
+      <mál málstegund="tk" nr="127" málsflokkur="B"/>
+      <titill>Tilkynning</titill>
+    </utanDagskrár>
+  </dagskrá>
+</gerðabók>

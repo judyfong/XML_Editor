@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?dctm xml_app="Fundarskjal"?>
+<gerðabók xsi:schemaLocation="http://skema.althingi.is/skema http://skema.althingi.is/skema/althingi_gerdabok.xsd" xmlns="http://skema.althingi.is/skema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <umsýsla lgþ="148" fundur="23"/>
+  <fundarskjal tími="2018-02-07T15:00:27">
+    <fundurhefst tími="2018-02-07T15:00:00"/>
+    <útbýtingÞingskjala id="utb20180207T150039" tími="2018-02-07T15:00:39"/>
+    <þingmál tími="2018-02-07T15:01:00" id="lid20180207T150100">
+      <mál nr="201" málsflokkur="B" málstegund="st">
+        <málsheiti>störf þingsins</málsheiti>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+    <umræðuLokið tími="2018-02-07T15:35:06"/></þingmál>
+    <þingmál tími="2018-02-07T15:35:08" id="lid20180207T153508" atkvæðagreiðsla="já">
+      <mál nr="11" umr="2f" málsflokkur="A" málstegund="l">
+        <málsheiti>tekjustofnar sveitarfélaga</málsheiti>
+        <undirtitill>fasteignasjóður</undirtitill>
+        <flm skst="SIJ" embætti="samgrh."/>
+        <þskj tegund="stjfrv." nr="11"/>
+        <þskj tegund="nál." nr="236"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+    </þingmál>
+    <þingmál tími="2018-02-07T15:36:38" id="lid20180207T153638">
+      <mál nr="36" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>höfundalög</málsheiti>
+        <undirtitill>sjálfvirk gagnagreining</undirtitill>
+        <flm skst="BLG"/>
+        <flm skst="HallM"/>
+        <flm skst="HHG"/>
+        <flm skst="JÞÓ"/>
+        <flm skst="SMc"/>
+        <flm skst="ÞSÆ"/>
+        <þskj tegund="frv." nr="36"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T15:57:07"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T15:57:09" id="lid20180207T155709">
+      <mál nr="38" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>almannatryggingar</málsheiti>
+        <undirtitill>frítekjumark vegna atvinnutekna við útreikning tekjutryggingar</undirtitill>
+        <flm skst="HallM"/>
+        <flm skst="BLG"/>
+        <flm skst="HHG"/>
+        <flm skst="JÞÓ"/>
+        <flm skst="SMc"/>
+        <flm skst="ÞSÆ"/>
+        <þskj tegund="frv." nr="38"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T16:03:22"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T16:03:24" id="lid20180207T160324">
+      <mál nr="39" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>almannatryggingar og félagsleg aðstoð</málsheiti>
+        <undirtitill>afnám sérstakrar uppbótar til framfærslu</undirtitill>
+        <flm skst="HallM"/>
+        <flm skst="BLG"/>
+        <flm skst="HHG"/>
+        <flm skst="JÞÓ"/>
+        <flm skst="SMc"/>
+        <flm skst="ÞSÆ"/>
+        <þskj tegund="frv." nr="39"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T16:20:04"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T16:20:06" id="lid20180207T162006">
+      <mál nr="45" umr="F" málsflokkur="A" málstegund="a">
+        <málsheiti>samræming verklags um fjarfundi á vegum ráðuneyta</málsheiti>
+        <undirtitill/>
+        <flm skst="SilG"/>
+        <flm skst="BLG"/>
+        <flm skst="HHG"/>
+        <flm skst="GBr"/>
+        <flm skst="HSK"/>
+        <flm skst="NF"/>
+        <flm skst="ÓGunn"/>
+        <þskj tegund="þáltill." nr="45"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T17:06:45"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T17:06:47" id="lid20180207T170647">
+      <mál nr="44" umr="F" málsflokkur="A" málstegund="a">
+        <málsheiti>greiðsluþátttaka sjúklinga</málsheiti>
+        <undirtitill/>
+        <flm skst="LE"/>
+        <flm skst="AFE"/>
+        <flm skst="ÁÓÁ"/>
+        <flm skst="GBr"/>
+        <flm skst="GuðmT"/>
+        <flm skst="HVH"/>
+        <flm skst="OH"/>
+        <þskj tegund="þáltill." nr="44"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T17:21:42"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T17:21:43" id="lid20180207T172143">
+      <mál nr="48" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>atvinnuleysistryggingar</málsheiti>
+        <undirtitill>bótaréttur fanga</undirtitill>
+        <flm skst="SilG"/>
+        <flm skst="HHG"/>
+        <flm skst="BLG"/>
+        <flm skst="ÞKG"/>
+        <flm skst="JSV"/>
+        <flm skst="HKF"/>
+        <flm skst="KGH"/>
+        <þskj tegund="frv." nr="48"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T17:26:43"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T17:26:45" id="lid20180207T172645">
+      <mál nr="62" umr="F" málsflokkur="A" málstegund="a">
+        <málsheiti>sálfræðiþjónusta í framhaldsskólum</málsheiti>
+        <undirtitill/>
+        <flm skst="GBr"/>
+        <flm skst="AFE"/>
+        <flm skst="ÁÓÁ"/>
+        <flm skst="GuðmT"/>
+        <flm skst="HVH"/>
+        <flm skst="LE"/>
+        <flm skst="OH"/>
+        <þskj tegund="þáltill." nr="64"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T17:40:22"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T17:40:24" id="lid20180207T174024">
+      <mál nr="74" umr="F" málsflokkur="A" málstegund="a">
+        <málsheiti>réttur barna til að vita um uppruna sinn</málsheiti>
+        <undirtitill/>
+        <flm skst="SilG"/>
+        <flm skst="LínS"/>
+        <þskj tegund="þáltill." nr="88"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T17:51:08"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T17:51:10" id="lid20180207T175110">
+      <mál nr="83" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>mannanöfn</málsheiti>
+        <undirtitill/>
+        <flm skst="ÞorstV"/>
+        <flm skst="GBr"/>
+        <flm skst="HKF"/>
+        <flm skst="HHG"/>
+        <flm skst="JSV"/>
+        <flm skst="ÞKG"/>
+        <þskj tegund="frv." nr="150"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T18:58:44"/>
+    </þingmál>
+    <þingmál tími="2018-02-07T18:58:45" id="lid20180207T185845">
+      <mál nr="89" umr="1" málsflokkur="A" málstegund="l">
+        <málsheiti>kosningar til Alþingis</málsheiti>
+        <undirtitill>kosningaréttur</undirtitill>
+        <flm skst="BLG"/>
+        <flm skst="HallM"/>
+        <flm skst="HHG"/>
+        <flm skst="JÞÓ"/>
+        <flm skst="SMc"/>
+        <flm skst="ÞSÆ"/>
+        <þskj tegund="frv." nr="156"/>
+      </mál>
+      <samantekt>
+        <mgr/>
+      </samantekt>
+      <umræðuOgAtkvæðagreiðsluFrestað tími="2018-02-07T19:03:59"/>
+    </þingmál>
+    <útbýtingÞingskjala id="utb20180207T190403" tími="2018-02-07T19:04:03"/>
+    <útAfDagskrá/>
+    <fundiSlitið tími="2018-02-07T19:05:30"/>
+  </fundarskjal>
+</gerðabók>
