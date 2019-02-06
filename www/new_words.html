@@ -72,6 +72,11 @@
       clear: both;
     }
 
+    #symbol-inserter-container {
+      margin: 0px;
+      padding: 0px;
+    }
+
     .container {
       margin: 4px;
       padding: 4px;
@@ -114,12 +119,40 @@
       color: navy;
     }
 
+    .button {
+      background-color: #008cba;
+      border-radius: 4px;
+      padding: 6px;
+      margin: 4px;
+      color: white;
+      font-family: monospace;
+      border: 1px solid #555;
+    }
+
+    .button:hover,
+    .button:focus {
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+    }
+
     .edit-input {
       font-size: 150%;
     }
 
     .edit-input {
       width: 80%;
+    }
+
+    .insert-symbol {
+      border: 1px solid darkgray;
+      border-radius: 2px;
+      padding: 4px;
+      margin: 4px;
+      text-align: center;
+      min-width: 20px;
+      background: lightgrey;
+      color: black;
     }
 
     .modal {
@@ -151,6 +184,11 @@
       max-width: 700px;
       position: relative;
       border-radius: 2px;
+    }
+
+    .modal-content div {
+      padding: 20px;
+      margin-top: 16px;
     }
 
     </style>
