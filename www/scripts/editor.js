@@ -86,7 +86,7 @@ function start() {
   setEditorOptions(editor);
 
   editor.on('beforeChange', fixInsertQuotes);
-  editor.on('changes', autovalidator);
+  editor.on('changes', handleChanges);
 /*  editor.on('focus', autovalidator);*/
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', handleCursorActivity);
