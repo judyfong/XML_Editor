@@ -133,6 +133,21 @@ function addNewWord(word_obj) {
     alert("SUBMISSION HAS NOT BEEN IMPLEMENTED! requires integration with back-end");
   });
 
+  delete_btn = document.createElement("button");
+  delete_btn.setAttribute("class", "delete-button");
+  delete_btn.appendChild(document.createTextNode("Eyða"));
+  td_submit.appendChild(delete_btn);
+  //
+  delete_btn.addEventListener("click", function() {
+    submission = {
+      "word": td_word.innerText,
+      "phoneme": td_phoneme.innerText
+    };
+    // TODO: finish implementing delete functionality
+    console.log("want to delete:", submission);
+    alert("DELETION HAS NOT BEEN IMPLEMENTED! requires integration with back-end");
+  });
+
   tr.appendChild(td_word);
   tr.appendChild(td_phoneme);
   tr.appendChild(td_context);
