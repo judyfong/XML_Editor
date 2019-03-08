@@ -7,6 +7,10 @@
     <script src="scripts/special_characters.js"></script>
     <script src="scripts/new_words.js"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <style type="text/css">
     html, body {
       height: 100%;
@@ -70,6 +74,13 @@
       padding: 10px;
       margin-bottom: 60px;
       clear: both;
+    }
+
+    #selection-container div {
+      display: inline-block;
+      padding-right: 16px;
+      padding-left: 16px;
+      margin: 0 10px;
     }
 
     #symbol-inserter-container {
@@ -204,12 +215,29 @@
     </style>
 
   </head>
-  <body onload="initializeNewWords()">
+  <body onload="newWordsInitialize()">
     <div id="main-container">
+      <div id="selection-container">
+        <div id="period-search-container">
+          <h3>
+          Leita eftir tímabili
+          </h3>
+          <span> Frá: <input type="text" class="datepicker" id="date_from"></span>
+          <span> Til: <input type="text" class="datepicker" id="date_to"></span>
+          <button class="save-button" id="search-dates-button">Leita</button>
+        </div>
+        <div id="speech-search-container">
+          <h3>
+          Leita eftir ræðu
+          </h3>
+          <span> Ræðu ID: <input type="text" id="speech-id" value="rad20181211T143921"></span>
+          <button class="save-button" id="search-speech-button">Leita</button>
+        </div>
+      </div>
       <div id="content-container">
         <div id="content-main">
           <div id="new-word-list">
-            <table>
+            <table id="new-word-table">
               <tbody id="new-word-table">
                 <tr>
                   <th class="word-col">Orð</th>

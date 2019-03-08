@@ -1,5 +1,34 @@
 var _in_edit_modal = false;
 
+function newWordsInitialize() {
+    $( function() {
+      $("#date_from").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "-7");
+      $("#date_to").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", new Date());
+    } );
+
+    let get_speech_words_btn = document.getElementById("search-speech-button");
+    get_speech_words_btn.onclick = function(click_evt) {
+      let speech_id = document.getElementById("speech-id").value;
+      fetchWordsSpeechId(speech_id);
+    }
+    
+    let search_btn = document.getElementById("search-dates-button");
+    search_btn.onclick = function(click_evt) {
+      let start = document.getElementById("date_from").value;
+      let end = document.getElementById("date_to").value;
+
+//    start = start.replace(/\//g, '-');
+//    end = end.replace(/\//g, '-');
+
+      if (!start || !end) {
+        alert("Dagsetningu vantar!");
+        return;
+      }
+
+      fetchWordsDates(start, end);
+    }
+}
+
 function getFakeNewWordlist() {
 	obj1 = {
 		"word": "fræðafólks",
@@ -94,7 +123,7 @@ function addNewWord(word_obj) {
   btn_phoneme.setAttribute("class", "edit-button");
 
   btn_word.appendChild(document.createTextNode(word_obj.word));
-  btn_phoneme.appendChild(document.createTextNode(word_obj.phoneme));
+  btn_phoneme.appendChild(document.createTextNode(word_obj.pronunciation));
 
   btn_word.addEventListener("click", createEditDialog);
   btn_phoneme.addEventListener("click", createEditDialog);
@@ -161,9 +190,34 @@ function addNewWord(word_obj) {
   target.appendChild(tr);
 }
 
-function initializeNewWords() {
-	// TODO: Get actual words from server
-	new_word_list = getFakeNewWordlist();
+function fetchWordsSpeechId(speech_id) {
+  let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords.php?speechID=" + speech_id;
+  fetchWords(path);
+}
+
+function fetchWordsDates(start_date, end_date) {
+  let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords.php?startDate=" + start_date + "&endDate=" + end_date;
+  fetchWords(path);
+}
+
+function fetchWords(path) {
+  // clear the list first....
+  $("#new-word-table").find("tr:not(:first)").remove();
+
+  console.log("fetching words from " + path);
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let myObj = JSON.parse(this.responseText);
+      initializeNewWords(myObj);
+    }
+  }
+  xmlhttp.open("GET", path, true);
+  xmlhttp.send();
+}
+
+function initializeNewWords(new_word_list) {
+//	new_word_list = getFakeNewWordlist();
 	for (let i = 0 ; i < new_word_list.length; ++i) {
     addNewWord(new_word_list[i]);
 	}
