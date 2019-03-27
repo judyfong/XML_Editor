@@ -20,8 +20,10 @@ function createSymbolInserter(container_id, symbols) {
 }
 
 function createPhonemeInserter(parent_name) {
-//symbols="aäɑɒæbḇβcčɔɕçdḏḍðeəɚɛɝfgḡhʰḥḫẖiɪỉɨjʲǰkḳḵlḷɬɫmnŋṇɲɴoŏɸθpp̅þqrɹɾʀʁṛsšśṣʃtṭṯʨtuʊŭüvʌɣwʍxχyʸʎzẓžʒ’‘ʔʕ".split("");
-  symbols=" ɣ ;ɲ̊ ;ɪː ;a ;aː ;ai ;aiː ;au ;auː ;c ;cʰ ;ç ;ð ;ɛ ;ɛː ;ei ;eiː ;f ;h ;i ;ʏi ;iː ;j ;k ;kʰ ;l ;l̥ ;m ;m̥ ;n ;n̥ ;ŋ ;ŋ̊ ;ɔ ;ɔː ;œ ;œː ;œy ;œyː ;ɔi ;ou ;ouː ;p ;pʰ ;r ;r̥ ;s ;t ;tʰ ;u ;uː ;v ;x ;θ ".split(";");
+//symbols=" ɣ ;ɲ̊ ;ɪː ;a ;aː ;ai ;aiː ;au ;auː ;c ;cʰ ;ç ;ð ;ɛ ;ɛː ;ei ;eiː ;f ;h ;i ;ʏi ;iː ;j ;k ;kʰ ;l ;l̥ ;m ;m̥ ;n ;n̥ ;ŋ ;ŋ̊ ;ɔ ;ɔː ;œ ;œː ;œy ;œyː ;ɔi ;ou ;ouː ;p ;pʰ ;r ;r̥ ;s ;t ;tʰ ;u ;uː ;v ;x ;θ ".split(";");
+  symbols="ɣ ;ɪ ;ɲ ;ʏ ;ɲ̊ ;ɪː ;ʏː ;a ;aː ;ai ;aiː ;au ;auː ;c ;cʰ ;ç ;ð ;ɛ ;ɛː ;ei ;eiː ;f ;h ;i ;ʏi ;iː ;j ;k ;kʰ ;l ;l̥ ;m ;m̥ ;n ;n̥ ;ŋ ;ŋ̊ ;ɔ ;ɔː ;œ ;œː ;œy ;œyː ;ɔi ;ou ;ouː ;p ;pʰ ;r ;r̥ ;s ;t ;tʰ ;u ;uː ;v ;x ;θ ".split(";");
+
+ 
   return createSymbolInserter(parent_name, symbols);
 }
 
