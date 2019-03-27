@@ -49,7 +49,15 @@ function getFakeNewWordlist() {
 }
 
 function insertElementAtCursor(symbol, ignore="") {
-    document.getElementById("edit-input-field").value += symbol;
+    let element = document.getElementById("edit-input-field").value;
+    let start = element.selectionStart;
+    let end = element.selectionEnd;
+    let value = el.value;
+    let before = value.substring(0, start);
+    let after = value.substring(end, text.length);
+    element.value = (before + symbol + after);
+    element.selectionStart = element.selectionEnd = start + symbol.length;
+    element.focus();
 }
 
 function createEditDialog(evt) {
@@ -219,10 +227,10 @@ function deleteWord(originalWord) {
     xmlhttp.send(postdata);
 }
 
-function saveWord(originalWord, confirmedword, pronounciation) {
+function saveWord(originalWord, confirmedWord, pronounciation) {
     let path = "asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
-        { "originalWord": originalWord, "confirmedword": confirmedword, "pronounciation": pronounciation }
+        { "originalWord": originalWord, "confirmedWord": confirmedWord, "pronounciation": pronounciation }
     ] };
     console.log("saving word:", postdata);
     let xmlhttp = new XMLHttpRequest();
@@ -239,11 +247,12 @@ function saveWord(originalWord, confirmedword, pronounciation) {
 }
 
 function initializeNewWords(new_word_list) {
-    if (new_word_list.length == 0) {
+    if (new_word_list.length > 0) {
+        for (let i = 0 ; i < new_word_list.length; ++i) {
+            addNewWord(new_word_list[i]);
+        }
+    } else {
         alert("Engin orð voru fundin við leitarskilyrðin.");
-    }
-    for (let i = 0 ; i < new_word_list.length; ++i) {
-        addNewWord(new_word_list[i]);
     }
 }
 
