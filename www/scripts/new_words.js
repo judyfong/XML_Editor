@@ -2,8 +2,8 @@ var _in_edit_modal = false;
 
 function newWordsInitialize() {
     $( function() {
-        $("#date_from").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "-7");
-        $("#date_to").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", new Date());
+      $("#date_from").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "-2");
+      $("#date_to").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "+1");
     } );
 
     let get_speech_words_btn = document.getElementById("search-speech-button");
@@ -110,65 +110,95 @@ function createEditDialog(evt) {
 }
 
 function addNewWord(word_obj) {
-    let tr = document.createElement("tr");
-    let td_word = document.createElement("td");
-    let td_phoneme = document.createElement("td");
-    let td_context = document.createElement("td");
-    let td_submit = document.createElement("td");
+  let tr = document.createElement("tr");
+  let td_word = document.createElement("td");
+  let td_phoneme = document.createElement("td");
+  let td_context = document.createElement("td");
+  let td_submit = document.createElement("td");
 
-    let btn_word = document.createElement("button");
-    let btn_phoneme = document.createElement("button");
+  let btn_word = document.createElement("button");
+  let btn_phoneme = document.createElement("button");
 
-    td_word.setAttribute("id", "word-"+word_obj.word);
+  btn_word.setAttribute("class", "edit-button");
+  btn_phoneme.setAttribute("class", "edit-button");
 
-    btn_word.setAttribute("class", "edit-button");
-    btn_phoneme.setAttribute("class", "edit-button");
+  btn_word.appendChild(document.createTextNode(word_obj.word));
+  btn_phoneme.appendChild(document.createTextNode(word_obj.pronunciation));
 
-    btn_word.appendChild(document.createTextNode(word_obj.word));
-    btn_phoneme.appendChild(document.createTextNode(word_obj.pronunciation));
+  btn_word.addEventListener("click", createEditDialog);
+  btn_phoneme.addEventListener("click", createEditDialog);
 
-    btn_word.addEventListener("click", createEditDialog);
-    btn_phoneme.addEventListener("click", createEditDialog);
+  /*
+  let input_word = document.createElement("input")
+  input_word.setAttribute("type", "text");
+  input_word.setAttribute("value", word_obj.word);
 
-    td_word.appendChild(btn_word);
-    td_phoneme.appendChild(btn_phoneme);
-    td_context.appendChild(document.createTextNode(word_obj.context));
+  let input_phoneme = document.createElement("input")
+  input_phoneme.setAttribute("type", "text");
+  input_phoneme.setAttribute("value", word_obj.phoneme);
+  */
 
-    submit_btn = document.createElement("button");
-    submit_btn.setAttribute("class", "save-button");
-    submit_btn.appendChild(document.createTextNode("Vista"));
-    td_submit.appendChild(submit_btn);
-    //
-    submit_btn.addEventListener("click", function() {
-        // TODO: double check submit functionality
-        saveWord(td_word.id, td_word.innerText, td_phoneme.innerText);
-        // remove the row
-        tr.parentNode.removeChild(tr);
-    });
+  /*  let input_context = document.createElement("input")
+  input_context.setAttribute("type", "text");
+  input_context.setAttribute("value", word_obj.context);
+  */
 
-    delete_btn = document.createElement("button");
-    delete_btn.setAttribute("class", "delete-button");
-    delete_btn.appendChild(document.createTextNode("Eyða"));
-    td_submit.appendChild(delete_btn);
-    //
-    delete_btn.addEventListener("click", function() {
-        // TODO: double check delete functionality
-        deleteWord(td_word.id);
-        // remove the row
-        tr.parentNode.removeChild(tr);
-    });
+  td_word.appendChild(btn_word);
+  td_phoneme.appendChild(btn_phoneme);
+  td_context.appendChild(document.createTextNode(word_obj.context));
 
-    tr.appendChild(td_word);
-    tr.appendChild(td_phoneme);
-    tr.appendChild(td_context);
-    tr.appendChild(td_submit);
+  submit_btn = document.createElement("button");
+  submit_btn.setAttribute("class", "save-button");
+  submit_btn.appendChild(document.createTextNode("Vista"));
+  td_submit.appendChild(submit_btn);
+  //
+  submit_btn.addEventListener("click", function() {
+    submission = {"word": [{
+      "originalWord": td_word.innerText,
+      "confirmedWord": td_word.innerText,
+      "pronunciation": td_phoneme.innerText
+	}]
+    };
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(submission, ['word', 'originalWord','confirmedWord', 'pronunciation', 'delete']));
+    // TODO: finish implementing submit functionality
+    console.log("want to submit:", submission);
+    alert("CONFIRMED. Re-click link Leita to see the updated list.");
+  });
 
-    td_word.setAttribute("class", "word-col");
-    td_phoneme.setAttribute("class", "phoneme-col");
-    td_context.setAttribute("class", "context-col");
+  delete_btn = document.createElement("button");
+  delete_btn.setAttribute("class", "delete-button");
+  delete_btn.appendChild(document.createTextNode("Eyða"));
+  td_submit.appendChild(delete_btn);
+  //
+  delete_btn.addEventListener("click", function() {
+    submission = {"word": [{
+      "originalWord": td_word.innerText,
+      "delete": 1
+	}]
+    };
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(submission, ['word', 'originalWord','confirmedWord', 'pronunciation', 'delete']));
+    // TODO: finish implementing delete functionality
+    console.log("want to delete:", submission);
+    alert("DELETED. Re-click link Leita to see the updated list.");
+  });
 
-    let target = document.getElementById("new-word-table");
-    target.appendChild(tr);
+  tr.appendChild(td_word);
+  tr.appendChild(td_phoneme);
+  tr.appendChild(td_context);
+  tr.appendChild(td_submit);
+
+  td_word.setAttribute("class", "word-col");
+  td_phoneme.setAttribute("class", "phoneme-col");
+  td_context.setAttribute("class", "context-col");
+
+  let target = document.getElementById("new-word-table");
+  target.appendChild(tr);
 }
 
 function fetchWordsSpeechId(speech_id) {
