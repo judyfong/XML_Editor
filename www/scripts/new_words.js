@@ -49,12 +49,12 @@ function getFakeNewWordlist() {
 }
 
 function insertElementAtCursor(symbol, ignore="") {
-    let element = document.getElementById("edit-input-field").value;
+    let element = document.getElementById("edit-input-field");
     let start = element.selectionStart;
     let end = element.selectionEnd;
-    let value = el.value;
+    let value = element.value;
     let before = value.substring(0, start);
-    let after = value.substring(end, text.length);
+    let after = value.substring(end, value.length);
     element.value = (before + symbol + after);
     element.selectionStart = element.selectionEnd = start + symbol.length;
     element.focus();
