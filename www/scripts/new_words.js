@@ -227,10 +227,10 @@ function deleteWord(originalWord) {
     xmlhttp.send(postdata);
 }
 
-function saveWord(originalWord, confirmedWord, pronounciation) {
+function saveWord(originalWord, confirmedWord, pronunciation) {
     let path = "asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
-        { "originalWord": originalWord, "confirmedWord": confirmedWord, "pronounciation": pronounciation }
+        { "originalWord": originalWord, "confirmedWord": confirmedWord, "pronunciation": pronunciation }
     ] };
     console.log("saving word:", postdata);
     let xmlhttp = new XMLHttpRequest();
