@@ -2,8 +2,8 @@ var _in_edit_modal = false;
 
 function newWordsInitialize() {
     $( function() {
-        $("#date_from").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "-7");
-        $("#date_to").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", new Date());
+        $("#date_from").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "-3");
+        $("#date_to").datepicker({dateFormat: 'yy-mm-dd'}).datepicker("setDate", "+1");
     } );
 
     let get_speech_words_btn = document.getElementById("search-speech-button");
@@ -180,12 +180,12 @@ function addNewWord(word_obj) {
 }
 
 function fetchWordsSpeechId(speech_id) {
-    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords.php?speechID=" + speech_id;
+    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords/?speechID=" + speech_id;
     fetchWords(path);
 }
 
 function fetchWordsDates(start_date, end_date) {
-    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords.php?startDate=" + start_date + "&endDate=" + end_date;
+    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords/?startDate=" + start_date + "&endDate=" + end_date;
     fetchWords(path);
 }
 
@@ -209,9 +209,9 @@ function fetchWords(path) {
 
 
 function deleteWord(originalWord) {
-    let path = "asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
+    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
-        { "originalWord": originalWord, "delete": true }
+        { "originalWord": originalWord.replace('word-', ''), "delete": true }
     ] };
     console.log("deleting word " + postdata);
     let xmlhttp = new XMLHttpRequest();
@@ -224,13 +224,13 @@ function deleteWord(originalWord) {
         }
     }
     xmlhttp.open("POST", path, true);
-    xmlhttp.send(postdata);
+    xmlhttp.send(JSON.stringify(postdata));
 }
 
 function saveWord(originalWord, confirmedWord, pronunciation) {
-    let path = "asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
+    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
-        { "originalWord": originalWord, "confirmedWord": confirmedWord, "pronunciation": pronunciation }
+        { "originalWord": originalWord.replace('word-', ''), "confirmedWord": confirmedWord, "pronunciation": pronunciation }
     ] };
     console.log("saving word:", postdata);
     let xmlhttp = new XMLHttpRequest();
@@ -243,7 +243,7 @@ function saveWord(originalWord, confirmedWord, pronunciation) {
         }
     }
     xmlhttp.open("POST", path, true);
-    xmlhttp.send();
+    xmlhttp.send(JSON.stringify(postdata));
 }
 
 function initializeNewWords(new_word_list) {
