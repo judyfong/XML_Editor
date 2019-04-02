@@ -196,12 +196,14 @@ function fetchWords(path) {
     console.log("fetching words from " + path);
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let myObj = JSON.parse(this.responseText);
-            initializeNewWords(myObj);
-        } else {
-            alert("Villa kom upp við að hlaða inn orðum");
-        }
+	if (this.readyState == 4) {
+            if (this.status == 200) {
+		let myObj = JSON.parse(this.responseText);
+		initializeNewWords(myObj);
+            } else {
+		alert("Villa kom upp við að hlaða inn orðum");
+            }
+	}
     }
     xmlhttp.open("GET", path, true);
     xmlhttp.send();
