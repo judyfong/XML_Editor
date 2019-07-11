@@ -277,10 +277,14 @@ function closeWordEditModal(evt) {
                 return;
         }
     }
+
+    var savingChanges = evt && evt.target && 
+        evt.target.id == 'edit-modal-save'; 
+
     // make sure the user wants to close it!
     let original = document.getElementById("edit-modal-original").innerText;
     let changed = document.getElementById("edit-input-field").value;
-    if (original != changed) {
+    if (original != changed && !savingChanges) {
         if (!confirm("Loka án þess að vista breytingu?", "Já", "Nei")) {
             return;
         }
