@@ -27,6 +27,10 @@ function newWordsInitialize() {
 
         fetchWordsDates(start, end);
     }
+
+    document.getElementById("top-button").onclick = function(click_evt) {
+        fetchWordsTop();
+    }
 }
 
 function getFakeNewWordlist() {
@@ -189,6 +193,11 @@ function fetchWordsDates(start_date, end_date) {
     fetchWords(path);
 }
 
+function fetchWordsTop() {
+    let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/newWords/?top=10";
+    fetchWords(path);
+}
+
 function fetchWords(path) {
     // clear the list first....
     $("#new-word-table").find("tr:not(:first)").remove();
@@ -196,14 +205,14 @@ function fetchWords(path) {
     console.log("fetching words from " + path);
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-	if (this.readyState == 4) {
+        if (this.readyState == 4) {
             if (this.status == 200) {
-		let myObj = JSON.parse(this.responseText);
-		initializeNewWords(myObj);
+               let myObj = JSON.parse(this.responseText);
+               initializeNewWords(myObj);
             } else {
-		alert("Villa kom upp við að hlaða inn orðum");
+               alert("Villa kom upp við að hlaða inn orðum");
             }
-	}
+        }
     }
     xmlhttp.open("GET", path, true);
     xmlhttp.send();
@@ -245,6 +254,7 @@ function saveWord(originalWord, confirmedWord, pronunciation) {
         }
     }
     xmlhttp.open("POST", path, true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
     xmlhttp.send(JSON.stringify(postdata));
 }
 
