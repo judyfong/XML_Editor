@@ -152,3 +152,13 @@ $(document).ready(function() {
   document.getElementById('load-example-lid20181009T230112').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/lid20181009T230112.xml');});
   document.getElementById('load-example-utb20171215T201027').addEventListener('click', function() { loadXMLtoEditor('resources/example_xml/utb20171215T201027.xml');});
 });
+
+$(window).load(function() {
+  console.debug('onload');
+    // XXX: verify there is a parameter at the end of the URL
+  var speechId = (window.location.href.match(/speechId=([^&]+)/))[1];
+  if (speechId) {
+    // XXX: Please edit me!
+    loadXMLtoEditor('http://asr-server.althingi.is/~lirfa/Lirfa/api/retrieveTranscript/?speechID='+ speechId);
+  }
+});
