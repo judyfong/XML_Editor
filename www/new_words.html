@@ -218,10 +218,17 @@
     }
 
     </style>
+    <link rel="stylesheet" type="text/css" href="styles/nav_bar.css">
 
   </head>
   <body onload="newWordsInitialize()">
     <div id="main-container">
+      <div class="topnav">
+          <a href="new_words.html" class="active">Listi yfir ný orð</a>
+          <a href="confirmed_words.html">Yfirlit samþykktra orða</a>
+          <a href="http://asr-server.althingi.is/~lirfa/Lirfa/user-guide.html">Notkunarleiðbeiningar</a>
+          <a href="index.html">XML ritill</a>
+      </div>
       <div id="selection-container">
         <div id="period-search-container">
           <h3>
@@ -240,8 +247,6 @@
         </div>
       </div>
       <div id="confirmed-words-summary-container">
-          <a href="http://asr-server.althingi.is/~lirfa/XML_Editor/www/confirmed_words.html" class="save-button" id="confirmed-words-summary-link">Yfirlit samþykktra orða</a>
-          <a href="http://asr-server.althingi.is/~lirfa/Lirfa/user-guide.html" class="save-button">Notkunarleiðbeiningar</a>
           <button class="save-button" id="top-button">Top 10</button>
       </div>
       <div id="content-container">

@@ -83,11 +83,6 @@
       margin: 0 10px;
     }
 
-    #new-words-container {
-        margin: 16px 50px;
-        display: inline-block;
-    }
-
     #symbol-inserter-container {
       margin: 0px;
       padding: 0px;
@@ -218,11 +213,17 @@
     }
 
     </style>
+    <link rel="stylesheet" href="styles/nav_bar.css">
 
   </head>
   <body onload="newWordsInitialize()">
     <div id="main-container">
-	<h1>Yfirlit samþykktra orða</h1>
+      <div class="topnav">
+	  <a href="http://asr-server.althingi.is/~lirfa/XML_Editor/www/new_words.html">Listi yfir ný orð</a>
+          <a href="http://asr-server.althingi.is/~lirfa/XML_Editor/www/confirmed_words.html" class="active" id="confirmed-words-summary-link">Yfirlit samþykktra orða</a>
+          <a href="http://asr-server.althingi.is/~lirfa/Lirfa/user-guide.html">Notkunarleiðbeiningar</a>
+          <a href="http://asr-server.althingi.is/~lirfa/XML_Editor/www/index.html">XML ritill</a>
+      </div>
       <div id="selection-container">
         <div id="period-search-container">
           <h3>
@@ -232,9 +233,6 @@
           <span> Til: <input type="text" class="datepicker" id="date_to"></span>
           <button class="save-button" id="search-dates-button">Leita</button>
         </div>
-      </div>
-      <div id="new-words-container">
-        <a href="http://asr-server.althingi.is/~lirfa/XML_Editor/www/new_words.html" class="save-button" >Ný orð</a>
       </div>
       <div id="content-container">
         <div id="content-main">
