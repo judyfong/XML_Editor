@@ -86,7 +86,7 @@ function start() {
   setEditorOptions(editor);
 
   editor.on('beforeChange', fixInsertQuotes);
-  editor.on('changes', handleChanges);
+  //editor.on('changes', handleChanges);
 /*  editor.on('focus', autovalidator);*/
   editor.on('focus', applyViewMode);
   editor.on('cursorActivity', handleCursorActivity);
@@ -155,10 +155,12 @@ $(document).ready(function() {
 
 $(window).load(function() {
   console.debug('onload');
-    // XXX: verify there is a parameter at the end of the URL
-  var speechId = (window.location.href.match(/speechId=([^&]+)/))[1];
-  if (speechId) {
-    // XXX: Please edit me!
-    loadXMLtoEditor('http://asr-server.althingi.is/~lirfa/Lirfa/api/retrieveTranscript/?speechID='+ speechId);
+  //verify speechId is a query parameter at the end of the URL
+  if (window.location.href.indexOf("speechId=") > -1) {
+    var speechId = (window.location.href.match(/speechId=([^&]+)/))[1];
+    if (speechId) {
+      // XXX: Please edit me!
+      loadXMLtoEditor('http://asr-server.althingi.is/~lirfa/Lirfa/api/retrieveTranscript/?speechID='+ speechId);
+    }
   }
 });
