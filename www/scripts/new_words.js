@@ -37,16 +37,19 @@ function getFakeNewWordlist() {
     obj1 = {
         "word": "fræðafólks",
         "phoneme": "f r aiː ð a f ou l̥ k s",
+        "wordId": "56",
         "context": "unninn í ákveðnu samráði milli fræðafólks fatlaðs fólks og stjórnvalda þannig"
     };
     obj2 = {
         "word": "kerfiskalla",
         "phoneme": "cʰ ɛ r v ɪ s kʰ a t l a",
+        "wordId": "57",
         "context": "við eigum ekki að láta kerfiskalla ráða því hvaða leið við"
     };
     obj3 = {
         "word": "Þýðingamiðstöðinni",
         "phoneme": "θ iː ð i ŋ k a m ɪ ð s t œ ð ɪ n ɪ",
+        "wordId": "356",
         "context": "að það hafi verið hjá Þýðingamiðstöðinni sem gerðar voru ákveðnar breytingar"
     };
     return [obj1, obj2, obj3];
@@ -132,6 +135,7 @@ function addNewWord(word_obj) {
     let btn_phoneme = document.createElement("button");
 
     td_word.setAttribute("id", "word-"+word_obj.word);
+    td_phoneme.setAttribute("id", word_obj.wordId);
 
     btn_word.setAttribute("class", "edit-button");
     btn_phoneme.setAttribute("class", "edit-button");
@@ -153,7 +157,7 @@ function addNewWord(word_obj) {
     //
     submit_btn.addEventListener("click", function() {
         // TODO: double check submit functionality
-        saveWord(td_word.id, td_word.innerText, td_phoneme.innerText);
+        saveWord(td_word.id, td_word.innerText, td_phoneme.innerText,td_phoneme.id);
         // remove the row
         tr.parentNode.removeChild(tr);
     });
@@ -165,7 +169,7 @@ function addNewWord(word_obj) {
     //
     delete_btn.addEventListener("click", function() {
         // TODO: double check delete functionality
-        deleteWord(td_word.id);
+        deleteWord(td_word.id, td_phoneme.id);
         // remove the row
         tr.parentNode.removeChild(tr);
     });
@@ -219,10 +223,12 @@ function fetchWords(path) {
 }
 
 
-function deleteWord(originalWord) {
+function deleteWord(originalWord, wordId) {
     let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
-        { "originalWord": originalWord.replace('word-', ''), "delete": true }
+        { "originalWord": originalWord.replace('word-', ''), "delete": true, 
+	  "wordId":wordId
+	}
     ] };
     console.log("deleting word " + postdata);
     let xmlhttp = new XMLHttpRequest();
@@ -238,7 +244,7 @@ function deleteWord(originalWord) {
     xmlhttp.send(JSON.stringify(postdata));
 }
 
-function saveWord(originalWord, confirmedWord, pronunciation) {
+function saveWord(originalWord, confirmedWord, pronunciation, wordId) {
     let path = "http://asr-server.althingi.is/~lirfa/Lirfa/api/confirmWords/";
     let postdata = {"word": [
         { "originalWord": originalWord.replace('word-', ''), "confirmedWord": confirmedWord, "pronunciation": pronunciation }
